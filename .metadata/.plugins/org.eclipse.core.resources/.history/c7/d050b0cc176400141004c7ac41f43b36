@@ -1,0 +1,11 @@
+package gbData;
+
+public abstract class gameToken {
+	
+	String name;
+	
+	public String getName(){
+		return name;
+	}
+
+}
