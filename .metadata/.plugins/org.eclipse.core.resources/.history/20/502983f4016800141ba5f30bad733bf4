@@ -14,11 +14,5 @@ public abstract class gameToken {
 	public Color getColor(){
 		return mcolor;
 	}
-	
-	gameToken(String pname, Color pcolor)
-	{
-		name = pname;
-		mcolor = pcolor;
-	}
 
 }

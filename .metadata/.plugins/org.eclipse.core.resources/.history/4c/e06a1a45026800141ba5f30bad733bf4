@@ -3,7 +3,6 @@ package gbData;
 import java.awt.Color;
 
 public class tokenO extends gameToken {
-	tokenO() {
-		super("O", Color.BLACK);
-	}
+	private String name = "O";
+	private Color mcolor = Color.BLACK;
 }

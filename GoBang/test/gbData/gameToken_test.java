@@ -5,20 +5,20 @@ public class gameToken_test {
 	public static void main(String[] args) {
 		
 		gameToken myToken = new tokenBlack();
-		String test = myToken.getName();
-		System.out.println(test);
+		System.out.println("Name: " + myToken.getName());
+		System.out.println("Color: " + myToken.getColor());
 		
 		myToken = new tokenX();
-		test = myToken.getName();
-		System.out.println(test);
+		System.out.println("Name: " + myToken.getName());
+		System.out.println("Color: " + myToken.getColor());
 		
 		myToken = new tokenO();
-		test = myToken.getName();
-		System.out.println(test);
+		System.out.println("Name: " + myToken.getName());
+		System.out.println("Color: " + myToken.getColor());
 		
 		myToken = new tokenWhite();
-		test = myToken.getName();
-		System.out.println(test);
+		System.out.println("Name: " + myToken.getName());
+		System.out.println("Color: " + myToken.getColor());
 		
 	}
 

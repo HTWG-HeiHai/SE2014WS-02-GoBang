@@ -470,3 +470,95 @@
 2014-11-09 11:44:39,576 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
 2014-11-09 11:44:39,577 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2014-11-09 11:44:39,577 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:00:32,462 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:00:32,463 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:00:32,464 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:00:32,464 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:08:11,398 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:08:11,398 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:08:11,399 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:08:11,399 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:08:48,130 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:08:48,130 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:08:48,131 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:08:48,131 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:09:07,874 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:09:07,875 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:09:07,876 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:09:07,876 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:09:36,854 [Worker-20] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:09:36,854 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:09:36,855 [Worker-20] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:09:36,855 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:10:27,317 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:10:27,317 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:10:27,317 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:10:27,318 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:10:36,817 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:10:36,818 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:10:36,818 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:10:36,819 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:11:14,266 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:11:14,266 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:11:14,267 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:11:14,267 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:11:18,426 [Worker-19] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:11:18,426 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:11:18,427 [Worker-19] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:11:18,428 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:17:13,611 [Worker-20] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:17:13,611 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:17:13,611 [Worker-20] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:17:13,612 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:17:39,954 [Worker-20] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:17:39,954 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:17:39,955 [Worker-20] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:17:39,955 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:18:27,145 [Worker-21] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:18:27,145 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:18:27,146 [Worker-21] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:18:27,146 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:18:56,961 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:18:56,961 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:18:56,961 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:18:56,962 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:19:05,163 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:19:05,164 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:19:05,164 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:19:05,164 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:19:10,972 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:19:10,973 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:19:10,973 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:19:10,973 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:19:28,814 [Worker-21] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:19:28,814 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:19:28,814 [Worker-21] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:19:28,815 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:19:50,015 [Worker-20] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:19:50,015 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:19:50,017 [Worker-20] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:19:50,017 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:22:44,946 [Worker-21] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:22:44,947 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:22:44,947 [Worker-21] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:22:44,947 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:23:03,093 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:23:03,094 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:23:03,094 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:23:03,094 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:23:36,779 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:23:36,779 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:23:36,780 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:23:36,781 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:23:59,066 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:23:59,067 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:23:59,067 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:23:59,067 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:24:16,168 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:24:16,169 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:24:16,169 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:24:16,169 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
+2014-11-09 12:24:55,694 [Worker-21] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:24:55,694 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\main\resources
+2014-11-09 12:24:55,694 [Worker-21] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-11-09 12:24:55,695 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\HTWG\git_projekte\Softwaretechnik\GoBang\src\test\resources
