@@ -36,7 +36,7 @@ public class gameField{
 
 	private boolean isValid(int x, int y) {
 		
-		if(x > size || x < 0 || y > size || y < 0)
+		if(x >= size  || x < 0 || y >= size  || y < 0)
 		{
 			return false; 
 		}
