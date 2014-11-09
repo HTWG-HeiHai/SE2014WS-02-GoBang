@@ -1,9 +1,0 @@
-package gbData;
-
-import java.awt.Color;
-
-public class tokenBlack extends gameToken {
-	super.mcolor = Color.BLACK; 
-	//mcolor = 
-	//name = "black";
-}

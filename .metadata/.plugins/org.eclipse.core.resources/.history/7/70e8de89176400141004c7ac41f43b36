@@ -1,5 +1,0 @@
-package gbData;
-
-public class tokenX extends gameToken {
-	name = "X";
-}

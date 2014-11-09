@@ -1,5 +1,0 @@
-package gbData;
-
-public abstract class gameToken {
-
-}
