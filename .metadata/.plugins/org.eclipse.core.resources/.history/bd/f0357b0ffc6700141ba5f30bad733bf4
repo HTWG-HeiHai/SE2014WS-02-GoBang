@@ -1,0 +1,24 @@
+package gbData;
+
+public class gameToken_test {
+	
+	public static void main(String[] args) {
+		gameToken myToken = new tokenBlack();
+		System.out.println(myToken.getName());
+		System.out.println(myToken.getColor().toString());
+		
+		myToken = new tokenX();
+		System.out.println(myToken.getName());
+		System.out.println(myToken.getColor().toString());
+		
+		myToken = new tokenO();
+		System.out.println(myToken.getName());
+		System.out.println(myToken.getColor().toString());
+		
+		myToken = new tokenWhite();
+		System.out.println(myToken.getName());
+		System.out.println(myToken.getColor().toString());
+		
+	}
+
+}
