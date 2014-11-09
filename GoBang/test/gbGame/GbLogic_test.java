@@ -26,13 +26,17 @@ public class GbLogic_test {
 		System.out.println("\nJetzt wird die Logik getestet:");
 		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
 		
-		//2x erfolgreich
-		//1x besetzt
+		//3x erfolgreich
+		//2x besetzt
 		//4 falsch (out of Index)
 		
 		status = myGame.setToken(1, 1);
 		output(status);
 		status = myGame.setToken(1, 2);
+		output(status);
+		status = myGame.setToken(19, 19);
+		output(status);
+		status = myGame.setToken(19, 19);
 		output(status);
 		status = myGame.setToken(1, 1);
 		output(status);
