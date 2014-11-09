@@ -10,6 +10,9 @@ public class GbLogic {
 	private gameToken Player2;
 	private gameToken cPlayer;
 	private int counter;
+	private int size;
+	private char status;
+	
 	
 	GbLogic(gameToken p1, gameToken p2){
 		myfield = new gameField();
@@ -17,14 +20,23 @@ public class GbLogic {
 		Player2 = p2;
 		counter = 0;
 		cPlayer = Player1;
+		size = myfield.getSize();
 	}
 	
-	public int setToken(int x, int y)
+	public char setToken(int x, int y)
 	{
+		if (x > size || x < 0 || y > size || y < 0)
+		{
+			return 'f';
+		}
+		status = myfield.putStone(x, y, cPlayer);
+		if (status == 'f' || status == 'b')
+		{
+			return status;
+		}
 		counter++;
-		myfield.putStone(x, y, cPlayer);
 		changePlayer(counter);
-		return 1;
+		return status;
 	}
 	
 	private void changePlayer(int counter)
