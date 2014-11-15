@@ -23,12 +23,12 @@ public class gameField{
 		{
 			if(matrix[x][y] != null)
 			{
-				return 'b'; //liegt schon ein Token
+				return 'b'; 
 			}
 			
 			this.matrix[x][y] = token;
 			//return getWin(x, y, token);
-			return 'e';
+		
 		}
 		
 		return 'f';
@@ -44,54 +44,18 @@ public class gameField{
 		return true;	
 		
 	}
-
-	/*private char getWin(int x, int y, gameToken token) {
-		int counter = 1;
-		
-		if(isValid(x,y--) == 0)
+	
+	public char remove(int x, int y) {
+		x--;  
+		y--;
+		if(isValid(x, y))
 		{
-			if(matrix[x][y--] == token){
-				counter++;
-				getWin(x ,y, token, counter);
-			}
+			matrix[x][y] = null;
+			return 'r';
 		}
 		
-		
-		return 0;
+		return 'f';
 	}
-	
-	private boolean getWin(int x, int y, gameToken token, int counter)
-	{
-		return true;
-	}
-	
-	if(matrix[x--][y] == null){
-		if(matrix[x][y--] == null){
-			//bin Ecke obenlinks
-		}
-		//bin oben
-	}
-	
-	if(matrix[x][y--] == null){
-		if(matrix[x--][y] == null){
-			//bin Ecke untenlinks
-		}
-		// bin links
-	}
-	
-	if(matrix[x--][y] == null){
-		if(matrix[x][y++] == null){
-			//bin ecke untenrechts
-		}
-		//bin unten
-	}
-	if(matrix[x][y++] == null){
-		if(matrix[x--][y] == null){
-			// bin ecke rechtsoben
-		}
-		//bin rechts
-	}*/
-	
-	
-	
+
+
 }
