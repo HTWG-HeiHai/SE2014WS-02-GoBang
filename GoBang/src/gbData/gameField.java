@@ -45,7 +45,7 @@ public class gameField{
 		
 	}
 	
-	public char remove(int x, int y) {
+	public char removeToken(int x, int y) {
 		x--;  
 		y--;
 		if(isValid(x, y))
@@ -59,9 +59,8 @@ public class gameField{
 
 	private char getWin(int x, int y, gameToken token) {
 		int counter = 1;
-		counter = goLeft(x, --y, token, counter);
-		counter = goRight(x, 2+y, token, counter);
-		y++;
+		counter = goLeft(x, y-1, token, counter);
+		counter = goRight(x, y+1, token, counter);
 		if (counter >= win)
 		{
 			return 'g';
@@ -69,9 +68,8 @@ public class gameField{
 			counter = 1;
 		}
 		
-		counter = goUp(--x , y, token, counter);
-		counter = goDown(2+x, y, token, counter);
-		x++;
+		counter = goUp(x-1 , y, token, counter);
+		counter = goDown(x+1, y, token, counter);
 		if (counter >= win)
 		{
 			return 'g';
@@ -79,10 +77,8 @@ public class gameField{
 			counter = 1;
 		}
 		
-		counter = goLeftUp(--x, --y, token, counter);
-		counter = goRightDown(2+x, 2+y, token, counter);
-		x++;
-		y++;
+		counter = goLeftUp(x-1, y-1, token, counter);
+		counter = goRightDown(x+1, y+1, token, counter);
 		if (counter >= win)
 		{
 			return 'g';
@@ -90,10 +86,8 @@ public class gameField{
 			counter = 1;
 		}
 		
-		counter = goRightUp(--x, ++y, token, counter);
-		counter = goLeftDown(2+x, -2+y, token, counter);
-		x++;
-		y--;
+		counter = goRightUp(x-1, y+1, token, counter);
+		counter = goLeftDown(x+1, y-1, token, counter);
 		if (counter >= win)
 		{
 			return 'g';
@@ -111,7 +105,7 @@ public class gameField{
 		
 		if(matrix[x][y] == token){
 			counter++;
-			counter = goLeftDown(++x , --y, token, counter);
+			counter = goLeftDown(x+1 , y-1, token, counter);
 		}
 
 		return counter;
@@ -123,7 +117,7 @@ public class gameField{
 		
 		if(matrix[x][y] == token){
 			counter++;
-			counter = goRightUp(--x , ++y, token, counter);
+			counter = goRightUp(x-1 , y+1, token, counter);
 		}
 
 		return counter;
@@ -135,7 +129,7 @@ public class gameField{
 		
 		if(matrix[x][y] == token){
 			counter++;
-			counter = goRightDown(++x , ++y, token, counter);
+			counter = goRightDown(x+1 , y+1, token, counter);
 		}
 
 		return counter;
@@ -147,7 +141,7 @@ public class gameField{
 		
 		if(matrix[x][y] == token){
 			counter++;
-			counter = goLeftUp(--x ,--y, token, counter);
+			counter = goLeftUp(x-1 ,y-1, token, counter);
 		}
 
 		return counter;
@@ -159,7 +153,7 @@ public class gameField{
 		
 		if(matrix[x][y] == token){
 			counter++;
-			counter = goDown(++x ,y, token, counter);
+			counter = goDown(x+1 ,y, token, counter);
 		}
 
 		return counter;
@@ -171,7 +165,7 @@ public class gameField{
 		
 		if(matrix[x][y] == token){
 			counter++;
-			counter = goUp(--x ,y, token, counter);
+			counter = goUp(x-1 ,y, token, counter);
 		}
 
 		return counter;
@@ -183,7 +177,7 @@ public class gameField{
 		
 		if(matrix[x][y] == token){
 			counter++;
-			counter = goLeft(x ,--y, token, counter);
+			counter = goLeft(x ,y-1, token, counter);
 		}
 
 		return counter;
@@ -195,7 +189,7 @@ public class gameField{
 		
 		if(matrix[x][y] == token){
 			counter++;
-			counter = goRight(x ,++y, token, counter);
+			counter = goRight(x ,y+1, token, counter);
 		}
 
 		return counter;
