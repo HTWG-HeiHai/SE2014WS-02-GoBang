@@ -13,7 +13,41 @@ public class GameFieldTest {
 		gameField myField = new gameField();
 		
 		assertEquals(19, myField.getSize());
+		
+		//left - right
 		assertEquals('e', myField.putStone(15, 14, tokenB));
+		assertEquals('e', myField.putStone(15, 13, tokenB));
+		assertEquals('e', myField.putStone(15, 15, tokenB));
+		assertEquals('e', myField.putStone(15, 16, tokenB));
+		assertEquals('g', myField.putStone(15, 17, tokenB));
+		
+		//up - down
+		assertEquals('e', myField.putStone(8, 10, tokenB));
+		assertEquals('e', myField.putStone(9, 10, tokenB));
+		assertEquals('e', myField.putStone(10, 10, tokenB));
+		assertEquals('e', myField.putStone(11, 10, tokenB));
+		assertEquals('g', myField.putStone(7, 10, tokenB));
+		
+		//leftUp - downRight
+		assertEquals('e', myField.putStone(6, 14, tokenB));
+		assertEquals('e', myField.putStone(5, 13, tokenB));
+		assertEquals('e', myField.putStone(8, 16, tokenB));
+		assertEquals('e', myField.putStone(7, 15, tokenB));
+		assertEquals('g', myField.putStone(4, 12, tokenB));
+		
+		//leftDown - rightUp
+		assertEquals('e', myField.putStone(10, 7, tokenB));
+		assertEquals('e', myField.putStone(12, 5, tokenB));
+		assertEquals('e', myField.putStone(14, 3, tokenB));
+		assertEquals('e', myField.putStone(11, 6, tokenB));
+		assertEquals('g', myField.putStone(13, 4, tokenB));
+		
+		assertEquals('e', myField.putStone(17, 14, tokenB));
+		assertEquals('e', myField.putStone(17, 13, tokenB));
+		assertEquals('e', myField.putStone(17, 15, tokenB));
+		assertEquals('e', myField.putStone(17, 16, tokenB));
+		assertEquals('e', myField.putStone(17, 17, tokenW));
+		
 		assertEquals('b', myField.putStone(15, 14, tokenB));
 		assertEquals('b', myField.putStone(15, 14, tokenW));
 		
