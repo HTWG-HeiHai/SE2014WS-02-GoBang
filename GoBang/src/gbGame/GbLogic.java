@@ -14,7 +14,7 @@ public class GbLogic {
 	private char status;
 	
 	
-	GbLogic(gameToken p1, gameToken p2){
+	public GbLogic(gameToken p1, gameToken p2){
 		myfield = new gameField();
 		Player1 = p1;
 		Player2 = p2;
