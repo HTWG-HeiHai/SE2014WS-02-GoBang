@@ -2,8 +2,8 @@ package gbData;
 
 import java.awt.Color;
 
-public class tokenX extends GameToken {
-	public tokenX() {
+public class TokenX extends GameToken {
+	public TokenX() {
 		super("X", Color.BLACK);
 	}
 }
