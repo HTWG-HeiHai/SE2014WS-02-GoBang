@@ -4,8 +4,8 @@ import java.awt.Color;
 
 public abstract class GameToken {
 	
-	protected String name;
-	protected Color mcolor;
+	private String name;
+	private Color mcolor;
 	
 	public String getName(){
 		return name;
