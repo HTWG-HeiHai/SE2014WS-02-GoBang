@@ -24,7 +24,7 @@ public class TUI {
 				try {
 					switch(choice = scan.nextInt()) {
 					case 1:
-						field();
+						game();
 						break;
 					case 2:
 						help();
@@ -47,10 +47,15 @@ public class TUI {
 			}
 	}
 			
+	private static void game() {
+		field();
+		
+	}
+
 	private static void help() {
 		System.out.println("Go Bang is a strategy board game for two players from Japane. "
 				+ "\nIt is played on a board of 19 x 19 fields. The players aim to align five "
-				+ "\nstones of the same colour suite in vertical, horizontal or diagonal lines. ");
+				+ "\nstones of the same token suite in vertical, horizontal or diagonal lines. ");
 		System.out.println();
 	}
 
