@@ -5,22 +5,23 @@ import gbData.GameField;
 
 public class GbLogic {
 	
-	private GameField myfield;
-	private GameToken Player1;
-	private GameToken Player2;
+	private GameField myField;
+	private GameToken player1;
+	private GameToken player2;
 	private GameToken cPlayer;
+	private int lastX;
+	private int lastY;
 	private int counter;
 	private int size;
 	private char status;
 	
-	
 	public GbLogic(GameToken p1, GameToken p2){
-		myfield = new GameField();
-		Player1 = p1;
-		Player2 = p2;
+		myField = new GameField();
+		player1 = p1;
+		player2 = p2;
 		counter = 0;
-		cPlayer = Player1;
-		size = myfield.getSize();
+		cPlayer = player1;
+		size = myField.getSize();
 	}
 	
 	public char setToken(int x, int y)
@@ -29,13 +30,15 @@ public class GbLogic {
 		{
 			return 'f';
 		}
-		status = myfield.putStone(x, y, cPlayer);
+		status = myField.putStone(x, y, cPlayer);
 		if (status == 'f' || status == 'b')
 		{
 			return status;
 		}
 		counter++;
 		changePlayer(counter);
+		lastX = x;
+		lastY = y;
 		return status;
 	}
 	
@@ -43,11 +46,11 @@ public class GbLogic {
 	{
 		if (counter %2 == 0)
 		{
-			cPlayer = Player1;
+			cPlayer = player1;
 		}
 		else
 		{
-			cPlayer = Player2;
+			cPlayer = player2;
 		}
 	}
 	
@@ -59,5 +62,15 @@ public class GbLogic {
 	public GameToken getcPlayer()
 	{
 		return cPlayer;
+	}
+	
+	public boolean removeToken()
+	{
+		status = myField.removeToken(lastX, lastY);
+		if (status == 'f')
+		{
+			return false;
+		}
+		return true;
 	}
 }
