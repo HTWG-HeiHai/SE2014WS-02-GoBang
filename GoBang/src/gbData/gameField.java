@@ -46,11 +46,11 @@ public class GameField{
 	}
 	
 	public char removeToken(int x, int y) {
-		x--;  
-		y--;
+		int tx = x-1;  
+		int ty = y-1;
 		if(isValid(x, y))
 		{
-			matrix[x][y] = null;
+			matrix[tx][ty] = null;
 			return 'r';
 		}
 		
@@ -100,106 +100,114 @@ public class GameField{
 
 
 	private int goLeftDown(int x, int y, GameToken token, int counter) {
+		int tcounter = counter;
 		if(!isValid(x,y)) {
-			return counter;
+			return tcounter;
 		}
 		
 		if(matrix[x][y] == token){
-			counter++;
-			counter = goLeftDown(x+1 , y-1, token, counter);
+			tcounter++;
+			tcounter = goLeftDown(x+1 , y-1, token, tcounter);
 		}
 
-		return counter;
+		return tcounter;
 	}
 
 	private int goRightUp(int x, int y, GameToken token, int counter) {
+		int tcounter = counter;
 		if(!isValid(x,y)) {
-			return counter;
+			return tcounter;
 		}
 		
 		if(matrix[x][y] == token){
-			counter++;
-			counter = goRightUp(x-1 , y+1, token, counter);
+			tcounter++;
+			tcounter = goRightUp(x-1 , y+1, token, tcounter);
 		}
 
-		return counter;
+		return tcounter;
 	}
 
 	private int goRightDown(int x, int y, GameToken token, int counter) {
+		int tcounter = counter;
 		if(!isValid(x,y)) {
-			return counter;
+			return tcounter;
 		}
 		
 		if(matrix[x][y] == token){
-			counter++;
-			counter = goRightDown(x+1 , y+1, token, counter);
+			tcounter++;
+			tcounter = goRightDown(x+1 , y+1, token, tcounter);
 		}
 
-		return counter;
+		return tcounter;
 	}
 
 	private int goLeftUp(int x, int y, GameToken token, int counter) {
+		int tcounter = counter;
 		if(!isValid(x,y)) {
-			return counter;
+			return tcounter;
 		}
 		
 		if(matrix[x][y] == token){
-			counter++;
-			counter = goLeftUp(x-1 ,y-1, token, counter);
+			tcounter++;
+			tcounter = goLeftUp(x-1 ,y-1, token, tcounter);
 		}
 
-		return counter;
+		return tcounter;
 	}
 
 	private int goDown(int x, int y, GameToken token, int counter) {
+		int tcounter = counter;
 		if(!isValid(x,y)) {
-			return counter;
+			return tcounter;
 		}
 		
 		if(matrix[x][y] == token){
-			counter++;
-			counter = goDown(x+1 ,y, token, counter);
+			tcounter++;
+			tcounter = goDown(x+1 ,y, token, tcounter);
 		}
 
-		return counter;
+		return tcounter;
 	}
 
 	private int goUp(int x, int y, GameToken token, int counter) {
+		int tcounter = counter;
 		if(!isValid(x,y)) {
-			return counter;
+			return tcounter;
 		}
 		
 		if(matrix[x][y] == token){
-			counter++;
-			counter = goUp(x-1 ,y, token, counter);
+			tcounter++;
+			tcounter = goUp(x-1 ,y, token, tcounter);
 		}
 
-		return counter;
+		return tcounter;
 	}
 
 	private int goLeft(int x, int y, GameToken token, int counter) {
+		int tcounter = counter;
 		if(!isValid(x,y)) {
-			return counter;
+			return tcounter;
 		}
 		
 		if(matrix[x][y] == token){
-			counter++;
-			counter = goLeft(x ,y-1, token, counter);
+			tcounter++;
+			tcounter = goLeft(x ,y-1, token, tcounter);
 		}
 
-		return counter;
+		return tcounter;
 	}
 	
 	private int goRight(int x, int y, GameToken token, int counter) {
+		int tcounter = counter;
 		if(!isValid(x,y)) {
-			return counter;
+			return tcounter;
 		}
 		
 		if(matrix[x][y] == token){
-			counter++;
-			counter = goRight(x ,y+1, token, counter);
+			tcounter++;
+			tcounter = goRight(x ,y+1, token, tcounter);
 		}
 
-		return counter;
+		return tcounter;
 	}
 }
