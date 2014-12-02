@@ -8,8 +8,8 @@ public class GameFieldTest {
 
 	@Test
 	public void test() {
-		GameToken tokenB = new tokenBlack();
-		GameToken tokenW = new tokenWhite();
+		GameToken tokenB = new TokenBlack();
+		GameToken tokenW = new TokenWhite();
 		GameField myField = new GameField();
 		
 		assertEquals(19, myField.getSize());

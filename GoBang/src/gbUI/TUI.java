@@ -1,8 +1,8 @@
 package gbUI;
 
-import gbData.tokenO;
+import gbData.TokenO;
 import gbData.GameToken;
-import gbData.tokenX;
+import gbData.TokenX;
 import gbGame.GbLogic;
 
 import java.util.InputMismatchException;
@@ -72,8 +72,8 @@ public class TUI {
 	}
 
 	private void newGame(){
-		player1 = new tokenX();
-		player2 = new tokenO();
+		player1 = new TokenX();
+		player2 = new TokenO();
 		myGame = new GbLogic(player1, player2);
 	}
 
