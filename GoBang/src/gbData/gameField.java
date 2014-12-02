@@ -2,10 +2,10 @@ package gbData;
 
 public class GameField{
 	
-	final int win = 5;
-	final int size = 19;
+	private final int win = 5;
+	private final int size = 19;
 	
-	GameToken[][] matrix;
+	private GameToken[][] matrix;
 	
 	public GameField(){
 		matrix = new GameToken[size][size];
@@ -16,18 +16,18 @@ public class GameField{
 	}
 	
 	public char putStone(int x, int y, GameToken token){
-		x--;
-		y--;
+		int tx = x-1;
+		int ty = y-1;
 		
-		if(isValid(x, y))
+		if(isValid(tx, ty))
 		{
-			if(matrix[x][y] != null)
+			if(matrix[tx][ty] != null)
 			{
 				return 'b'; 
 			}
 			
-			this.matrix[x][y] = token;
-			return getWin(x, y, token);
+			this.matrix[tx][ty] = token;
+			return getWin(tx, ty, token);
 		
 		}
 		
@@ -100,8 +100,9 @@ public class GameField{
 
 
 	private int goLeftDown(int x, int y, GameToken token, int counter) {
-		if(!isValid(x,y))
+		if(!isValid(x,y)) {
 			return counter;
+		}
 		
 		if(matrix[x][y] == token){
 			counter++;
@@ -112,8 +113,9 @@ public class GameField{
 	}
 
 	private int goRightUp(int x, int y, GameToken token, int counter) {
-		if(!isValid(x,y))
+		if(!isValid(x,y)) {
 			return counter;
+		}
 		
 		if(matrix[x][y] == token){
 			counter++;
@@ -124,8 +126,9 @@ public class GameField{
 	}
 
 	private int goRightDown(int x, int y, GameToken token, int counter) {
-		if(!isValid(x,y))
+		if(!isValid(x,y)) {
 			return counter;
+		}
 		
 		if(matrix[x][y] == token){
 			counter++;
@@ -136,8 +139,9 @@ public class GameField{
 	}
 
 	private int goLeftUp(int x, int y, GameToken token, int counter) {
-		if(!isValid(x,y))
+		if(!isValid(x,y)) {
 			return counter;
+		}
 		
 		if(matrix[x][y] == token){
 			counter++;
@@ -148,8 +152,9 @@ public class GameField{
 	}
 
 	private int goDown(int x, int y, GameToken token, int counter) {
-		if(!isValid(x,y))
+		if(!isValid(x,y)) {
 			return counter;
+		}
 		
 		if(matrix[x][y] == token){
 			counter++;
@@ -160,8 +165,9 @@ public class GameField{
 	}
 
 	private int goUp(int x, int y, GameToken token, int counter) {
-		if(!isValid(x,y))
+		if(!isValid(x,y)) {
 			return counter;
+		}
 		
 		if(matrix[x][y] == token){
 			counter++;
@@ -172,8 +178,9 @@ public class GameField{
 	}
 
 	private int goLeft(int x, int y, GameToken token, int counter) {
-		if(!isValid(x,y))
+		if(!isValid(x,y)) {
 			return counter;
+		}
 		
 		if(matrix[x][y] == token){
 			counter++;
@@ -184,8 +191,9 @@ public class GameField{
 	}
 	
 	private int goRight(int x, int y, GameToken token, int counter) {
-		if(!isValid(x,y))
+		if(!isValid(x,y)) {
 			return counter;
+		}
 		
 		if(matrix[x][y] == token){
 			counter++;
