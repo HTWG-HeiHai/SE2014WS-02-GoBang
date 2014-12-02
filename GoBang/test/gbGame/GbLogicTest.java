@@ -1,7 +1,7 @@
 package gbGame;
 
 import static org.junit.Assert.*;
-import gbData.gameToken;
+import gbData.GameToken;
 import gbData.tokenO;
 import gbData.tokenX;
 
@@ -11,8 +11,8 @@ public class GbLogicTest {
 
 	@Test
 	public void test() {
-		gameToken Player1 = new tokenX();
-		gameToken Player2 = new tokenO();
+		GameToken Player1 = new tokenX();
+		GameToken Player2 = new tokenO();
 		GbLogic myGame = new GbLogic(Player1, Player2);
 		
 		assertEquals(0, myGame.getCounter());

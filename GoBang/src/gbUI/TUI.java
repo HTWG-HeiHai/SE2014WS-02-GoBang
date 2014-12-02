@@ -1,7 +1,7 @@
 package gbUI;
 
 import gbData.tokenO;
-import gbData.gameToken;
+import gbData.GameToken;
 import gbData.tokenX;
 import gbGame.GbLogic;
 
@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 public class TUI {
 	
-	gameToken player1;
-	gameToken player2;
+	GameToken player1;
+	GameToken player2;
 	GbLogic myGame;
 	
 	private static final Scanner scan = new Scanner(System.in); 

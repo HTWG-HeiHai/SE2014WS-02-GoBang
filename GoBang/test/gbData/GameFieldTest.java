@@ -8,9 +8,9 @@ public class GameFieldTest {
 
 	@Test
 	public void test() {
-		gameToken tokenB = new tokenBlack();
-		gameToken tokenW = new tokenWhite();
-		gameField myField = new gameField();
+		GameToken tokenB = new tokenBlack();
+		GameToken tokenW = new tokenWhite();
+		GameField myField = new GameField();
 		
 		assertEquals(19, myField.getSize());
 		

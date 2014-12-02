@@ -1,21 +1,21 @@
 package gbGame;
 
-import gbData.gameToken;
-import gbData.gameField;
+import gbData.GameToken;
+import gbData.GameField;
 
 public class GbLogic {
 	
-	private gameField myfield;
-	private gameToken Player1;
-	private gameToken Player2;
-	private gameToken cPlayer;
+	private GameField myfield;
+	private GameToken Player1;
+	private GameToken Player2;
+	private GameToken cPlayer;
 	private int counter;
 	private int size;
 	private char status;
 	
 	
-	public GbLogic(gameToken p1, gameToken p2){
-		myfield = new gameField();
+	public GbLogic(GameToken p1, GameToken p2){
+		myfield = new GameField();
 		Player1 = p1;
 		Player2 = p2;
 		counter = 0;
@@ -56,7 +56,7 @@ public class GbLogic {
 		return counter;
 	}
 	
-	public gameToken getcPlayer()
+	public GameToken getcPlayer()
 	{
 		return cPlayer;
 	}
