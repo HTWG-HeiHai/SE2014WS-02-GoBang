@@ -1,21 +1,21 @@
 package gbData;
 
-public class gameField{
+public class GameField{
 	
 	final int win = 5;
 	final int size = 19;
 	
-	gameToken[][] matrix;
+	GameToken[][] matrix;
 	
-	public gameField(){
-		matrix = new gameToken[size][size];
+	public GameField(){
+		matrix = new GameToken[size][size];
 	}
 	
 	public int getSize(){
 		return size;
 	}
 	
-	public char putStone(int x, int y, gameToken token){
+	public char putStone(int x, int y, GameToken token){
 		x--;
 		y--;
 		
@@ -57,7 +57,7 @@ public class gameField{
 		return 'f';
 	}
 
-	private char getWin(int x, int y, gameToken token) {
+	private char getWin(int x, int y, GameToken token) {
 		int counter = 1;
 		counter = goLeft(x, y-1, token, counter);
 		counter = goRight(x, y+1, token, counter);
@@ -99,7 +99,7 @@ public class gameField{
 	}
 
 
-	private int goLeftDown(int x, int y, gameToken token, int counter) {
+	private int goLeftDown(int x, int y, GameToken token, int counter) {
 		if(!isValid(x,y))
 			return counter;
 		
@@ -111,7 +111,7 @@ public class gameField{
 		return counter;
 	}
 
-	private int goRightUp(int x, int y, gameToken token, int counter) {
+	private int goRightUp(int x, int y, GameToken token, int counter) {
 		if(!isValid(x,y))
 			return counter;
 		
@@ -123,7 +123,7 @@ public class gameField{
 		return counter;
 	}
 
-	private int goRightDown(int x, int y, gameToken token, int counter) {
+	private int goRightDown(int x, int y, GameToken token, int counter) {
 		if(!isValid(x,y))
 			return counter;
 		
@@ -135,7 +135,7 @@ public class gameField{
 		return counter;
 	}
 
-	private int goLeftUp(int x, int y, gameToken token, int counter) {
+	private int goLeftUp(int x, int y, GameToken token, int counter) {
 		if(!isValid(x,y))
 			return counter;
 		
@@ -147,7 +147,7 @@ public class gameField{
 		return counter;
 	}
 
-	private int goDown(int x, int y, gameToken token, int counter) {
+	private int goDown(int x, int y, GameToken token, int counter) {
 		if(!isValid(x,y))
 			return counter;
 		
@@ -159,7 +159,7 @@ public class gameField{
 		return counter;
 	}
 
-	private int goUp(int x, int y, gameToken token, int counter) {
+	private int goUp(int x, int y, GameToken token, int counter) {
 		if(!isValid(x,y))
 			return counter;
 		
@@ -171,7 +171,7 @@ public class gameField{
 		return counter;
 	}
 
-	private int goLeft(int x, int y, gameToken token, int counter) {
+	private int goLeft(int x, int y, GameToken token, int counter) {
 		if(!isValid(x,y))
 			return counter;
 		
@@ -183,7 +183,7 @@ public class gameField{
 		return counter;
 	}
 	
-	private int goRight(int x, int y, gameToken token, int counter) {
+	private int goRight(int x, int y, GameToken token, int counter) {
 		if(!isValid(x,y))
 			return counter;
 		

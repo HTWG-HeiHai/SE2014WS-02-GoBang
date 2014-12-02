@@ -2,7 +2,7 @@ package gbData;
 
 import java.awt.Color;
 
-public abstract class gameToken {
+public abstract class GameToken {
 	
 	protected String name;
 	protected Color mcolor;
@@ -15,7 +15,7 @@ public abstract class gameToken {
 		return mcolor;
 	}
 	
-	gameToken(String pname, Color pcolor)
+	GameToken(String pname, Color pcolor)
 	{
 		name = pname;
 		mcolor = pcolor;
