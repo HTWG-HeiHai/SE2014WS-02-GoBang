@@ -10,19 +10,20 @@ import de.htwg.gobang.entities.TokenX;
 
 public class TUI {
 	
-	GameToken player1;
-	GameToken player2;
-	GbLogic myGame;
+	private static GameToken player1;
+	private static GameToken player2;
+	private static GbLogic myGame;
 	
-	private static final Scanner scan = new Scanner(System.in); 
-	static int choice;
+	private static final Scanner Scan = new Scanner(System.in); 
+	private static int choice;
+	private static String[] line;
 	
 	public static void main(String[] args) {
 			welcome();
 			
 			while(true){
 				try {
-					switch(choice = scan.nextInt()) {
+					switch(choice = Scan.nextInt()) {
 					case 1:
 						game();
 						break;
@@ -48,6 +49,7 @@ public class TUI {
 	}
 			
 	private static void game() {
+		newGame();
 		field();
 		
 	}
@@ -71,7 +73,7 @@ public class TUI {
 		
 	}
 
-	private void newGame(){
+	private static void newGame(){
 		player1 = new TokenX();
 		player2 = new TokenO();
 		myGame = new GbLogic(player1, player2);
