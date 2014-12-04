@@ -1,12 +1,12 @@
-package de.htwg.gobang.controller;
+package de.htwg.gobang.ui;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import de.htwg.gobang.controller.GbLogic;
 import de.htwg.gobang.entities.GameToken;
 import de.htwg.gobang.entities.TokenO;
 import de.htwg.gobang.entities.TokenX;
-import de.htwg.gobang.ui.GbLogic;
 
 public class TUI {
 	

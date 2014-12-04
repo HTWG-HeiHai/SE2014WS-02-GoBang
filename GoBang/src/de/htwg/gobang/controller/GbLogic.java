@@ -1,4 +1,4 @@
-package de.htwg.gobang.ui;
+package de.htwg.gobang.controller;
 
 import de.htwg.gobang.entities.GameField;
 import de.htwg.gobang.entities.GameToken;
