@@ -177,32 +177,35 @@ public class TUI {
 	}
 
 	private static void newGame(){
+		int myBorder = 19;
+		int myLoop = 20;
+		int myHalfLoop = 10;
 		player1 = new TokenX();
 		player2 = new TokenO();
 		myGame = new GbLogic(player1, player2);
 		cPlayer = myGame.getcPlayer().getName();
 		line = new String[19][20];
 		StringBuilder tmp = new StringBuilder();
-		for(int i = 1; i < 10; i++)
+		for(int i = 1; i < myHalfLoop; i++)
 		{
 			tmp.append("0").append(i);
 			line[i-1][0] = tmp.toString();
-			for(int k = 1; k < 20; k++)
+			for(int k = 1; k < myLoop; k++)
 			{
 				line[i-1][k] = newGameLine();
 			}
-			line[i-1][19] = line[i-1][19] + "|"; 
+			line[i-1][myBorder] = line[i-1][myBorder] + "|"; 
 			tmp = new StringBuilder();
 		}
 		
-		for(int i = 10; i < 20; i++)
+		for(int i = myHalfLoop; i < myLoop; i++)
 		{
 			line[i-1][0] = Integer.toString(i);
-			for(int k = 1; k < 20; k++)
+			for(int k = 1; k < myLoop; k++)
 			{
 				line[i-1][k] = newGameLine();
 			}
-			line[i-1][19] = line[i-1][19] + "|";
+			line[i-1][myBorder] = line[i-1][myBorder] + "|";
 		}
 	}
 	
