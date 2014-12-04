@@ -2,17 +2,17 @@ package de.htwg.gobang.entities;
 
 public class GameField{
 	
-	private static final int win = 5;
-	private static final int size = 19;
+	private static final int Win = 5;
+	private static final int Size = 19;
 	
 	private GameToken[][] matrix;
 	
 	public GameField(){
-		matrix = new GameToken[size][size];
+		matrix = new GameToken[Size][Size];
 	}
 	
 	public int getSize(){
-		return size;
+		return Size;
 	}
 	
 	public char putStone(int x, int y, GameToken token){
@@ -36,7 +36,7 @@ public class GameField{
 
 	private boolean isValid(int x, int y) {
 		
-		if(x >= size  || x < 0 || y >= size  || y < 0)
+		if(x >= Size  || x < 0 || y >= Size  || y < 0)
 		{
 			return false; 
 		}
@@ -65,7 +65,7 @@ public class GameField{
 		int counter = 1;
 		counter = goLeft(x, y-1, token, counter);
 		counter = goRight(x, y+1, token, counter);
-		if (counter >= win)
+		if (counter >= Win)
 		{
 			return 'g';
 		} else {
@@ -74,7 +74,7 @@ public class GameField{
 		
 		counter = goUp(x-1 , y, token, counter);
 		counter = goDown(x+1, y, token, counter);
-		if (counter >= win)
+		if (counter >= Win)
 		{
 			return 'g';
 		} else {
@@ -83,7 +83,7 @@ public class GameField{
 		
 		counter = goLeftUp(x-1, y-1, token, counter);
 		counter = goRightDown(x+1, y+1, token, counter);
-		if (counter >= win)
+		if (counter >= Win)
 		{
 			return 'g';
 		} else {
@@ -92,7 +92,7 @@ public class GameField{
 		
 		counter = goRightUp(x-1, y+1, token, counter);
 		counter = goLeftDown(x+1, y-1, token, counter);
-		if (counter >= win)
+		if (counter >= Win)
 		{
 			return 'g';
 		} else {
