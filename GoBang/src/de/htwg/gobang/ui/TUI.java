@@ -64,20 +64,9 @@ public class TUI {
 			pTurn();
 			cord = scanner.nextLine();
 			
-			if (cord.equals("b") || cord.equals("B"))
+			if (checkRemove(cord, ly, lx))
 			{
-				if(myGame.removeToken())
-				{
-					line[ly-1][lx] = setLine(lx,ly,"_");
-					myprint("Token deleted.");
-					cPlayer = myGame.getcPlayer().getName();
-					continue;
-				}
-				else
-				{
-					myprint("No token left to delete.");
-					continue;
-				}
+				continue;
 			}
 			
 			if (!cord.contains(","))
@@ -107,7 +96,7 @@ public class TUI {
 					continue;
 				case 'e': 
 				case 'g':
-					line[y-1][x] = setLine(x,y,cPlayer);
+					line[y-1][x] = setLine(x,cPlayer);
 					cPlayer = myGame.getcPlayer().getName();
 					lx = x;
 					ly = y;
@@ -121,8 +110,27 @@ public class TUI {
 		myprint(cPlayer + " you won after " + Integer.toString(myGame.getCounter())  + " turns!");
 		System.exit(0);
 	}
-
-	private static String setLine(int x, int y, String current) {
+	
+	private static boolean checkRemove(String s, int y, int x){
+		if (s.equals("b") || s.equals("B"))
+		{
+			if(myGame.removeToken())
+			{
+				line[y-1][x] = setLine(x,"_");
+				myprint("Token deleted.");
+				cPlayer = myGame.getcPlayer().getName();
+				return true;
+			}
+			else
+			{
+				myprint("No token left to delete.");
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private static String setLine(int x, String current) {
 		StringBuilder tmp = new StringBuilder();
 		tmp.append("|_").append(current).append("_");
 		if (x==19)
@@ -206,7 +214,7 @@ public class TUI {
 	{  
 	  try  
 	  {  
-	    double d = Double.parseDouble(str);  
+	    Double.parseDouble(str);  
 	  }  
 	  catch(NumberFormatException nfe)  
 	  {  
