@@ -4,7 +4,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import de.htwg.gobang.controller.GbLogic;
-import de.htwg.gobang.entities.GameField;
 import de.htwg.gobang.entities.GameToken;
 import de.htwg.gobang.entities.TokenO;
 import de.htwg.gobang.entities.TokenX;
@@ -16,17 +15,18 @@ public class TUI {
 	private static String cPlayer;
 	private static GbLogic myGame;
 	
-	private static Scanner Scan = new Scanner(System.in); 
-	private static int choice;
+	private static Scanner scanner = new Scanner(System.in); 
 	private static String[][] line;
 	private static String headLine = "    01  02  03  04  05  06  07  08  09  10  11  12  13  14  15  16  17  18  19";
 	
 	public static void main(String[] args) {
 			welcome();
+			int choice = 0;
 			
 			while(true){
 				try {
-					switch(choice = Scan.nextInt()) {
+					choice = scanner.nextInt();
+					switch(choice) {
 					case 1:
 						game();
 						break;
@@ -38,7 +38,7 @@ public class TUI {
 						System.exit(0);
 						break;
 					default:
-						System.out.println("Please choose 1, 2 or 3");
+						myprint("Please choose 1, 2 or 3");
 						welcome();
 						break;
 					} 
@@ -52,7 +52,7 @@ public class TUI {
 	}
 			
 	private static void game() {
-		Scan = new Scanner(System.in);
+		scanner = new Scanner(System.in);
 		newGame();
 		char s = 'a';
 		String cord;
@@ -62,27 +62,27 @@ public class TUI {
 		{
 			field();
 			pTurn();
-			cord = Scan.nextLine();
+			cord = scanner.nextLine();
 			
 			if (cord.equals("b") || cord.equals("B"))
 			{
 				if(myGame.removeToken())
 				{
 					line[ly-1][lx] = setLine(lx,ly,"_");
-					System.out.println("Token deleted.");
+					myprint("Token deleted.");
 					cPlayer = myGame.getcPlayer().getName();
 					continue;
 				}
 				else
 				{
-					System.out.println("No token left to delete.");
+					myprint("No token left to delete.");
 					continue;
 				}
 			}
 			
 			if (!cord.contains(","))
 			{
-				System.out.println("Not seperated with ','.");
+				myprint("Not seperated with ','.");
 				continue;
 			}
 			position = cord.split(",");
@@ -95,15 +95,15 @@ public class TUI {
 			}
 			else
 			{
-				System.out.println("2 numbers are needed.");
+				myprint("2 numbers are needed.");
 				continue;
 			}
 			switch (s) {
 				case 'f':
-					System.out.println("Only number between 1 and 19 valid.");
+					myprint("Only number between 1 and 19 valid.");
 					continue;
 				case 'b':
-					System.out.println("There is already a token.");
+					myprint("There is already a token.");
 					continue;
 				case 'e': 
 				case 'g':
@@ -118,7 +118,7 @@ public class TUI {
 			}
 		}
 		field();
-		System.out.println(cPlayer + " you won after " + Integer.toString(myGame.getCounter())  + " turns!");
+		myprint(cPlayer + " you won after " + Integer.toString(myGame.getCounter())  + " turns!");
 		System.exit(0);
 	}
 
@@ -132,28 +132,28 @@ public class TUI {
 		return tmp.toString();
 	}
 	private static void help() {
-		System.out.println("Go Bang is a strategy board game for two players from Japane. "
+		myprint("Go Bang is a strategy board game for two players from Japane. "
 				+ "\nIt is played on a board of 19 x 19 fields. The players aim to align five "
 				+ "\nstones of the same token suite in vertical, horizontal or diagonal lines. ");
-		System.out.println();
+		myprint("");
 	}
 
 	private static void welcome() {
-		System.out.println("Welcome to GoBang");
-		System.out.println("1: start new game");
-		System.out.println("2: help");
-		System.out.println("3: quit");
+		myprint("Welcome to GoBang");
+		myprint("1: start new game");
+		myprint("2: help");
+		myprint("3: quit");
 	}
 	
 	private static void pTurn() {
-		System.out.println("Player " + cPlayer + " it is your turn.");
-		System.out.println("With 'b' oder 'B' you remove your last move.");
-		System.out.println("Please enter the position of your token (x,y):");
+		myprint("Player " + cPlayer + " it is your turn.");
+		myprint("With 'b' oder 'B' you remove your last move.");
+		myprint("Please enter the position of your token (x,y):");
 	}
 
 	private static void field() {
-		System.out.println("");
-		System.out.println(headLine);
+		myprint("");
+		myprint(headLine);
 		StringBuilder tSB = new StringBuilder();
 		
 		for(int i = 0; i < 19; i++)
@@ -162,9 +162,10 @@ public class TUI {
 			{
 				tSB.append(line[i][k]);
 			}
-			System.out.println(tSB.toString());
+			myprint(tSB.toString());
 			tSB = new StringBuilder();
 		}
+		myprint("");
 	}
 
 	private static void newGame(){
@@ -212,6 +213,11 @@ public class TUI {
 	    return false;  
 	  }  
 	  return true;  
+	}
+	
+	private static void myprint(String tline)
+	{
+		System.out.println(tline);
 	}
 
 }
