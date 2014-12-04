@@ -21,7 +21,7 @@ public class GbLogic {
 		player2 = p2;
 		counter = 0;
 		cPlayer = player1;
-		size = myField.getSize();
+		size = myField.getSize() + 1;
 	}
 	
 	public char setToken(int x, int y)
@@ -71,6 +71,8 @@ public class GbLogic {
 		{
 			return false;
 		}
+		counter--;
+		changePlayer(counter);
 		return true;
 	}
 }
