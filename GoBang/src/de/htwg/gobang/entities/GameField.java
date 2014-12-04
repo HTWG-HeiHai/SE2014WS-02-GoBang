@@ -2,8 +2,8 @@ package de.htwg.gobang.entities;
 
 public class GameField{
 	
-	private final int win = 5;
-	private final int size = 19;
+	private static final int win = 5;
+	private static final int size = 19;
 	
 	private GameToken[][] matrix;
 	
