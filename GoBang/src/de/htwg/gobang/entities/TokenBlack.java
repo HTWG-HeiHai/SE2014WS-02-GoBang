@@ -1,4 +1,4 @@
-package gbData;
+package de.htwg.gobang.entities;
 
 import java.awt.Color;
 

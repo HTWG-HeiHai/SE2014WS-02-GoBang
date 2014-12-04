@@ -1,10 +1,11 @@
-package gbUI;
+package de.htwg.gobang.ui;
 
 import static org.junit.Assert.*;
-import gbData.GameToken;
-import gbGame.GbLogic;
 
 import org.junit.Test;
+
+import de.htwg.gobang.entities.GameToken;
+import de.htwg.gobang.ui.GbLogic;
 
 public class GbTuiTest {
 

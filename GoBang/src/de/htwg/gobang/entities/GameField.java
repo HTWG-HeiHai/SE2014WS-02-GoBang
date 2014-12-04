@@ -1,4 +1,4 @@
-package gbData;
+package de.htwg.gobang.entities;
 
 public class GameField{
 	
@@ -50,6 +50,10 @@ public class GameField{
 		int ty = y-1;
 		if(isValid(x, y))
 		{
+			if (matrix[tx][ty] == null)
+			{
+				return 'f';
+			}
 			matrix[tx][ty] = null;
 			return 'r';
 		}

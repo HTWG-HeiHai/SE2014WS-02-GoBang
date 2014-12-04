@@ -1,11 +1,13 @@
-package gbGame;
+package de.htwg.gobang.controller;
 
 import static org.junit.Assert.*;
-import gbData.GameToken;
-import gbData.TokenO;
-import gbData.TokenX;
 
 import org.junit.Test;
+
+import de.htwg.gobang.entities.GameToken;
+import de.htwg.gobang.entities.TokenO;
+import de.htwg.gobang.entities.TokenX;
+import de.htwg.gobang.ui.GbLogic;
 
 public class GbLogicTest {
 
@@ -30,6 +32,9 @@ public class GbLogicTest {
 		assertEquals('f', myGame.setToken(1, -1));
 		assertEquals('f', myGame.setToken(1, 0));
 		assertEquals('f', myGame.setToken(0, 1));
+		assertEquals('e',myGame.setToken(5, 5));
+		assertEquals(true, myGame.removeToken());
+		assertEquals(false, myGame.removeToken());
 	}
 
 

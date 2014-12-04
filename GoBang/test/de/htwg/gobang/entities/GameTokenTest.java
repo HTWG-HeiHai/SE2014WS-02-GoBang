@@ -1,10 +1,16 @@
-package gbData;
+package de.htwg.gobang.entities;
 
 import static org.junit.Assert.*;
 
 import java.awt.Color;
 
 import org.junit.Test;
+
+import de.htwg.gobang.entities.GameToken;
+import de.htwg.gobang.entities.TokenBlack;
+import de.htwg.gobang.entities.TokenO;
+import de.htwg.gobang.entities.TokenWhite;
+import de.htwg.gobang.entities.TokenX;
 
 public class GameTokenTest {
 

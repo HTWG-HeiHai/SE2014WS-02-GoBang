@@ -1,7 +1,7 @@
-package gbGame;
+package de.htwg.gobang.ui;
 
-import gbData.GameToken;
-import gbData.GameField;
+import de.htwg.gobang.entities.GameField;
+import de.htwg.gobang.entities.GameToken;
 
 public class GbLogic {
 	

@@ -1,8 +1,13 @@
-package gbData;
+package de.htwg.gobang.entities;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import de.htwg.gobang.entities.GameField;
+import de.htwg.gobang.entities.GameToken;
+import de.htwg.gobang.entities.TokenBlack;
+import de.htwg.gobang.entities.TokenWhite;
 
 public class GameFieldTest {
 
@@ -14,7 +19,12 @@ public class GameFieldTest {
 		
 		assertEquals(19, myField.getSize());
 		
+		
+		
 		//left - right
+		assertEquals('e', myField.putStone(15, 14, tokenB));
+		assertEquals('r', myField.removeToken(15, 14));
+		assertEquals('f', myField.removeToken(15, 14));
 		assertEquals('e', myField.putStone(15, 14, tokenB));
 		assertEquals('e', myField.putStone(15, 13, tokenB));
 		assertEquals('e', myField.putStone(15, 15, tokenB));
