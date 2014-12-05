@@ -177,14 +177,14 @@ public class TUI {
 	}
 
 	private static void newGame(){
-		int myBorder = 19;
-		int myLoop = 20;
-		int myHalfLoop = 10;
+		final int myBorder = 19;
+		final int myLoop = 20;
+		final int myHalfLoop = 10;
 		player1 = new TokenX();
 		player2 = new TokenO();
 		myGame = new GbLogic(player1, player2);
 		cPlayer = myGame.getcPlayer().getName();
-		line = new String[19][20];
+		line = new String[myBorder][myLoop];
 		StringBuilder tmp = new StringBuilder();
 		for(int i = 1; i < myHalfLoop; i++)
 		{
