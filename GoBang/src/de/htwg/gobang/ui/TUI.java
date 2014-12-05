@@ -10,6 +10,10 @@ import de.htwg.gobang.entities.TokenX;
 
 public class TUI {
 	
+	private TUI()
+	{
+	}
+	
 	private static GameToken player1;
 	private static GameToken player2;
 	private static String cPlayer;
