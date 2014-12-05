@@ -8,7 +8,7 @@ import de.htwg.gobang.entities.GameToken;
 import de.htwg.gobang.entities.TokenO;
 import de.htwg.gobang.entities.TokenX;
 
-public class TUI {
+public final class TUI {
 	
 	private TUI()
 	{
@@ -17,6 +17,7 @@ public class TUI {
 	private static GameToken player1;
 	private static GameToken player2;
 	private static String cPlayer;
+	private static String wPlayer;
 	private static GbLogic myGame;
 	final static int myBorder = 19;
 	final static int myLoop = 20;
@@ -101,8 +102,9 @@ public class TUI {
 				case 'b':
 					myprint("There is already a token.");
 					continue;
-				case 'e': 
 				case 'g':
+					wPlayer = cPlayer;
+				case 'e':
 					line[y-1][x] = setLine(x,cPlayer);
 					cPlayer = myGame.getcPlayer().getName();
 					lx = x;
@@ -114,7 +116,7 @@ public class TUI {
 			}
 		}
 		field();
-		myprint(cPlayer + " you won after " + Integer.toString(myGame.getCounter())  + " turns!");
+		myprint(wPlayer + " you won after " + Integer.toString(myGame.getCounter())  + " turns!");
 		System.exit(0);
 	}
 	
@@ -189,6 +191,7 @@ public class TUI {
 		player2 = new TokenO();
 		myGame = new GbLogic(player1, player2);
 		cPlayer = myGame.getcPlayer().getName();
+		wPlayer = "";
 		line = new String[myBorder][myLoop];
 		StringBuilder tmp = new StringBuilder();
 		for(int i = 1; i < myHalfLoop; i++)
