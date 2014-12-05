@@ -7,7 +7,6 @@ import org.junit.Test;
 import de.htwg.gobang.entities.GameToken;
 import de.htwg.gobang.entities.TokenO;
 import de.htwg.gobang.entities.TokenX;
-import de.htwg.gobang.ui.GbLogic;
 
 public class GbLogicTest {
 

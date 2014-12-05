@@ -17,7 +17,7 @@ public class GameFieldTest {
 		GameToken tokenW = new TokenWhite();
 		GameField myField = new GameField();
 		
-		assertEquals(19, myField.getSize());
+		assertEquals(19, myField.getFieldSize());
 		
 		
 		
