@@ -14,6 +14,9 @@ public class TUI {
 	private static GameToken player2;
 	private static String cPlayer;
 	private static GbLogic myGame;
+	final static int myBorder = 19;
+	final static int myLoop = 20;
+	final static int myHalfLoop = 10;
 	
 	private static Scanner scanner = new Scanner(System.in); 
 	private static String[][] line;
@@ -133,7 +136,7 @@ public class TUI {
 	private static String setLine(int x, String current) {
 		StringBuilder tmp = new StringBuilder();
 		tmp.append("|_").append(current).append("_");
-		if (x==19)
+		if (x==myBorder)
 		{
 			tmp.append("|");
 		}
@@ -164,9 +167,9 @@ public class TUI {
 		myprint(headLine);
 		StringBuilder tSB = new StringBuilder();
 		
-		for(int i = 0; i < 19; i++)
+		for(int i = 0; i < myBorder; i++)
 		{
-			for(int k = 0; k < 20; k++)
+			for(int k = 0; k < myLoop; k++)
 			{
 				tSB.append(line[i][k]);
 			}
@@ -177,9 +180,7 @@ public class TUI {
 	}
 
 	private static void newGame(){
-		final int myBorder = 19;
-		final int myLoop = 20;
-		final int myHalfLoop = 10;
+
 		player1 = new TokenX();
 		player2 = new TokenO();
 		myGame = new GbLogic(player1, player2);
