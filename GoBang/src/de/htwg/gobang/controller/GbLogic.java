@@ -22,6 +22,8 @@ public class GbLogic {
 		counter = 0;
 		cPlayer = player1;
 		size = myField.getFieldSize() + 1;
+		lastX = 1;
+		lastY = 1;
 	}
 	
 	public char setToken(int x, int y)

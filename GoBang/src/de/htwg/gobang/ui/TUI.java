@@ -65,7 +65,9 @@ public final class TUI {
 		char s = 'a';
 		String cord;
 		String[] position;
-		int x,y, lx = 0,ly = 0;
+		int x,y; 
+		int lx = 0;
+		int ly = 0;
 		while (s != 'g')
 		{
 			field();
