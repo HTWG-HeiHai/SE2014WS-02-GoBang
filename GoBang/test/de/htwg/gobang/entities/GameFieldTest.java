@@ -19,8 +19,6 @@ public class GameFieldTest {
 		
 		assertEquals(19, myField.getFieldSize());
 		
-		
-		
 		//left - right
 		assertEquals('e', myField.putStone(15, 14, tokenB));
 		assertEquals('r', myField.removeToken(15, 14));
