@@ -11,7 +11,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 
 import de.htwg.gobang.controller.GbLogic;
 import de.htwg.gobang.entities.GameToken;
@@ -24,29 +23,30 @@ import java.awt.GridBagLayout;
 
 public class GUI extends JFrame implements ActionListener{
 	
-	GbLogic myGame;
-	GameToken player1;
-	GameToken player2;
+	private GbLogic myGame;
+	private GameToken player1;
+	private GameToken player2;
 
-	JPanel gameField;
-	JPanel choice;
+	private JPanel gameField;
+	private JPanel choice;
 	
-	JMenuBar menuBar;
-	JMenu menu;
-	JMenuItem newGame;
-	JMenuItem help;
-	JMenuItem exit;
-	JLabel currentPlayerLabel;
-	JTextField currentPlayerText;
-	JLabel wins;
-	JLabel player1Label;
-	JLabel player2Label;
-	JTextField player1Text;
-	JTextField player2Text;
-	JButton remove;
-	JButton newRound;
+	private JMenuBar menuBar;
+	private JMenu menu;
+	private JMenuItem newGame;
+	private JMenuItem help;
+	private JMenuItem exit;
+	private JLabel currentPlayerLabel;
+	private JTextField currentPlayerText;
+	private JLabel wins;
+	private JLabel player1Label;
+	private JLabel player2Label;
+	private JTextField player1Text;
+	private JTextField player2Text;
+	private JButton remove;
+	private JButton newRound;
+	private JButton position;
 	
-	
+	private static final int LENGTH = 20;
 	
 	public GUI(){	
 	this.setTitle("GoBang");
@@ -56,7 +56,6 @@ public class GUI extends JFrame implements ActionListener{
 	player2 = new TokenBlack();
 	myGame = new GbLogic(player1, player2);
 	
-
 	//MenuBar
 	menuBar = new JMenuBar();
 	menu = new JMenu("Menu");
@@ -74,6 +73,34 @@ public class GUI extends JFrame implements ActionListener{
 	gameField = new JPanel();
 	gameField.setLayout(new GridBagLayout());
 	
+	GridBagConstraints g = new GridBagConstraints();
+	g.fill = GridBagConstraints.HORIZONTAL;
+	g.ipadx = 5;
+	g.ipady = 5;
+	g.weightx = 8;
+	
+	for(int i = 1; i < LENGTH; i++){
+		for(int k = 1; k < LENGTH; k++){
+			g.gridx = i;
+			g.gridy = k;
+			position = new JButton();
+			position.setName(i + "," + k);
+			gameField.add(position ,g);	
+		}
+	}
+	
+	g.gridx = LENGTH;
+	g.gridy = 0;
+	gameField.add(new JLabel(" ") ,g);
+	
+	g.gridx = LENGTH;
+	g.gridy = LENGTH;
+	gameField.add(new JLabel(" ") ,g);
+	
+	g.gridx = 0;
+	g.gridy = LENGTH;
+	gameField.add(new JLabel(" ") ,g);
+			
 	//Choice
 	choice = new JPanel();
 	choice.setLayout(new GridBagLayout());
@@ -90,6 +117,7 @@ public class GUI extends JFrame implements ActionListener{
 	player2Text.setEditable(false);
 	remove = new JButton("remove last Token");
 	newRound = new JButton("new Round");
+	newRound.setEnabled(false);
 	
 	GridBagConstraints c = new GridBagConstraints();
 	c.fill = GridBagConstraints.HORIZONTAL;
@@ -137,7 +165,6 @@ public class GUI extends JFrame implements ActionListener{
 	c.gridy = 7;
 	choice.add(remove, c);
 	
-	
 	c.gridx = 0;
 	c.gridy = 8;
 	choice.add(new JLabel(" "),c);
@@ -146,8 +173,10 @@ public class GUI extends JFrame implements ActionListener{
 	c.gridy = 9;
 	choice.add(newRound, c);
 	
-	
-	
+	c.gridx = 5;
+	c.gridy = 0;
+	choice.add(new JLabel(" "),c);
+		
 	this.add(gameField, BorderLayout.CENTER);
 	this.add(choice, BorderLayout.EAST);
 	
