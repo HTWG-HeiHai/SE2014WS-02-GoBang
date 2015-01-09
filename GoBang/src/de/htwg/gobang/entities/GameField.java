@@ -61,6 +61,12 @@ public class GameField{
 		
 		return 'f';
 	}
+	
+	public void reset(){
+		Checker.win = 0;
+		Checker.counter = 1;
+		Checker.tend = 0;
+	}
 
 	@SuppressWarnings("static-access")
 	private char getWin(int x, int y, GameToken token) {

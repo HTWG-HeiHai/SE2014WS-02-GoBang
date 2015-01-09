@@ -71,4 +71,8 @@ public class GbLogic {
 		changePlayer(counter);
 		return true;
 	}
+	
+	public void reset(){
+		myField.reset();
+	}
 }

@@ -3,6 +3,8 @@ package de.htwg.gobang.ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,8 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.sun.xml.internal.bind.util.Which;
-
 import de.htwg.gobang.controller.GbLogic;
 import de.htwg.gobang.entities.GameToken;
 import de.htwg.gobang.entities.TokenBlack;
@@ -23,6 +23,7 @@ import de.htwg.gobang.entities.TokenWhite;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.Enumeration;
 
 public class GUI extends JFrame implements ActionListener{
 	
@@ -32,15 +33,19 @@ public class GUI extends JFrame implements ActionListener{
 	private GameToken player1;
 	private GameToken player2;
 	private GameToken cPlayer;
-	private int winP1;
-	private int winP2;
-
+	private GridBagConstraints g;
+	private JPanel gameField;
 	
+	private ButtonGroup group;
 	private JButton position;
 	private JButton lastPosition;
 	private JButton remove;
 	private JButton newRound;
 	private JTextField currentPlayerText;
+	private JTextField player1Text;
+	private JTextField player2Text;
+	private int cp1 = 0;
+	private int cp2 = 0;
 	
 	private static final int LENGTH = 20;
 	private static final int ZERO = 0;
@@ -55,23 +60,16 @@ public class GUI extends JFrame implements ActionListener{
 	private static final int NINE = 9;
 	
 	public GUI(){	
-
-		JPanel gameField;
 		JPanel choice;
-		
 		JMenuBar menuBar;
 		JMenu menu;
 		JMenuItem newGame;
 		JMenuItem help;
 		JMenuItem exit;
 		JLabel currentPlayerLabel;
-
 		JLabel wins;
 		JLabel player1Label;
 		JLabel player2Label;
-		JTextField player1Text;
-		JTextField player2Text;
-
 		
 		this.setTitle("GoBang");
 		this.setLayout(new BorderLayout());
@@ -79,8 +77,7 @@ public class GUI extends JFrame implements ActionListener{
 		player1 = new TokenWhite();
 		player2 = new TokenBlack();
 		myGame = new GbLogic(player1, player2);
-		winP1 = 0;
-		winP2 = 0;
+		cPlayer = myGame.getcPlayer();
 		
 		//MenuBar
 		menuBar = new JMenuBar();
@@ -98,8 +95,9 @@ public class GUI extends JFrame implements ActionListener{
 		//GameField
 		gameField = new JPanel();
 		gameField.setLayout(new GridBagLayout());
+		group = new ButtonGroup();
 		
-		GridBagConstraints g = new GridBagConstraints();
+		g = new GridBagConstraints();
 		g.fill = GridBagConstraints.HORIZONTAL;
 		g.ipadx = FIVE;
 		g.ipady = FIVE;
@@ -113,6 +111,7 @@ public class GUI extends JFrame implements ActionListener{
 				position.setName(i + "," + k);
 				gameField.add(position ,g);	
 				position.addActionListener(this);
+				group.add(position);
 			}
 		}
 		
@@ -133,17 +132,17 @@ public class GUI extends JFrame implements ActionListener{
 		choice.setLayout(new GridBagLayout());
 		
 		currentPlayerLabel = new JLabel("current Player: ");
-		currentPlayerText = new JTextField(myGame.getcPlayer().getName());
+		currentPlayerText = new JTextField(cPlayer.getName());
 		currentPlayerText.setEditable(false);
-		wins = new JLabel("wins: ");
-		player1Label = new JLabel("player1");
-		player2Label = new JLabel("player2");
-		player1Text = new JTextField("0");
+		wins = new JLabel("Wins: ");
+		player1Label = new JLabel("Player blue");
+		player2Label = new JLabel("Player black");
+		player1Text = new JTextField(new Integer(cp1).toString());
 		player1Text.setEditable(false);
-		player2Text = new JTextField("0");
+		player2Text = new JTextField(new Integer(cp2).toString());
 		player2Text.setEditable(false);
-		remove = new JButton("remove last Token");
-		newRound = new JButton("new Round");
+		remove = new JButton("remove last token");
+		newRound = new JButton("new round");
 		newRound.setEnabled(false);
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -227,7 +226,8 @@ public class GUI extends JFrame implements ActionListener{
 			myGame.removeToken();
 			lastPosition.setBackground(new JButton().getBackground());
 		} else if(e.getSource() == this.newRound){
-			clearGame();
+			createGame();
+			return;
 		} else {
 			position = (JButton) e.getSource();
 			lastPosition = position;
@@ -249,21 +249,69 @@ public class GUI extends JFrame implements ActionListener{
 			case 'b':
 				JOptionPane.showMessageDialog(null,"Already used", "Wrong Field", JOptionPane.OK_OPTION);
 				break;
-			case 'g':
-				//wPlayer = cPlayer;
 			case 'e':
 				position.setBackground(cPlayer.getColor());
+				break;
+			case 'g':
+				position.setBackground(cPlayer.getColor());
+				JOptionPane.showMessageDialog(null,"Player " + cPlayer.getName() + " you won!", "Win", JOptionPane.OK_OPTION);
+				newRound.setEnabled(true);
+				if (cPlayer == player1) {
+					cp1 += 1;
+					player1Text.setText(new Integer(cp1).toString());
+				}
+				else {
+					cp2 += 1;
+					player2Text.setText(new Integer(cp2).toString());
+				}
+				changeButtons(false);
 				break;
 			default:
 				break;
 		}
 	}
 
+	private void changeButtons(boolean state){
+		Enumeration<AbstractButton> tbutton = group.getElements();
+		AbstractButton e = tbutton.nextElement();
+		try {
+			if (state){
+				do {
+					e.setEnabled(state);
+					e.setBackground(new JButton().getBackground());
+					e = tbutton.nextElement();		
+				} while (e != null);
+			} else {
+				do {
+					e.setEnabled(state);
+					e = tbutton.nextElement();
+				} while (e != null);
+			}
+		} catch (Exception e2) {
+		}
 
-	private void clearGame() {
-		myGame = new GbLogic(player1, player2);
+		this.remove.setEnabled(state);
 		
 	}
+
+	private void createGame() {
+		if (cPlayer == player1){
+			myGame = new GbLogic(player1, player2);
+		} else {
+			myGame = new GbLogic(player2, player1);
+		}
+		
+		myGame.reset();
+		changeButtons(true);
+
+	}
+	
+	private void newGame(){
+		createGame();
+		cp1 = 0;
+		cp2 = 0;
+	}
+	
 
 	
 }
