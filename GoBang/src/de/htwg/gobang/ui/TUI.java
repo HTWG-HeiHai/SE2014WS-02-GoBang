@@ -19,9 +19,9 @@ public final class TUI {
 	private static String cPlayer;
 	private static String wPlayer;
 	private static GbLogic myGame;
-	final static int myBorder = 19;
-	final static int myLoop = 20;
-	final static int myHalfLoop = 10;
+	static final int myBorder = 19;
+	static final int myLoop = 20;
+	static final int myHalfLoop = 10;
 	
 	private static Scanner scanner = new Scanner(System.in); 
 	private static String[][] line;
