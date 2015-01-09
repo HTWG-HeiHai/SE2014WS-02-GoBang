@@ -2,17 +2,17 @@ package de.htwg.gobang.entities;
 
 public class GameField{
 	
-	private static final int TokenToWin = 5;
-	private static final int FieldSize = 19;
+	private static final int TOKENTOWIN = 5;
+	private static final int FIELDSZIE = 19;
 	
 	private static GameToken[][] matrix;
 	
 	public GameField(){
-		matrix = new GameToken[FieldSize][FieldSize];
+		matrix = new GameToken[FIELDSZIE][FIELDSZIE];
 	}
 	
 	public int getFieldSize(){
-		return FieldSize;
+		return FIELDSZIE;
 	}
 	
 	@SuppressWarnings("static-access")
@@ -37,7 +37,7 @@ public class GameField{
 
 	private static boolean isValid(int x, int y) {
 		
-		if(x >= FieldSize  || x < 0 || y >= FieldSize  || y < 0)
+		if(x >= FIELDSZIE  || x < 0 || y >= FIELDSZIE  || y < 0)
 		{
 			return false; 
 		}
@@ -113,7 +113,7 @@ public class GameField{
 		public void getWin(int x, int y, GameToken token) {
 			tend = 0;
 			checkWin(x, y, token);
-			if (tend == 1 && counter >= TokenToWin) {
+			if (tend == 1 && counter >= TOKENTOWIN) {
 				win = 1;
 				return;
 			}
@@ -133,7 +133,7 @@ public class GameField{
 			return 0;
 		}
 		
-		abstract protected void checkWin(int x, int y, GameToken token);
+		protected abstract void checkWin(int x, int y, GameToken token);
 	
 	}
 	
