@@ -40,6 +40,7 @@ public class GUI extends JFrame implements ActionListener{
 	private JButton lastPosition;
 	private JButton remove;
 	private JButton newRound;
+	private JTextField currentPlayerText;
 	
 	private static final int LENGTH = 20;
 	private static final int ZERO = 0;
@@ -64,7 +65,7 @@ public class GUI extends JFrame implements ActionListener{
 		JMenuItem help;
 		JMenuItem exit;
 		JLabel currentPlayerLabel;
-		JTextField currentPlayerText;
+
 		JLabel wins;
 		JLabel player1Label;
 		JLabel player2Label;
@@ -221,6 +222,7 @@ public class GUI extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		
 		if(e.getSource() == this.remove){
 			myGame.removeToken();
 			lastPosition.setBackground(new JButton().getBackground());
@@ -231,6 +233,8 @@ public class GUI extends JFrame implements ActionListener{
 			lastPosition = position;
 			putStone(position);
 		}
+		currentPlayerText.setText(myGame.getcPlayer().getName());
+		
 		
 	}
 
