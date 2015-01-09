@@ -22,6 +22,9 @@ public final class TUI {
 	static final int BORDER = 19;
 	static final int LOOP = 20;
 	static final int HALFLOOP = 10;
+	static final int THREE = 3;
+	static final int TWO = 2;
+	static final int ONE = 1;
 	
 	private static Scanner scanner = new Scanner(System.in); 
 	private static String[][] line;
@@ -35,14 +38,14 @@ public final class TUI {
 				try {
 					choice = scanner.nextInt();
 					switch(choice) {
-					case 1:
+					case ONE:
 						game();
 						break;
-					case 2:
+					case TWO:
 						help();
 						welcome();
 						break;
-					case 3:
+					case THREE:
 						System.exit(0);
 						break;
 					default:
@@ -52,7 +55,7 @@ public final class TUI {
 					} 
 					
 				} catch (InputMismatchException x) {
-					System.err.println("Wrong input type. Please choose 1, 2 or 3");
+					myprint("Wrong input type. Please choose 1, 2 or 3");
 					welcome();
 					continue;
 					}
@@ -113,7 +116,7 @@ public final class TUI {
 					ly = y;
 					break;
 				default:
-					System.err.println("Something went wrong with myGame.setToken");
+					myprint("Something went wrong with myGame.setToken");
 					continue;
 			}
 		}

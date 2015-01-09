@@ -139,7 +139,6 @@ public class GameField{
 	
 	static class LeftChecker extends Checker {
 	
-		@SuppressWarnings("static-access")
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
 			int ty = y - 1;
@@ -152,7 +151,6 @@ public class GameField{
 	
 	static class RightChecker extends Checker {
 		
-		@SuppressWarnings("static-access")
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
 			int ty = y + 1;
@@ -166,7 +164,6 @@ public class GameField{
 	
 	static class TopChecker extends Checker {
 		
-		@SuppressWarnings("static-access")
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
 			int tx = x - 1;
@@ -179,7 +176,6 @@ public class GameField{
 	
 	static class DownChecker extends Checker {
 		
-		@SuppressWarnings("static-access")
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
 			int tx = x + 1;
@@ -192,8 +188,7 @@ public class GameField{
 	}
 	
 	static class TopLeftChecker extends Checker {
-		
-		@SuppressWarnings("static-access")
+
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
 			int tx = x - 1;
@@ -207,7 +202,6 @@ public class GameField{
 	
 	static class DownRightChecker extends Checker {
 		
-		@SuppressWarnings("static-access")
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
 			int tx = x + 1;
@@ -222,7 +216,6 @@ public class GameField{
 	
 	static class TopRightChecker extends Checker {
 		
-		@SuppressWarnings("static-access")
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
 			int tx = x + 1;
@@ -236,7 +229,6 @@ public class GameField{
 	
 	static class DownLeftChecker extends Checker {
 		
-		@SuppressWarnings("static-access")
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
 			int tx = x - 1;
