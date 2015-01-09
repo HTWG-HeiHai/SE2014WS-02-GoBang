@@ -19,9 +19,9 @@ public final class TUI {
 	private static String cPlayer;
 	private static String wPlayer;
 	private static GbLogic myGame;
-	static final int myBorder = 19;
-	static final int myLoop = 20;
-	static final int myHalfLoop = 10;
+	static final int BORDER = 19;
+	static final int LOOP = 20;
+	static final int HALFLOOP = 10;
 	
 	private static Scanner scanner = new Scanner(System.in); 
 	private static String[][] line;
@@ -144,7 +144,7 @@ public final class TUI {
 	private static String setLine(int x, String current) {
 		StringBuilder tmp = new StringBuilder();
 		tmp.append("|_").append(current).append("_");
-		if (x==myBorder)
+		if (x==BORDER)
 		{
 			tmp.append("|");
 		}
@@ -175,9 +175,9 @@ public final class TUI {
 		myprint(headLine);
 		StringBuilder tSB = new StringBuilder();
 		
-		for(int i = 0; i < myBorder; i++)
+		for(int i = 0; i < BORDER; i++)
 		{
-			for(int k = 0; k < myLoop; k++)
+			for(int k = 0; k < LOOP; k++)
 			{
 				tSB.append(line[i][k]);
 			}
@@ -194,28 +194,28 @@ public final class TUI {
 		myGame = new GbLogic(player1, player2);
 		cPlayer = myGame.getcPlayer().getName();
 		wPlayer = "";
-		line = new String[myBorder][myLoop];
+		line = new String[BORDER][LOOP];
 		StringBuilder tmp = new StringBuilder();
-		for(int i = 1; i < myHalfLoop; i++)
+		for(int i = 1; i < HALFLOOP; i++)
 		{
 			tmp.append("0").append(i);
 			line[i-1][0] = tmp.toString();
-			for(int k = 1; k < myLoop; k++)
+			for(int k = 1; k < LOOP; k++)
 			{
 				line[i-1][k] = newGameLine();
 			}
-			line[i-1][myBorder] = line[i-1][myBorder] + "|"; 
+			line[i-1][BORDER] = line[i-1][BORDER] + "|"; 
 			tmp = new StringBuilder();
 		}
 		
-		for(int i = myHalfLoop; i < myLoop; i++)
+		for(int i = HALFLOOP; i < LOOP; i++)
 		{
 			line[i-1][0] = Integer.toString(i);
-			for(int k = 1; k < myLoop; k++)
+			for(int k = 1; k < LOOP; k++)
 			{
 				line[i-1][k] = newGameLine();
 			}
-			line[i-1][myBorder] = line[i-1][myBorder] + "|";
+			line[i-1][BORDER] = line[i-1][BORDER] + "|";
 		}
 	}
 	
