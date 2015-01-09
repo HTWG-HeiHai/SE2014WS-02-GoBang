@@ -98,9 +98,9 @@ public class GameField{
 
 	abstract static class Checker {
 	
-		protected static int counter = 1;
-		protected static int tend = 0;
-		protected static int win = 0;
+		private static int counter = 1;
+		private static int tend = 0;
+		private static int win = 0;
 		private Checker next;
 		
 		public void resetCounter() {
