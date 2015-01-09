@@ -78,8 +78,20 @@ public class GameField{
 	private static Checker createChain(){
 		Checker myChecker = new LeftChecker();
 		Checker myRCheck = new RightChecker();
+		Checker myTCheck = new TopChecker();
+		Checker myDCheck = new DownChecker();
+		Checker myTLCheck = new TopLeftChecker();
+		Checker myTRCheck = new TopRightChecker();
+		Checker myDLCheck = new DownRightChecker();
+		Checker myDRCheck = new DownLeftChecker();
 		
 		myChecker.setNext(myRCheck);
+		myRCheck.setNext(myTCheck);
+		myTCheck.setNext(myDCheck);
+		myDCheck.setNext(myTLCheck);
+		myTLCheck.setNext(myDRCheck);
+		myDRCheck.setNext(myTRCheck);
+		myTRCheck.setNext(myDLCheck);
 		
 		return myChecker;
 	}
@@ -99,12 +111,15 @@ public class GameField{
 			next = nChecker;
 		}
 		public void getWin(int x, int y, GameToken token) {
+			tend = 0;
 			checkWin(x, y, token);
 			if (tend == 1 && counter >= TokenToWin) {
 				win = 1;
 				return;
 			}
-			counter = 1;
+			else if (tend == 1) {
+				resetCounter();
+			}
 			if (next != null){
 				next.getWin(x, y, token);
 			}
