@@ -30,6 +30,16 @@ public class GUI extends JFrame implements ActionListener{
 	private JButton position;
 	
 	private static final int LENGTH = 20;
+	private static final int ZERO = 0;
+	private static final int ONE = 1;
+	private static final int TWO = 2;
+	private static final int THREE = 3;
+	private static final int FOUR = 4;
+	private static final int FIVE = 5;
+	private static final int SIX = 6;
+	private static final int SEVEN = 7;
+	private static final int EIGHT= 8;
+	private static final int NINE = 9;
 	
 	public GUI(){	
 		GameToken player1;
@@ -79,9 +89,9 @@ public class GUI extends JFrame implements ActionListener{
 		
 		GridBagConstraints g = new GridBagConstraints();
 		g.fill = GridBagConstraints.HORIZONTAL;
-		g.ipadx = 5;
-		g.ipady = 5;
-		g.weightx = 8;
+		g.ipadx = FIVE;
+		g.ipady = FIVE;
+		g.weightx = EIGHT;
 		
 		for(int i = 1; i < LENGTH; i++){
 			for(int k = 1; k < LENGTH; k++){
@@ -94,14 +104,14 @@ public class GUI extends JFrame implements ActionListener{
 		}
 		
 		g.gridx = LENGTH;
-		g.gridy = 0;
+		g.gridy = ZERO;
 		gameField.add(new JLabel(" ") ,g);
 		
 		g.gridx = LENGTH;
 		g.gridy = LENGTH;
 		gameField.add(new JLabel(" ") ,g);
 		
-		g.gridx = 0;
+		g.gridx = ZERO;
 		g.gridy = LENGTH;
 		gameField.add(new JLabel(" ") ,g);
 				
@@ -125,60 +135,60 @@ public class GUI extends JFrame implements ActionListener{
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.ipadx = 5;
-		c.ipady = 5;
-		c.weightx = 1;
+		c.ipadx = FIVE;
+		c.ipady = FIVE;
+		c.weightx = ONE;
 		
-		c.gridx = 0;
-		c.gridy = 0;
+		c.gridx = ZERO;
+		c.gridy = ZERO;
 		choice.add(currentPlayerLabel,c);
 		
-		c.gridx = 1;
-		c.gridy = 0;
+		c.gridx = ONE;
+		c.gridy = ZERO;
 		choice.add(currentPlayerText,c);
 		
-		c.gridx = 0;
-		c.gridy = 2;
+		c.gridx = ZERO;
+		c.gridy = TWO;
 		choice.add(new JLabel(" "),c);
 		
-		c.gridx = 0;
-		c.gridy = 3;
+		c.gridx = ZERO;
+		c.gridy = THREE;
 		choice.add(wins,c);
 		
-		c.gridx = 0;
-		c.gridy = 4;
+		c.gridx = ZERO;
+		c.gridy = FOUR;
 		choice.add(player1Label, c);
 		
-		c.gridx = 1;
-		c.gridy = 4;
+		c.gridx = ONE;
+		c.gridy = FOUR;
 		choice.add(player1Text, c);
 		
-		c.gridx = 0;
-		c.gridy = 5;
+		c.gridx = ZERO;
+		c.gridy = FIVE;
 		choice.add(player2Label, c);
 		
-		c.gridx = 1;
-		c.gridy = 5;
+		c.gridx = ONE;
+		c.gridy = FIVE;
 		choice.add(player2Text, c);
 		
-		c.gridx = 0;
-		c.gridy = 6;
+		c.gridx = ZERO;
+		c.gridy = SIX;
 		choice.add(new JLabel(" "),c);
 		
-		c.gridx = 0;
-		c.gridy = 7;
+		c.gridx = ZERO;
+		c.gridy = SEVEN;
 		choice.add(remove, c);
 		
-		c.gridx = 0;
-		c.gridy = 8;
+		c.gridx = ZERO;
+		c.gridy = EIGHT;
 		choice.add(new JLabel(" "),c);
 		
-		c.gridx = 0;
-		c.gridy = 9;
+		c.gridx = ZERO;
+		c.gridy = NINE;
 		choice.add(newRound, c);
 		
-		c.gridx = 5;
-		c.gridy = 0;
+		c.gridx = FIVE;
+		c.gridy = ZERO;
 		choice.add(new JLabel(" "),c);
 			
 		this.add(gameField, BorderLayout.CENTER);
