@@ -33,19 +33,24 @@ public class GUI extends JFrame implements ActionListener{
 	private GameToken player1;
 	private GameToken player2;
 	private GameToken cPlayer;
+	private int cp1 = 0;
+	private int cp2 = 0;
+	
 	private GridBagConstraints g;
 	private JPanel gameField;
+	private JMenuItem newGame;
+	private JMenuItem help;
+	private JMenuItem exit;
 	
 	private ButtonGroup group;
 	private JButton position;
 	private JButton lastPosition;
 	private JButton remove;
 	private JButton newRound;
+	
 	private JTextField currentPlayerText;
 	private JTextField player1Text;
 	private JTextField player2Text;
-	private int cp1 = 0;
-	private int cp2 = 0;
 	
 	private static final int LENGTH = 20;
 	private static final int ZERO = 0;
@@ -63,9 +68,7 @@ public class GUI extends JFrame implements ActionListener{
 		JPanel choice;
 		JMenuBar menuBar;
 		JMenu menu;
-		JMenuItem newGame;
-		JMenuItem help;
-		JMenuItem exit;
+
 		JLabel currentPlayerLabel;
 		JLabel wins;
 		JLabel player1Label;
@@ -205,6 +208,10 @@ public class GUI extends JFrame implements ActionListener{
 			
 		remove.addActionListener(this);
 		newRound.addActionListener(this);
+		help.addActionListener(this);
+		newGame.addActionListener(this);
+		exit.addActionListener(this);
+		
 		this.add(gameField, BorderLayout.CENTER);
 		this.add(choice, BorderLayout.EAST);
 		
@@ -222,12 +229,18 @@ public class GUI extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		
-		if(e.getSource() == this.remove){
+		if(e.getSource() == this.remove) {
 			myGame.removeToken();
 			lastPosition.setBackground(new JButton().getBackground());
-		} else if(e.getSource() == this.newRound){
+		} else if(e.getSource() == this.newRound) {
 			createGame();
 			return;
+		} else if (e.getSource() == this.newGame) {
+			newGame();
+		} else if (e.getSource() == this.exit) {
+			System.exit(0);
+		} else if (e.getSource() == this.help) {
+			help();
 		} else {
 			position = (JButton) e.getSource();
 			lastPosition = position;
@@ -236,6 +249,13 @@ public class GUI extends JFrame implements ActionListener{
 		currentPlayerText.setText(myGame.getcPlayer().getName());
 		
 		
+	}
+
+
+	private void help() {
+		JOptionPane.showMessageDialog(null, "Go Bang is a strategy board game for two players from Japane. "
+				+ "\nIt is played on a board of 19 x 19 fields. The players aim to align five "
+				+ "\nstones of the same token suite in vertical, horizontal or diagonal lines.", "Help", JOptionPane.OK_OPTION);
 	}
 
 
@@ -255,7 +275,6 @@ public class GUI extends JFrame implements ActionListener{
 			case 'g':
 				position.setBackground(cPlayer.getColor());
 				JOptionPane.showMessageDialog(null,"Player " + cPlayer.getName() + " you won!", "Win", JOptionPane.OK_OPTION);
-				newRound.setEnabled(true);
 				if (cPlayer == player1) {
 					cp1 += 1;
 					player1Text.setText(new Integer(cp1).toString());
@@ -265,6 +284,7 @@ public class GUI extends JFrame implements ActionListener{
 					player2Text.setText(new Integer(cp2).toString());
 				}
 				changeButtons(false);
+				newRound.setEnabled(true);
 				break;
 			default:
 				break;
@@ -287,10 +307,12 @@ public class GUI extends JFrame implements ActionListener{
 					e = tbutton.nextElement();
 				} while (e != null);
 			}
-		} catch (Exception e2) {
+		} catch (Exception NoSuchElementException) {
+			
 		}
 
 		this.remove.setEnabled(state);
+		this.newRound.setEnabled(false);
 		
 	}
 
@@ -310,6 +332,8 @@ public class GUI extends JFrame implements ActionListener{
 		createGame();
 		cp1 = 0;
 		cp2 = 0;
+		player1Text.setText(new Integer(cp1).toString());
+		player2Text.setText(new Integer(cp2).toString());
 	}
 	
 
