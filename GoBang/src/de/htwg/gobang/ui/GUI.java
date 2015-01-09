@@ -9,8 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.sun.xml.internal.bind.util.Which;
 
 import de.htwg.gobang.controller.GbLogic;
 import de.htwg.gobang.entities.GameToken;
@@ -26,8 +29,17 @@ public class GUI extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	
 	private GbLogic myGame;
+	private GameToken player1;
+	private GameToken player2;
+	private GameToken cPlayer;
+	private int winP1;
+	private int winP2;
 
+	
 	private JButton position;
+	private JButton lastPosition;
+	private JButton remove;
+	private JButton newRound;
 	
 	private static final int LENGTH = 20;
 	private static final int ZERO = 0;
@@ -42,8 +54,6 @@ public class GUI extends JFrame implements ActionListener{
 	private static final int NINE = 9;
 	
 	public GUI(){	
-		GameToken player1;
-		GameToken player2;
 
 		JPanel gameField;
 		JPanel choice;
@@ -60,8 +70,7 @@ public class GUI extends JFrame implements ActionListener{
 		JLabel player2Label;
 		JTextField player1Text;
 		JTextField player2Text;
-		JButton remove;
-		JButton newRound;
+
 		
 		this.setTitle("GoBang");
 		this.setLayout(new BorderLayout());
@@ -69,6 +78,8 @@ public class GUI extends JFrame implements ActionListener{
 		player1 = new TokenWhite();
 		player2 = new TokenBlack();
 		myGame = new GbLogic(player1, player2);
+		winP1 = 0;
+		winP2 = 0;
 		
 		//MenuBar
 		menuBar = new JMenuBar();
@@ -100,6 +111,7 @@ public class GUI extends JFrame implements ActionListener{
 				position = new JButton();
 				position.setName(i + "," + k);
 				gameField.add(position ,g);	
+				position.addActionListener(this);
 			}
 		}
 		
@@ -191,6 +203,8 @@ public class GUI extends JFrame implements ActionListener{
 		c.gridy = ZERO;
 		choice.add(new JLabel(" "),c);
 			
+		remove.addActionListener(this);
+		newRound.addActionListener(this);
 		this.add(gameField, BorderLayout.CENTER);
 		this.add(choice, BorderLayout.EAST);
 		
@@ -203,10 +217,49 @@ public class GUI extends JFrame implements ActionListener{
 	public static void main(String[] args) {
 		new GUI();
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
+		if(e.getSource() == this.remove){
+			myGame.removeToken();
+			lastPosition.setBackground(new JButton().getBackground());
+		} else if(e.getSource() == this.newRound){
+			clearGame();
+		} else {
+			position = (JButton) e.getSource();
+			lastPosition = position;
+			putStone(position);
+		}
 		
 	}
+
+
+	private void putStone(JButton tposition) {
+		
+		cPlayer = myGame.getcPlayer();
+		String[] tmp = tposition.getName().split(",");
+		char status = myGame.setToken(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]));
+		
+		switch (status) {
+			case 'b':
+				JOptionPane.showMessageDialog(null,"Already used", "Wrong Field", JOptionPane.OK_OPTION);
+				break;
+			case 'g':
+				//wPlayer = cPlayer;
+			case 'e':
+				position.setBackground(cPlayer.getColor());
+				break;
+			default:
+				break;
+		}
+	}
+
+
+	private void clearGame() {
+		myGame = new GbLogic(player1, player2);
+		
+	}
+
 	
 }
