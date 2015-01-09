@@ -46,7 +46,11 @@ public class GUI extends JFrame implements ActionListener{
 	JButton remove;
 	JButton newRound;
 	
+	private final static int LENGTH = 20;
+	private final static int FIELD = 361;
 	
+	
+	JButton[] array = new JButton[FIELD];
 	
 	public GUI(){	
 	this.setTitle("GoBang");
@@ -74,6 +78,32 @@ public class GUI extends JFrame implements ActionListener{
 	gameField = new JPanel();
 	gameField.setLayout(new GridBagLayout());
 	
+	GridBagConstraints g = new GridBagConstraints();
+	g.fill = GridBagConstraints.HORIZONTAL;
+	g.ipadx = 5;
+	g.ipady = 5;
+	g.weightx = 8;
+	
+	for(int i = 1; i < LENGTH; i++){
+		for(int k = 1; k < LENGTH; k++){
+			g.gridx = i;
+			g.gridy = k;
+			gameField.add(new JButton() ,g);	
+		}
+	}
+	
+	g.gridx = LENGTH;
+	g.gridy = 0;
+	gameField.add(new JLabel(" ") ,g);
+	
+	g.gridx = LENGTH;
+	g.gridy = LENGTH;
+	gameField.add(new JLabel(" ") ,g);
+	
+	g.gridx = 0;
+	g.gridy = LENGTH;
+	gameField.add(new JLabel(" ") ,g);
+			
 	//Choice
 	choice = new JPanel();
 	choice.setLayout(new GridBagLayout());
@@ -90,6 +120,7 @@ public class GUI extends JFrame implements ActionListener{
 	player2Text.setEditable(false);
 	remove = new JButton("remove last Token");
 	newRound = new JButton("new Round");
+	newRound.setEnabled(false);
 	
 	GridBagConstraints c = new GridBagConstraints();
 	c.fill = GridBagConstraints.HORIZONTAL;
@@ -137,7 +168,6 @@ public class GUI extends JFrame implements ActionListener{
 	c.gridy = 7;
 	choice.add(remove, c);
 	
-	
 	c.gridx = 0;
 	c.gridy = 8;
 	choice.add(new JLabel(" "),c);
@@ -145,6 +175,13 @@ public class GUI extends JFrame implements ActionListener{
 	c.gridx = 0;
 	c.gridy = 9;
 	choice.add(newRound, c);
+	
+	c.gridx = 5;
+	c.gridy = 0;
+	choice.add(new JLabel(" "),c);
+	
+	
+
 	
 	
 	
