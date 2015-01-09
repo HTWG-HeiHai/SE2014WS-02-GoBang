@@ -28,10 +28,6 @@ public class GbLogic {
 	
 	public char setToken(int x, int y)
 	{
-		if (x > size || x < 0 || y > size || y < 0)
-		{
-			return 'f';
-		}
 		status = myField.putStone(x, y, cPlayer);
 		if (status == 'f' || status == 'b')
 		{
