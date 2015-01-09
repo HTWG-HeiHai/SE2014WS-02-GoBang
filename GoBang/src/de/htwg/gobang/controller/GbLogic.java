@@ -12,7 +12,6 @@ public class GbLogic {
 	private int lastX;
 	private int lastY;
 	private int counter;
-	private int size;
 	private char status;
 	
 	public GbLogic(GameToken p1, GameToken p2){
@@ -21,7 +20,6 @@ public class GbLogic {
 		player2 = p2;
 		counter = 0;
 		cPlayer = player1;
-		size = myField.getFieldSize() + 1;
 		lastX = 1;
 		lastY = 1;
 	}
