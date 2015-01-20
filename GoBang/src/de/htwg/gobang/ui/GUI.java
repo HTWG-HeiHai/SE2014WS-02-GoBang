@@ -41,6 +41,7 @@ public class GUI extends JFrame implements ActionListener{
 	private JMenuItem newGame;
 	private JMenuItem help;
 	private JMenuItem exit;
+	private JMenuItem menuRound;
 	
 	private ButtonGroup group;
 	private JButton position;
@@ -88,11 +89,14 @@ public class GUI extends JFrame implements ActionListener{
 		newGame = new JMenuItem("new Game");
 		help = new JMenuItem("help");
 		exit = new JMenuItem("exit");
+		menuRound = new JMenuItem("new Round");
 		
 		menuBar.add(menu);
 		menu.add(newGame);
+		menu.add(menuRound);
 		menu.add(help);
 		menu.add(exit);
+		
 		this.setJMenuBar(menuBar);
 		
 		//GameField
@@ -211,6 +215,7 @@ public class GUI extends JFrame implements ActionListener{
 		help.addActionListener(this);
 		newGame.addActionListener(this);
 		exit.addActionListener(this);
+		menuRound.addActionListener(this);
 		
 		this.add(gameField, BorderLayout.CENTER);
 		this.add(choice, BorderLayout.EAST);
@@ -241,6 +246,8 @@ public class GUI extends JFrame implements ActionListener{
 			System.exit(0);
 		} else if (e.getSource() == this.help) {
 			help();
+		} else if (e.getSource() == this.menuRound){
+			createGame();
 		} else {
 			position = (JButton) e.getSource();
 			lastPosition = position;
