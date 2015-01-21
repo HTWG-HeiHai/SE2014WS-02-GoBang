@@ -69,9 +69,9 @@ public class GUI extends JFrame implements ActionListener{
 		JPanel choice;
 		JMenuBar menuBar;
 		JMenu menu;
-
-		JLabel currentPlayerLabel;
+	
 		JLabel wins;
+		JLabel currentPlayerLabel;
 		JLabel player1Label;
 		JLabel player2Label;
 		
@@ -145,10 +145,14 @@ public class GUI extends JFrame implements ActionListener{
 		JLabel fakeLabel = new JLabel("black");
 		fakeLabel.setForeground(new JButton().getBackground());
 		wins = new JLabel("Wins: ");
-		player1Label = new JLabel("Player blue");
-		player2Label = new JLabel("Player black");
+		player1Label = new JLabel("Player black");
+		player1Label.setForeground(player1.getColor());
+		player2Label = new JLabel("Player blue");
+		player2Label.setForeground(player2.getColor());
 		player1LabelText = new JLabel(new Integer(cp1).toString());
 		player2LabelText = new JLabel(new Integer(cp2).toString());
+		player1LabelText.setForeground(player1.getColor());
+		player2LabelText.setForeground(player2.getColor());
 		remove = new JButton("remove last token");
 		newRound = new JButton("new round");
 		newRound.setEnabled(false);
@@ -243,6 +247,7 @@ public class GUI extends JFrame implements ActionListener{
 		if(e.getSource() == this.remove) {
 			myGame.removeToken();
 			lastPosition.setBackground(new JButton().getBackground());
+			remove.setEnabled(false);
 		} else if(e.getSource() == this.newRound) {
 			createGame();
 			return;
@@ -260,7 +265,7 @@ public class GUI extends JFrame implements ActionListener{
 			putStone(position);
 		}
 		currentPlayerLabelText.setText(myGame.getcPlayer().getName());
-		
+		currentPlayerLabelText.setForeground(myGame.getcPlayer().getColor());
 		
 	}
 
@@ -284,6 +289,7 @@ public class GUI extends JFrame implements ActionListener{
 				break;
 			case 'e':
 				position.setBackground(cPlayer.getColor());
+				remove.setEnabled(true);
 				break;
 			case 'g':
 				position.setBackground(cPlayer.getColor());
@@ -327,6 +333,7 @@ public class GUI extends JFrame implements ActionListener{
 		this.remove.setEnabled(state);
 		this.newRound.setEnabled(false);
 		currentPlayerLabelText.setVisible(state);
+		currentPlayerLabelText.setForeground(myGame.getcPlayer().getColor());
 	}
 
 	private void createGame() {
