@@ -83,22 +83,21 @@ public class GameField{
 
 	private static Checker createChain(){
 		Checker myChecker = new LeftChecker();
-		Checker myRCheck = new RightChecker();
-		Checker myTCheck = new TopChecker();
-		Checker myDCheck = new DownChecker();
-		Checker myTLCheck = new TopLeftChecker();
-		Checker myTRCheck = new TopRightChecker();
-		Checker myDLCheck = new DownRightChecker();
-		Checker myDRCheck = new DownLeftChecker();
+		Checker myRightCheck = new RightChecker();
+		Checker myTopCheck = new TopChecker();
+		Checker myDownCheck = new DownChecker();
+		Checker myTopLeftCheck = new TopLeftChecker();
+		Checker myDownLeftCheck = new DownLeftChecker();
+		Checker myTopRightCheck = new TopRightChecker();
+		Checker myDownRightCheck = new DownRightChecker();
 		
-		myChecker.setNext(myRCheck);
-		myRCheck.setNext(myTCheck);
-		myTCheck.setNext(myDCheck);
-		myDCheck.setNext(myTLCheck);
-		myTLCheck.setNext(myDRCheck);
-		myDRCheck.setNext(myTRCheck);
-		myTRCheck.setNext(myDLCheck);
-		
+		myChecker.setNext(myRightCheck);
+		myRightCheck.setNext(myTopCheck);
+		myTopCheck.setNext(myDownCheck);
+		myDownCheck.setNext(myTopLeftCheck);
+		myTopLeftCheck.setNext(myDownRightCheck);
+		myDownRightCheck.setNext(myTopRightCheck);
+		myTopRightCheck.setNext(myDownLeftCheck);
 		return myChecker;
 	}
 
@@ -198,7 +197,7 @@ public class GameField{
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
 			int tx = x - 1;
-			int ty = y + 1;
+			int ty = y - 1;
 			if (checkStep(tx, ty, token) == 1) {
 				super.counter += 1;
 				checkWin(tx, ty, token);
@@ -211,7 +210,7 @@ public class GameField{
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
 			int tx = x + 1;
-			int ty = y - 1;
+			int ty = y + 1;
 			if (checkStep(tx, ty, token) == 1) {
 				super.counter += 1;
 				checkWin(tx, ty, token);
@@ -224,11 +223,11 @@ public class GameField{
 		
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
-			int tx = x + 1;
+			int tx = x - 1;
 			int ty = y + 1;
 			if (checkStep(tx, ty, token) == 1) {
 				super.counter += 1;
-				checkWin(tx, y, token);
+				checkWin(tx, ty, token);
 			}
 		}
 	}
@@ -237,7 +236,7 @@ public class GameField{
 		
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
-			int tx = x - 1;
+			int tx = x + 1;
 			int ty = y - 1;
 			if (checkStep(tx, ty, token) == 1) {
 				super.counter += 1;
