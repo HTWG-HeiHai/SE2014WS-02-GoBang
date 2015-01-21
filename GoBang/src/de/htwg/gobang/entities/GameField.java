@@ -7,8 +7,11 @@ public class GameField{
 	
 	private static GameToken[][] matrix;
 	
+	private Checker myCheck;
+	
 	public GameField(){
 		matrix = new GameToken[FIELDSZIE][FIELDSZIE];
+		myCheck = createChain();
 	}
 	
 	public int getFieldSize(){
@@ -71,7 +74,6 @@ public class GameField{
 	@SuppressWarnings("static-access")
 	private char getWin(int x, int y, GameToken token) {
 		
-		Checker myCheck = createChain();
 		myCheck.getWin(x, y, token);
 		if (myCheck.win == 1)
 		{ 
