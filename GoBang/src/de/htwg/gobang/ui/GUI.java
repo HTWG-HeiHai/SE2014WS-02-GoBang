@@ -13,7 +13,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import de.htwg.gobang.controller.GbLogic;
 import de.htwg.gobang.entities.GameToken;
@@ -21,6 +20,7 @@ import de.htwg.gobang.entities.TokenBlack;
 import de.htwg.gobang.entities.TokenWhite;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.Enumeration;
@@ -49,9 +49,9 @@ public class GUI extends JFrame implements ActionListener{
 	private JButton remove;
 	private JButton newRound;
 	
-	private JTextField currentPlayerText;
-	private JTextField player1Text;
-	private JTextField player2Text;
+	private JLabel currentPlayerLabelText;
+	private JLabel player1LabelText;
+	private JLabel player2LabelText;
 	
 	private static final int LENGTH = 20;
 	private static final int ZERO = 0;
@@ -78,8 +78,8 @@ public class GUI extends JFrame implements ActionListener{
 		this.setTitle("GoBang");
 		this.setLayout(new BorderLayout());
 		
-		player1 = new TokenWhite();
-		player2 = new TokenBlack();
+		player1 = new TokenBlack();
+		player2 = new TokenWhite();
 		myGame = new GbLogic(player1, player2);
 		cPlayer = myGame.getcPlayer();
 		
@@ -92,10 +92,12 @@ public class GUI extends JFrame implements ActionListener{
 		menuRound = new JMenuItem("new Round");
 		
 		menuBar.add(menu);
+		menuBar.setBackground(Color.WHITE);
 		menu.add(newGame);
 		menu.add(menuRound);
 		menu.add(help);
 		menu.add(exit);
+		
 		
 		this.setJMenuBar(menuBar);
 		
@@ -139,15 +141,14 @@ public class GUI extends JFrame implements ActionListener{
 		choice.setLayout(new GridBagLayout());
 		
 		currentPlayerLabel = new JLabel("current Player: ");
-		currentPlayerText = new JTextField(cPlayer.getName());
-		currentPlayerText.setEditable(false);
+		currentPlayerLabelText = new JLabel(cPlayer.getName());
+		JLabel fakeLabel = new JLabel("black");
+		fakeLabel.setForeground(new JButton().getBackground());
 		wins = new JLabel("Wins: ");
 		player1Label = new JLabel("Player blue");
 		player2Label = new JLabel("Player black");
-		player1Text = new JTextField(new Integer(cp1).toString());
-		player1Text.setEditable(false);
-		player2Text = new JTextField(new Integer(cp2).toString());
-		player2Text.setEditable(false);
+		player1LabelText = new JLabel(new Integer(cp1).toString());
+		player2LabelText = new JLabel(new Integer(cp2).toString());
 		remove = new JButton("remove last token");
 		newRound = new JButton("new round");
 		newRound.setEnabled(false);
@@ -164,7 +165,11 @@ public class GUI extends JFrame implements ActionListener{
 		
 		c.gridx = ONE;
 		c.gridy = ZERO;
-		choice.add(currentPlayerText,c);
+		choice.add(currentPlayerLabelText,c);
+		
+		c.gridx = ONE;
+		c.gridy = ONE;
+		choice.add(fakeLabel, c);
 		
 		c.gridx = ZERO;
 		c.gridy = TWO;
@@ -180,7 +185,7 @@ public class GUI extends JFrame implements ActionListener{
 		
 		c.gridx = ONE;
 		c.gridy = FOUR;
-		choice.add(player1Text, c);
+		choice.add(player1LabelText, c);
 		
 		c.gridx = ZERO;
 		c.gridy = FIVE;
@@ -188,7 +193,7 @@ public class GUI extends JFrame implements ActionListener{
 		
 		c.gridx = ONE;
 		c.gridy = FIVE;
-		choice.add(player2Text, c);
+		choice.add(player2LabelText, c);
 		
 		c.gridx = ZERO;
 		c.gridy = SIX;
@@ -221,6 +226,7 @@ public class GUI extends JFrame implements ActionListener{
 		this.add(choice, BorderLayout.EAST);
 		
 		this.pack();
+		this.setResizable(false);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
@@ -253,7 +259,7 @@ public class GUI extends JFrame implements ActionListener{
 			lastPosition = position;
 			putStone(position);
 		}
-		currentPlayerText.setText(myGame.getcPlayer().getName());
+		currentPlayerLabelText.setText(myGame.getcPlayer().getName());
 		
 		
 	}
@@ -284,11 +290,11 @@ public class GUI extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(null,"Player " + cPlayer.getName() + " you won!", "Win", JOptionPane.OK_OPTION);
 				if (cPlayer == player1) {
 					cp1 += 1;
-					player1Text.setText(new Integer(cp1).toString());
+					player1LabelText.setText(new Integer(cp1).toString());
 				}
 				else {
 					cp2 += 1;
-					player2Text.setText(new Integer(cp2).toString());
+					player2LabelText.setText(new Integer(cp2).toString());
 				}
 				changeButtons(false);
 				newRound.setEnabled(true);
@@ -339,10 +345,7 @@ public class GUI extends JFrame implements ActionListener{
 		createGame();
 		cp1 = 0;
 		cp2 = 0;
-		player1Text.setText(new Integer(cp1).toString());
-		player2Text.setText(new Integer(cp2).toString());
+		player1LabelText.setText(new Integer(cp1).toString());
+		player2LabelText.setText(new Integer(cp2).toString());
 	}
-	
-
-	
 }
