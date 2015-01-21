@@ -326,7 +326,7 @@ public class GUI extends JFrame implements ActionListener{
 
 		this.remove.setEnabled(state);
 		this.newRound.setEnabled(false);
-		
+		currentPlayerLabelText.setVisible(state);
 	}
 
 	private void createGame() {
@@ -338,7 +338,7 @@ public class GUI extends JFrame implements ActionListener{
 		
 		myGame.reset();
 		changeButtons(true);
-
+		currentPlayerLabelText.setText(cPlayer.getName());
 	}
 	
 	private void newGame(){
