@@ -20,7 +20,6 @@ import de.htwg.gobang.entities.TokenBlack;
 import de.htwg.gobang.entities.TokenWhite;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.Enumeration;
@@ -92,7 +91,6 @@ public class GUI extends JFrame implements ActionListener{
 		menuRound = new JMenuItem("new Round");
 		
 		menuBar.add(menu);
-		menuBar.setBackground(Color.WHITE);
 		menu.add(newGame);
 		menu.add(menuRound);
 		menu.add(help);
@@ -243,7 +241,6 @@ public class GUI extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		
 		if(e.getSource() == this.remove) {
 			myGame.removeToken();
 			lastPosition.setBackground(new JButton().getBackground());
@@ -266,14 +263,13 @@ public class GUI extends JFrame implements ActionListener{
 		}
 		currentPlayerLabelText.setText(myGame.getcPlayer().getName());
 		currentPlayerLabelText.setForeground(myGame.getcPlayer().getColor());
-		
 	}
 
 
 	private void help() {
 		JOptionPane.showMessageDialog(null, "Go Bang is a strategy board game for two players from Japane. "
 				+ "\nIt is played on a board of 19 x 19 fields. The players aim to align five "
-				+ "\nstones of the same token suite in vertical, horizontal or diagonal lines.", "Help", JOptionPane.OK_OPTION);
+				+ "\nstones of the same token suite in vertical, horizontal or diagonal lines.", "Help" , JOptionPane.OK_OPTION);
 	}
 
 
