@@ -89,5 +89,7 @@
 * -
 
 ##Aufbau des Spiels
-* src
-#* controller
+###src
+####controller
+*GbLogic.java
+###
