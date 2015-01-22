@@ -92,6 +92,7 @@
 
 #### controller
 * GbLogic.java
+
 #### entities
 * GameField.java
 * GameToken.java
@@ -99,6 +100,7 @@
 * TokenO.java
 * TokenWhite.java
 * TokenX.java
+
 #### ui
 * GUI.java
 * TUI.java
