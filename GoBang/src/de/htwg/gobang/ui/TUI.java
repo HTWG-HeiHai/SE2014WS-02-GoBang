@@ -3,6 +3,8 @@ package de.htwg.gobang.ui;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import de.htwg.gobang.controller.GbLogic;
 import de.htwg.gobang.entities.GameToken;
 import de.htwg.gobang.entities.TokenO;
@@ -14,6 +16,7 @@ public final class TUI {
 	{
 	}
 	
+	private static Logger logger = Logger.getLogger("GoBang");
 	private static GameToken player1;
 	private static GameToken player2;
 	private static String cPlayer;
@@ -241,7 +244,7 @@ public final class TUI {
 	
 	private static void myprint(String tline)
 	{
-		System.out.println(tline);
+		logger.info(tline);
 	}
 
 }
