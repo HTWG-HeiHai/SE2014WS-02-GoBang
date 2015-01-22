@@ -13,8 +13,7 @@ import de.htwg.gobang.entities.TokenX;
 public final class TUI {
 	
 	private TUI()
-	{
-	}
+	{}
 	
 	private static Logger logger = Logger.getLogger("GoBang");
 	private static GameToken player1;

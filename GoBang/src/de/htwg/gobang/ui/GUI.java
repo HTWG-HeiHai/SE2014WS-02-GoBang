@@ -259,7 +259,8 @@ public class GUI extends JFrame implements ActionListener{
 		} else {
 			position = (JButton) e.getSource();
 			lastPosition = position;
-			putStone(position);
+			String[] tmp = position.getName().split(",");
+			putStone(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]));
 		}
 		currentPlayerLabelText.setText(myGame.getcPlayer().getName());
 		currentPlayerLabelText.setForeground(myGame.getcPlayer().getColor());
@@ -273,11 +274,10 @@ public class GUI extends JFrame implements ActionListener{
 	}
 
 
-	private void putStone(JButton tposition) {
+	private void putStone(int x, int y) {
 		
 		cPlayer = myGame.getcPlayer();
-		String[] tmp = tposition.getName().split(",");
-		char status = myGame.setToken(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]));
+		char status = myGame.setToken(x,y);
 		
 		switch (status) {
 			case 'b':

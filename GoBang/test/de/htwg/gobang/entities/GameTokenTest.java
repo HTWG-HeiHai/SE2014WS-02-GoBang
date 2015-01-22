@@ -18,7 +18,7 @@ public class GameTokenTest {
 	public void test() {
 		GameToken myToken = new TokenBlack();
 		assertEquals("black", myToken.getName());
-		assertEquals(new Color(0.f,0.f,0.f), myToken.getColor());
+		assertEquals(Color.black, myToken.getColor());
 		
 		myToken = new TokenX();
 		assertEquals("X", myToken.getName());
@@ -29,8 +29,8 @@ public class GameTokenTest {
 		assertEquals(new Color(0.f,0.f,0.f), myToken.getColor());
 		
 		myToken = new TokenWhite();
-		assertEquals("white", myToken.getName());
-		assertEquals(new Color(1.f,1.f,1.f), myToken.getColor());
+		assertEquals("blue", myToken.getName());
+		assertEquals(Color.blue, myToken.getColor());
 	}
 
 }

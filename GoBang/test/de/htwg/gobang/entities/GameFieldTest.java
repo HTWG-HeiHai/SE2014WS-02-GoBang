@@ -20,7 +20,7 @@ public class GameFieldTest {
 		tokenB = new TokenBlack();
 		tokenW = new TokenWhite();
 		myField = new GameField();
-		
+		myField.reset();
 		assertEquals(19, myField.getFieldSize());
 		assertEquals('e', myField.putStone(8, 10, tokenB));
 		assertEquals('e', myField.putStone(9, 10, tokenB));
