@@ -3,7 +3,7 @@
 ###1. Zweck des Projektes
 * Programmieren eines Spiels für die Softwaretechnik Vorlesung an der HTWG Konstanz
 
-### 2. Der Anwender, der Kunde und andere Verantwortliche.
+### 2. Der Anwender, der Kunde und andere Verantwortliche
 * Open Source Projekt
 * Prof. Dr. Marco Boger 
 
@@ -89,4 +89,5 @@
 * -
 
 ##Aufbau des Spiels
-* 
+* src
+** controller
