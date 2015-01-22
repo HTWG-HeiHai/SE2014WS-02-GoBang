@@ -88,8 +88,17 @@
 ###27. Lösungsideen
 * -
 
-##Aufbau des Spiels
-###src
-####controller
-*GbLogic.java
-###
+###Aufbau des Spiels
+
+#### controller
+* GbLogic.java
+#### entities
+* GameField.java
+* GameToken.java
+* TokenBlack.java
+* TokenO.java
+* TokenWhite.java
+* TokenX.java
+#### ui
+* GUI.java
+* TUI.java
