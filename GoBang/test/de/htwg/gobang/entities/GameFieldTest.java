@@ -80,6 +80,8 @@ public class GameFieldTest {
 		tokenW = new TokenWhite();
 		myField = new GameField();
 		myField.reset();
+		myField.getFieldSize();
+		assertEquals('f', myField.removeToken(20, 20));
 		
 		assertEquals('e', myField.putStone(17, 14, tokenB));
 		assertEquals('e', myField.putStone(17, 13, tokenB));
@@ -96,6 +98,8 @@ public class GameFieldTest {
 		assertEquals('f', myField.putStone(20,15,tokenW)); 	
 		assertEquals('f', myField.putStone(15,20, tokenW));	
 		assertEquals('f', myField.putStone(20,20, tokenW));	
+		
+		
 	}
 
 }

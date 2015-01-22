@@ -15,6 +15,7 @@ public class GbLogicTest {
 		GameToken Player1 = new TokenX();
 		GameToken Player2 = new TokenO();
 		GbLogic myGame = new GbLogic(Player1, Player2);
+		myGame.reset();
 		
 		assertEquals(0, myGame.getCounter());
 		assertEquals("X", myGame.getcPlayer().getName());
