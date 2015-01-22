@@ -14,8 +14,8 @@
 * Getestet auf Windows, sollte allerdings auf allen Systemen laufen
 
 ###5. Namenskonventionen und Definitionen
-* Interfaces fangen immer mit einem großen I an
 * Projekt komplett auf englisch
+* Struktur fäng mit de.htwg.gobang.entities an
 
 ###6. Relevante Daten und Annahmen
 * -
@@ -88,5 +88,5 @@
 ###27. Lösungsideen
 * -
 
-####Aufbau des Spiels
-
+##Aufbau des Spiels
+* 
