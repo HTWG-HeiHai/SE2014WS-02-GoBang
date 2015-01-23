@@ -16,16 +16,14 @@ import javax.swing.JPanel;
 
 import de.htwg.gobang.controller.GbLogic;
 import de.htwg.gobang.entities.GameToken;
-import de.htwg.gobang.entities.TokenBlack;
-import de.htwg.gobang.entities.TokenWhite;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.Enumeration;
+import de.htwg.gobang.observer.*;
+public class GUI extends JFrame implements ActionListener, IObserver {
 
-public class GUI extends JFrame implements ActionListener{
-	
 	private static final long serialVersionUID = 1L;
 	
 	private GbLogic myGame;
@@ -64,7 +62,7 @@ public class GUI extends JFrame implements ActionListener{
 	private static final int EIGHT= 8;
 	private static final int NINE = 9;
 	
-	public GUI(){	
+	public GUI(GbLogic myGameField){	
 		JPanel choice;
 		JMenuBar menuBar;
 		JMenu menu;
@@ -77,9 +75,9 @@ public class GUI extends JFrame implements ActionListener{
 		this.setTitle("GoBang");
 		this.setLayout(new BorderLayout());
 		
-		player1 = new TokenBlack();
-		player2 = new TokenWhite();
-		myGame = new GbLogic(player1, player2);
+		player1 = myGameField.getPlayer1();
+		player2 = myGameField.getPlayer2();
+		myGame = myGameField;
 		cPlayer = myGame.getcPlayer();
 		
 		//MenuBar
@@ -233,18 +231,11 @@ public class GUI extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
-	
-	public static void main(String[] args) {
-		new GUI();
-	}
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == this.remove) {
-			myGame.removeToken();
-			lastPosition.setBackground(new JButton().getBackground());
-			remove.setEnabled(false);
+			removeToken();
 		} else if(e.getSource() == this.newRound) {
 			createGame();
 			return;
@@ -260,12 +251,20 @@ public class GUI extends JFrame implements ActionListener{
 			position = (JButton) e.getSource();
 			lastPosition = position;
 			String[] tmp = position.getName().split(",");
-			putStone(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]));
+			char status = myGame.setToken(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]));
+			putStone(status);
+
 		}
 		currentPlayerLabelText.setText(myGame.getcPlayer().getName());
 		currentPlayerLabelText.setForeground(myGame.getcPlayer().getColor());
 	}
 
+
+	private void removeToken() {
+		myGame.removeToken();
+		lastPosition.setBackground(new JButton().getBackground());
+		remove.setEnabled(false);	
+	}
 
 	private void help() {
 		JOptionPane.showMessageDialog(null, "Go Bang is a strategy board game for two players from Japane. "
@@ -274,10 +273,10 @@ public class GUI extends JFrame implements ActionListener{
 	}
 
 
-	private void putStone(int x, int y) {
+	private void putStone(char s) {
 		
 		cPlayer = myGame.getcPlayer();
-		char status = myGame.setToken(x,y);
+		char status = s;
 		
 		switch (status) {
 			case 'b':
@@ -351,4 +350,28 @@ public class GUI extends JFrame implements ActionListener{
 		player1LabelText.setText(new Integer(cp1).toString());
 		player2LabelText.setText(new Integer(cp2).toString());
 	}
+
+
+	@Override
+	public void update(char s, int x, int y) {
+		currentPlayerLabelText.setText("blaaaa");
+		if (s != 'r')
+		{
+			String tmp = Integer.toString(x) + "," + Integer.toString(y);
+			Enumeration<AbstractButton> tbutton = group.getElements();
+			JButton e = (JButton) tbutton.nextElement();
+			do {
+				if (e.getName().equals(tmp)){
+					position = e;
+				}
+				e = (JButton) tbutton.nextElement();		
+			} while (e != null);
+			putStone(s);
+		}
+		else
+			removeToken();
+		//currentPlayerLabelText.setText(myGame.getcPlayer().getName());
+		//currentPlayerLabelText.setForeground(myGame.getcPlayer().getColor());
+	}
+
 }

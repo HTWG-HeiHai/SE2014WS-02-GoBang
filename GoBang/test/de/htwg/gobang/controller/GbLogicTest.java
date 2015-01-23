@@ -5,24 +5,24 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import de.htwg.gobang.entities.GameToken;
-import de.htwg.gobang.entities.TokenO;
-import de.htwg.gobang.entities.TokenX;
+import de.htwg.gobang.entities.TokenBlack;
+import de.htwg.gobang.entities.TokenWhite;
 
 public class GbLogicTest {
 
 	@Test
 	public void test() {
-		GameToken Player1 = new TokenX();
-		GameToken Player2 = new TokenO();
+		GameToken Player1 = new TokenWhite();
+		GameToken Player2 = new TokenBlack();
 		GbLogic myGame = new GbLogic(Player1, Player2);
 		myGame.reset();
 		
 		assertEquals(0, myGame.getCounter());
-		assertEquals("X", myGame.getcPlayer().getName());
+		assertEquals("blue", myGame.getcPlayer().getName());
 		assertEquals('e', myGame.setToken(1, 1));
-		assertEquals("O", myGame.getcPlayer().getName());
+		assertEquals("black", myGame.getcPlayer().getName());
 		assertEquals('e', myGame.setToken(1, 2));
-		assertEquals("X", myGame.getcPlayer().getName());
+		assertEquals("blue", myGame.getcPlayer().getName());
 		assertEquals(2, myGame.getCounter());
 		assertEquals('e', myGame.setToken(19, 19));
 		assertEquals('b', myGame.setToken(1, 2));

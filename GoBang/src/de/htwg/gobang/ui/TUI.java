@@ -1,26 +1,25 @@
 package de.htwg.gobang.ui;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
 import de.htwg.gobang.controller.GbLogic;
-import de.htwg.gobang.entities.GameToken;
-import de.htwg.gobang.entities.TokenO;
-import de.htwg.gobang.entities.TokenX;
+import de.htwg.gobang.observer.IObserver;
 
-public final class TUI {
+public final class TUI implements IObserver {
+
+	private Logger logger = Logger.getLogger("GoBang");
+	public TUI(GbLogic myGameField)
+	{
+		newGame(myGameField);
+		game();
+	}
+
 	
-	private TUI()
-	{}
-	
-	private static Logger logger = Logger.getLogger("GoBang");
-	private static GameToken player1;
-	private static GameToken player2;
-	private static String cPlayer;
-	private static String wPlayer;
-	private static GbLogic myGame;
+	private String cPlayer;
+	private String wPlayer;
+	private GbLogic myGame;
 	static final int BORDER = 19;
 	static final int LOOP = 20;
 	static final int HALFLOOP = 10;
@@ -31,42 +30,9 @@ public final class TUI {
 	private static Scanner scanner = new Scanner(System.in); 
 	private static String[][] line;
 	private static String headLine = "    01  02  03  04  05  06  07  08  09  10  11  12  13  14  15  16  17  18  19";
-	
-	public static void main(String[] args) {
-			welcome();
-			int choice = 0;
 			
-			while(true){
-				try {
-					choice = scanner.nextInt();
-					switch(choice) {
-					case ONE:
-						game();
-						break;
-					case TWO:
-						help();
-						welcome();
-						break;
-					case THREE:
-						System.exit(0);
-						break;
-					default:
-						myprint("Please choose 1, 2 or 3");
-						welcome();
-						break;
-					} 
-					
-				} catch (InputMismatchException x) {
-					myprint("Wrong input type. Please choose 1, 2 or 3");
-					welcome();
-					continue;
-					}
-			}
-	}
-			
-	private static void game() {
+	private void game() {
 		scanner = new Scanner(System.in);
-		newGame();
 		char s = 'a';
 		String cord;
 		String[] position;
@@ -113,7 +79,7 @@ public final class TUI {
 					wPlayer = cPlayer;
 				case 'e':
 					line[y-1][x] = setLine(x,cPlayer);
-					cPlayer = myGame.getcPlayer().getName();
+					cPlayer = changeTName(myGame.getcPlayer().getName());
 					lx = x;
 					ly = y;
 					break;
@@ -127,14 +93,14 @@ public final class TUI {
 		System.exit(0);
 	}
 	
-	private static boolean checkRemove(String s, int y, int x){
+	private boolean checkRemove(String s, int y, int x){
 		if (s.equals("b") || s.equals("B"))
 		{
 			if(myGame.removeToken())
 			{
 				line[y-1][x] = setLine(x,"_");
 				myprint("Token deleted.");
-				cPlayer = myGame.getcPlayer().getName();
+				cPlayer = changeTName(myGame.getcPlayer().getName());
 				return true;
 			}
 			else
@@ -155,27 +121,14 @@ public final class TUI {
 		}
 		return tmp.toString();
 	}
-	private static void help() {
-		myprint("Go Bang is a strategy board game for two players from Japane. "
-				+ "\nIt is played on a board of 19 x 19 fields. The players aim to align five "
-				+ "\nstones of the same token suite in vertical, horizontal or diagonal lines. ");
-		myprint("");
-	}
-
-	private static void welcome() {
-		myprint("Welcome to GoBang");
-		myprint("1: start new game");
-		myprint("2: help");
-		myprint("3: quit");
-	}
 	
-	private static void pTurn() {
+	private void pTurn() {
 		myprint("Player " + cPlayer + " it is your turn.");
 		myprint("With 'b' oder 'B' you remove your last move.");
 		myprint("Please enter the position of your token (x,y):");
 	}
 
-	private static void field() {
+	private void field() {
 		myprint("");
 		myprint(headLine);
 		StringBuilder tSB = new StringBuilder();
@@ -192,12 +145,10 @@ public final class TUI {
 		myprint("");
 	}
 
-	private static void newGame(){
+	private void newGame(GbLogic myGameField){
 
-		player1 = new TokenX();
-		player2 = new TokenO();
-		myGame = new GbLogic(player1, player2);
-		cPlayer = myGame.getcPlayer().getName();
+		myGame = myGameField;
+		cPlayer = changeTName(myGame.getcPlayer().getName());
 		wPlayer = "";
 		line = new String[BORDER][LOOP];
 		StringBuilder tmp = new StringBuilder();
@@ -224,11 +175,11 @@ public final class TUI {
 		}
 	}
 	
-	private static String newGameLine()	{
+	private String newGameLine()	{
 		return "|___";
 	}
 	
-	private static boolean isNumeric(String str)  
+	private boolean isNumeric(String str)  
 	{  
 	  try  
 	  {  
@@ -241,9 +192,21 @@ public final class TUI {
 	  return true;  
 	}
 	
-	private static void myprint(String tline)
+	private void myprint(String tline)
 	{
 		logger.info(tline);
+	}
+
+	@Override
+	public void update(char s, int x, int y) {
+		
+	}
+	
+	public static String changeTName(String cname) {
+		if (cname.equals("black"))
+			return "X";
+		else
+			return "O";
 	}
 
 }

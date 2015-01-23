@@ -2,8 +2,9 @@ package de.htwg.gobang.controller;
 
 import de.htwg.gobang.entities.GameField;
 import de.htwg.gobang.entities.GameToken;
+import de.htwg.gobang.observer.MyObserverable;
 
-public class GbLogic {
+public class GbLogic extends MyObserverable {
 	
 	private GameField myField;
 	private GameToken player1;
@@ -35,6 +36,7 @@ public class GbLogic {
 		changePlayer(counter);
 		lastX = x;
 		lastY = y;
+		notifyObserver(status, x, y);
 		return status;
 	}
 	
@@ -69,10 +71,19 @@ public class GbLogic {
 		}
 		counter--;
 		changePlayer(counter);
+		notifyObserver('r', 0, 0);
 		return true;
 	}
 	
 	public void reset(){
 		myField.reset();
+	}
+	
+	public GameToken getPlayer1(){
+		return player1;
+	}
+	
+	public GameToken getPlayer2(){
+		return player2;
 	}
 }

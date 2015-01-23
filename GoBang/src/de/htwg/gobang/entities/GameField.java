@@ -66,9 +66,9 @@ public class GameField{
 	}
 	
 	public void reset(){
-		Checker.win = 0;
-		Checker.counter = 1;
-		Checker.tend = 0;
+		myCheck.win = 0;
+		myCheck.counter = 1;
+		myCheck.tend = 0;
 	}
 
 	@SuppressWarnings("static-access")
