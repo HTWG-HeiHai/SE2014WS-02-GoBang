@@ -2,7 +2,7 @@ package de.htwg.gobang.entities;
 
 import java.awt.Color;
 
-public abstract class GameToken {
+public class GameToken {
 	
 	private String name;
 	private Color mcolor;
@@ -15,7 +15,7 @@ public abstract class GameToken {
 		return mcolor;
 	}
 	
-	GameToken(String pname, Color pcolor)
+	public GameToken(String pname, Color pcolor)
 	{
 		name = pname;
 		mcolor = pcolor;

@@ -1,28 +1,22 @@
 package de.htwg.gobang.controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import de.htwg.gobang.entities.GameToken;
-import de.htwg.gobang.entities.TokenBlack;
-import de.htwg.gobang.entities.TokenWhite;
 
 public class GbLogicTest {
 
 	@Test
 	public void test() {
-		GameToken Player1 = new TokenWhite();
-		GameToken Player2 = new TokenBlack();
-		GbLogic myGame = new GbLogic(Player1, Player2);
+		GbLogic myGame = new GbLogic(true);
 		myGame.reset();
 		
 		assertEquals(0, myGame.getCounter());
-		assertEquals("blue", myGame.getcPlayer().getName());
-		assertEquals('e', myGame.setToken(1, 1));
 		assertEquals("black", myGame.getcPlayer().getName());
-		assertEquals('e', myGame.setToken(1, 2));
+		assertEquals('e', myGame.setToken(1, 1));
 		assertEquals("blue", myGame.getcPlayer().getName());
+		assertEquals('e', myGame.setToken(1, 2));
+		assertEquals("black", myGame.getcPlayer().getName());
 		assertEquals(2, myGame.getCounter());
 		assertEquals('e', myGame.setToken(19, 19));
 		assertEquals('b', myGame.setToken(1, 2));

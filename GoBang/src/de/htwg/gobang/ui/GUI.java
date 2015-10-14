@@ -333,9 +333,9 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 
 	private void createGame() {
 		if (cPlayer == player1){
-			myGame = new GbLogic(player1, player2);
+			myGame = new GbLogic(true);
 		} else {
-			myGame = new GbLogic(player2, player1);
+			myGame = new GbLogic(false);
 		}
 		
 		myGame.reset();

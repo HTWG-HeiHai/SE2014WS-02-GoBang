@@ -1,5 +1,7 @@
 package de.htwg.gobang.controller;
 
+import java.awt.Color;
+
 import de.htwg.gobang.entities.GameField;
 import de.htwg.gobang.entities.GameToken;
 import de.htwg.gobang.observer.MyObserverable;
@@ -15,12 +17,16 @@ public class GbLogic extends MyObserverable {
 	private int counter;
 	private char status;
 	
-	public GbLogic(GameToken p1, GameToken p2){
+	public GbLogic(boolean pStartplayer){
 		myField = new GameField();
-		player1 = p1;
-		player2 = p2;
+		player1 = new GameToken("black", Color.BLACK);
+		player2 = new GameToken("blue", Color.BLUE);
 		counter = 0;
-		cPlayer = player1;
+		if (pStartplayer) {
+			cPlayer = player1;
+		} else {
+			cPlayer = player2;
+		}
 		lastX = 1;
 		lastY = 1;
 	}
@@ -45,7 +51,7 @@ public class GbLogic extends MyObserverable {
 		if (counter %2 == 0)
 		{
 			cPlayer = player1;
-		}
+		} 
 		else
 		{
 			cPlayer = player2;

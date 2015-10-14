@@ -3,19 +3,19 @@ package de.htwg.gobang.entities;
 public class GameField{
 	
 	private static final int TOKENTOWIN = 5;
-	private static final int FIELDSZIE = 19;
+	private static final int FIELDSIZE = 19;
 	
 	private static GameToken[][] matrix;
 	
 	private Checker myCheck;
 	
 	public GameField(){
-		matrix = new GameToken[FIELDSZIE][FIELDSZIE];
+		matrix = new GameToken[FIELDSIZE][FIELDSIZE];
 		myCheck = createChain();
 	}
 	
 	public int getFieldSize(){
-		return FIELDSZIE;
+		return FIELDSIZE;
 	}
 	
 	@SuppressWarnings("static-access")
@@ -40,7 +40,7 @@ public class GameField{
 
 	private static boolean isValid(int x, int y) {
 		
-		if(x >= FIELDSZIE  || x < 0 || y >= FIELDSZIE  || y < 0)
+		if(x >= FIELDSIZE  || x < 0 || y >= FIELDSIZE  || y < 0)
 		{
 			return false; 
 		}
@@ -83,7 +83,7 @@ public class GameField{
 	}
 	
 
-	private static Checker createChain(){
+	private Checker createChain(){
 		Checker myChecker = new LeftChecker();
 		Checker myRightCheck = new RightChecker();
 		Checker myTopCheck = new TopChecker();
@@ -105,9 +105,9 @@ public class GameField{
 
 	abstract static class Checker {
 	
-		private static int counter = 1;
-		private static int tend = 0;
-		private static int win = 0;
+		protected static int counter = 1;
+		protected static int tend = 0;
+		protected static int win = 0;
 		private Checker next;
 		
 		public void resetCounter() {
@@ -144,7 +144,7 @@ public class GameField{
 	
 	}
 	
-	static class LeftChecker extends Checker {
+	class LeftChecker extends Checker {
 	
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
@@ -156,7 +156,7 @@ public class GameField{
 		}
 	}
 	
-	static class RightChecker extends Checker {
+	class RightChecker extends Checker {
 		
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
@@ -169,7 +169,7 @@ public class GameField{
 		}
 	}
 	
-	static class TopChecker extends Checker {
+	class TopChecker extends Checker {
 		
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
@@ -181,7 +181,7 @@ public class GameField{
 		}
 	}
 	
-	static class DownChecker extends Checker {
+	class DownChecker extends Checker {
 		
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
@@ -194,7 +194,7 @@ public class GameField{
 		}
 	}
 	
-	static class TopLeftChecker extends Checker {
+	class TopLeftChecker extends Checker {
 
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
@@ -207,7 +207,7 @@ public class GameField{
 		}
 	}
 	
-	static class DownRightChecker extends Checker {
+	class DownRightChecker extends Checker {
 		
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
@@ -221,7 +221,7 @@ public class GameField{
 		}
 	}
 	
-	static class TopRightChecker extends Checker {
+	class TopRightChecker extends Checker {
 		
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {
@@ -234,7 +234,7 @@ public class GameField{
 		}
 	}
 	
-	static class DownLeftChecker extends Checker {
+	class DownLeftChecker extends Checker {
 		
 		@Override
 		protected void checkWin(int x, int y, GameToken token) {

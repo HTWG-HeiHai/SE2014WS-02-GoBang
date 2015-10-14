@@ -1,13 +1,10 @@
 package de.htwg.gobang.entities;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import java.awt.Color;
 
 import org.junit.Test;
-
-import de.htwg.gobang.entities.GameField;
-import de.htwg.gobang.entities.GameToken;
-import de.htwg.gobang.entities.TokenBlack;
-import de.htwg.gobang.entities.TokenWhite;
 
 public class GameFieldTest {
 	
@@ -17,8 +14,8 @@ public class GameFieldTest {
 
 	@Test
 	public void winTop() {
-		tokenB = new TokenBlack();
-		tokenW = new TokenWhite();
+		tokenB = new GameToken("black", Color.BLACK);
+		tokenW = new GameToken("blue", Color.BLUE);
 		myField = new GameField();
 		myField.reset();
 		assertEquals(19, myField.getFieldSize());
@@ -31,8 +28,8 @@ public class GameFieldTest {
 	
 	@Test
 	public void winLeft(){
-		tokenB = new TokenBlack();
-		tokenW = new TokenWhite();
+		tokenB = new GameToken("black", Color.BLACK);
+		tokenW = new GameToken("blue", Color.BLUE);
 		myField = new GameField();
 		myField.reset();
 		
@@ -49,8 +46,8 @@ public class GameFieldTest {
 	@Test
 	public void winTopLeft(){
 		
-		tokenB = new TokenBlack();
-		tokenW = new TokenWhite();
+		tokenB = new GameToken("black", Color.BLACK);
+		tokenW = new GameToken("blue", Color.BLUE);
 		myField = new GameField();
 		myField.reset();
 		
@@ -63,8 +60,8 @@ public class GameFieldTest {
 	@Test
 	public void winTopRight(){
 		
-		tokenB = new TokenBlack();
-		tokenW = new TokenWhite();
+		tokenB = new GameToken("black", Color.BLACK);
+		tokenW = new GameToken("blue", Color.BLUE);
 		myField = new GameField();
 		myField.reset();
 		
@@ -76,8 +73,8 @@ public class GameFieldTest {
 	}
 	@Test
 	public void putSomeStones(){
-		tokenB = new TokenBlack();
-		tokenW = new TokenWhite();
+		tokenB = new GameToken("black", Color.BLACK);
+		tokenW = new GameToken("blue", Color.BLUE);
 		myField = new GameField();
 		myField.reset();
 		myField.getFieldSize();
