@@ -17,7 +17,6 @@ public class GameFieldTest {
 		tokenB = new GameToken("black", Color.BLACK);
 		tokenW = new GameToken("blue", Color.BLUE);
 		myField = new GameField();
-		myField.reset();
 		assertEquals(19, myField.getFieldSize());
 		assertEquals('e', myField.putStone(8, 10, tokenB));
 		assertEquals('e', myField.putStone(9, 10, tokenB));
@@ -31,7 +30,6 @@ public class GameFieldTest {
 		tokenB = new GameToken("black", Color.BLACK);
 		tokenW = new GameToken("blue", Color.BLUE);
 		myField = new GameField();
-		myField.reset();
 		
 		assertEquals('e', myField.putStone(15, 14, tokenB));
 		assertEquals('r', myField.removeToken(15, 14));
@@ -49,7 +47,6 @@ public class GameFieldTest {
 		tokenB = new GameToken("black", Color.BLACK);
 		tokenW = new GameToken("blue", Color.BLUE);
 		myField = new GameField();
-		myField.reset();
 		
 		assertEquals('e', myField.putStone(2, 2, tokenB));
 		assertEquals('e', myField.putStone(3, 3, tokenB));
@@ -63,7 +60,6 @@ public class GameFieldTest {
 		tokenB = new GameToken("black", Color.BLACK);
 		tokenW = new GameToken("blue", Color.BLUE);
 		myField = new GameField();
-		myField.reset();
 		
 		assertEquals('e', myField.putStone(10, 10, tokenB));
 		assertEquals('e', myField.putStone(11, 9, tokenB));
@@ -76,7 +72,6 @@ public class GameFieldTest {
 		tokenB = new GameToken("black", Color.BLACK);
 		tokenW = new GameToken("blue", Color.BLUE);
 		myField = new GameField();
-		myField.reset();
 		myField.getFieldSize();
 		assertEquals('f', myField.removeToken(20, 20));
 		

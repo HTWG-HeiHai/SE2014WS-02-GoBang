@@ -12,6 +12,7 @@ public class GbLogic extends MyObserverable {
 	private GameToken player1;
 	private GameToken player2;
 	private GameToken cPlayer;
+	private Checker myChecker;
 	private int lastX;
 	private int lastY;
 	private int counter;
@@ -21,7 +22,8 @@ public class GbLogic extends MyObserverable {
 		myField = new GameField();
 		player1 = new GameToken("black", Color.BLACK);
 		player2 = new GameToken("blue", Color.BLUE);
-		counter = 0;
+		myChecker = new Checker(myField.getFieldSize());
+		counter = -1;
 		if (pStartplayer) {
 			cPlayer = player1;
 		} else {
@@ -33,17 +35,18 @@ public class GbLogic extends MyObserverable {
 	
 	public char setToken(int x, int y)
 	{
+		counter++;
+		changePlayer(counter);
 		status = myField.putStone(x, y, cPlayer);
 		if (status == 'f' || status == 'b')
 		{
 			return status;
 		}
-		counter++;
-		changePlayer(counter);
 		lastX = x;
 		lastY = y;
 		notifyObserver(status, x, y);
-		return status;
+		
+		return getWin(x, y, cPlayer);
 	}
 	
 	private void changePlayer(int counter)
@@ -81,15 +84,19 @@ public class GbLogic extends MyObserverable {
 		return true;
 	}
 	
-	public void reset(){
-		myField.reset();
-	}
-	
 	public GameToken getPlayer1(){
 		return player1;
 	}
 	
 	public GameToken getPlayer2(){
 		return player2;
+	}
+	
+	private char getWin(int x, int y, GameToken token) {
+		if (myChecker.checkWin(x, y, token))
+		{ 
+			return 'g';
+		}
+		return 'e';
 	}
 }

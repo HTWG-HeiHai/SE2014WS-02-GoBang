@@ -337,8 +337,6 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 		} else {
 			myGame = new GbLogic(false);
 		}
-		
-		myGame.reset();
 		changeButtons(true);
 		currentPlayerLabelText.setText(cPlayer.getName());
 	}

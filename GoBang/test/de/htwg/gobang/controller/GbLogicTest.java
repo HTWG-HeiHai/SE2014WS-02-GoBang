@@ -9,7 +9,6 @@ public class GbLogicTest {
 	@Test
 	public void test() {
 		GbLogic myGame = new GbLogic(true);
-		myGame.reset();
 		
 		assertEquals(0, myGame.getCounter());
 		assertEquals("black", myGame.getcPlayer().getName());
