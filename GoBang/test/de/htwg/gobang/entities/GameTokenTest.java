@@ -10,11 +10,11 @@ public class GameTokenTest {
 
 	@Test
 	public void test() {
-		GameToken myToken = new GameToken("black", Color.BLACK);
+		GameToken myToken = new GameToken("X", Color.BLACK);
 		assertEquals("X", myToken.getName());
 		assertEquals(Color.black, myToken.getColor());
 		
-		myToken = new GameToken("blue", Color.BLUE);
+		myToken = new GameToken("O", Color.BLUE);
 		assertEquals("O", myToken.getName());
 		assertEquals(Color.blue, myToken.getColor());
 	}
