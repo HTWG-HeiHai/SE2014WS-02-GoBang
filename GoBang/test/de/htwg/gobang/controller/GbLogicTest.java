@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import de.htwg.gobang.controller.impl.GbLogic;
+
 public class GbLogicTest {
 
 	@Test

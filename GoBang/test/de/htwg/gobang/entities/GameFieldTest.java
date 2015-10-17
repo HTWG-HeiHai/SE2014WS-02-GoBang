@@ -6,6 +6,9 @@ import java.awt.Color;
 
 import org.junit.Test;
 
+import de.htwg.gobang.entities.impl.GameField;
+import de.htwg.gobang.entities.impl.GameToken;
+
 public class GameFieldTest {
 	
 	GameToken tokenB;

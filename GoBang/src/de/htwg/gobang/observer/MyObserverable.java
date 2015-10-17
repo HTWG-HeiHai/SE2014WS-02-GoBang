@@ -3,7 +3,7 @@ package de.htwg.gobang.observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyObserverable {
+public class MyObserverable implements IObservable {
 	
 	protected List<IObserver> subscriber = new ArrayList<IObserver>(2); 
 
@@ -11,15 +11,15 @@ public class MyObserverable {
 		subscriber.add(s);
 	}
 	
-	void removeObserver(IObserver s){
+	public void removeObserver(IObserver s){
 		subscriber.remove(s);
 	}
 
-	void removeAllObservers(){
+	public void removeAllObservers(){
 		subscriber.clear();
 	}
-	
-	public void notifyObserver(char s, int x, int y) {
+
+	public void notifyObservers(char s, int x, int y) {
 		
 		for (IObserver myob : subscriber) {
 			IObserver observer = myob;

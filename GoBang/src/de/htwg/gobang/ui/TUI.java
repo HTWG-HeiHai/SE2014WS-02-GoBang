@@ -4,22 +4,18 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import de.htwg.gobang.controller.GbLogic;
+import com.google.inject.Inject;
+
+import de.htwg.gobang.controller.IGbLogic;
 import de.htwg.gobang.observer.IObserver;
 
 public final class TUI implements IObserver {
 
 	private Logger logger = Logger.getLogger("GoBang");
-	public TUI(GbLogic myGameField)
-	{
-		newGame(myGameField);
-		game();
-	}
-
 	
 	private String cPlayer;
 	private String wPlayer;
-	private GbLogic myGame;
+	private IGbLogic controller;
 	static final int BORDER = 19;
 	static final int LOOP = 20;
 	static final int HALFLOOP = 10;
@@ -30,7 +26,14 @@ public final class TUI implements IObserver {
 	private static Scanner scanner = new Scanner(System.in); 
 	private static String[][] line;
 	private static String headLine = "    01  02  03  04  05  06  07  08  09  10  11  12  13  14  15  16  17  18  19";
-			
+
+	@Inject
+	public TUI(IGbLogic engine)
+	{
+		newGame(engine);
+		game();
+	}
+
 	private void game() {
 		scanner = new Scanner(System.in);
 		char s = 'a';
@@ -61,7 +64,7 @@ public final class TUI implements IObserver {
 			{
 				x = Integer.valueOf(position[0]);
 				y = Integer.valueOf(position[1]);
-				s = myGame.setToken(x, y);
+				s = controller.setToken(x, y);
 			}
 			else
 			{
@@ -79,7 +82,7 @@ public final class TUI implements IObserver {
 					wPlayer = cPlayer;
 				case 'e':
 					line[y-1][x] = setLine(x,cPlayer);
-					cPlayer = changeTName(myGame.getcPlayer().getName());
+					cPlayer = changeTName(controller.getcPlayer().getName());
 					lx = x;
 					ly = y;
 					break;
@@ -89,18 +92,18 @@ public final class TUI implements IObserver {
 			}
 		}
 		field();
-		myprint(wPlayer + " you won after " + Integer.toString(myGame.getCounter())  + " turns!");
+		myprint(wPlayer + " you won after " + Integer.toString(controller.getCounter())  + " turns!");
 		System.exit(0);
 	}
 	
 	private boolean checkRemove(String s, int y, int x){
 		if (s.equals("b") || s.equals("B"))
 		{
-			if(myGame.removeToken())
+			if(controller.removeToken())
 			{
 				line[y-1][x] = setLine(x,"_");
 				myprint("Token deleted.");
-				cPlayer = changeTName(myGame.getcPlayer().getName());
+				cPlayer = changeTName(controller.getcPlayer().getName());
 				return true;
 			}
 			else
@@ -145,10 +148,12 @@ public final class TUI implements IObserver {
 		myprint("");
 	}
 
-	private void newGame(GbLogic myGameField){
+	private void newGame(IGbLogic engine){
 
-		myGame = myGameField;
-		cPlayer = changeTName(myGame.getcPlayer().getName());
+		controller = engine;
+		controller.addObserver(this);
+
+		cPlayer = changeTName(controller.getcPlayer().getName());
 		wPlayer = "";
 		line = new String[BORDER][LOOP];
 		StringBuilder tmp = new StringBuilder();
