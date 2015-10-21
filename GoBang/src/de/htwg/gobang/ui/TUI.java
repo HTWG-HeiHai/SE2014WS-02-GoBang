@@ -65,6 +65,7 @@ public final class TUI implements IObserver {
 				x = Integer.valueOf(position[0]);
 				y = Integer.valueOf(position[1]);
 				s = controller.setToken(x, y);
+				controller.changePlayer(controller.getCounter());
 			}
 			else
 			{
@@ -197,9 +198,10 @@ public final class TUI implements IObserver {
 	  return true;  
 	}
 	
-	private void myprint(String tline)
+	private String myprint(String tline)
 	{
-		logger.info(tline);
+		//logger.info(tline);
+		return tline;
 	}
 
 	@Override
@@ -207,7 +209,7 @@ public final class TUI implements IObserver {
 		
 	}
 	
-	public static String changeTName(String cname) {
+	public String changeTName(String cname) {
 		if (cname.equals("black"))
 			return "X";
 		else
