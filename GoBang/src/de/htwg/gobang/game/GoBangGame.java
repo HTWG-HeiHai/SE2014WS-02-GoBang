@@ -12,6 +12,7 @@ public class GoBangGame extends Observable{
 
 	private static GoBangGame instance = null;
 	private IGbLogic controller;
+	private TUI tui;
 
 	public static GoBangGame getInstance() {
 	if (instance == null) {
@@ -24,7 +25,7 @@ public class GoBangGame extends Observable{
 		Injector injector = Guice.createInjector(new GoBangModule());
 		controller = injector.getInstance(IGbLogic.class);
 		injector.getInstance(GUI.class);
-		injector.getInstance(TUI.class);
+		tui = injector.getInstance(TUI.class);
 	}
 
 	public static void main(String[] args) {
@@ -34,4 +35,9 @@ public class GoBangGame extends Observable{
 	public IGbLogic getController() {
 		return controller;
 	}
+
+	public TUI getTui() {
+		return tui;
+	}
+
 }

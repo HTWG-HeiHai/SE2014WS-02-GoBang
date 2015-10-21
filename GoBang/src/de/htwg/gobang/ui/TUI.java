@@ -11,7 +11,7 @@ import de.htwg.gobang.observer.IObserver;
 
 public final class TUI implements IObserver {
 
-	private Logger logger = Logger.getLogger("GoBang");
+	//private Logger logger = Logger.getLogger("GoBang");
 	
 	private String cPlayer;
 	private String wPlayer;
@@ -116,7 +116,7 @@ public final class TUI implements IObserver {
 		return false;
 	}
 	
-	private static String setLine(int x, String current) {
+	private String setLine(int x, String current) {
 		StringBuilder tmp = new StringBuilder();
 		tmp.append("|_").append(current).append("_");
 		if (x==BORDER)
@@ -126,27 +126,24 @@ public final class TUI implements IObserver {
 		return tmp.toString();
 	}
 	
-	private void pTurn() {
-		myprint("Player " + cPlayer + " it is your turn.");
-		myprint("With 'b' oder 'B' you remove your last move.");
-		myprint("Please enter the position of your token (x,y):");
+	public String pTurn() {
+		return "Player " + cPlayer + " it is your turn.\n"
+			+ "With 'b' oder 'B' you remove your last move.\n"
+			+ "Please enter the position of your token (x,y):";
 	}
 
-	private void field() {
-		myprint("");
-		myprint(headLine);
+	public String field() {
 		StringBuilder tSB = new StringBuilder();
+		tSB.append(headLine).append("\n");
 		
 		for(int i = 0; i < BORDER; i++)
 		{
 			for(int k = 0; k < LOOP; k++)
 			{
-				tSB.append(line[i][k]);
+				tSB.append(line[i][k]).append("\n");
 			}
-			myprint(tSB.toString());
-			tSB = new StringBuilder();
 		}
-		myprint("");
+		return tSB.toString();
 	}
 
 	private void newGame(IGbLogic engine){
