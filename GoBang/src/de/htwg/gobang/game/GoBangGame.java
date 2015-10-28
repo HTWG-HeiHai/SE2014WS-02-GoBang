@@ -31,15 +31,6 @@ public class GoBangGame extends Observable{
 
 	public static void main(String[] args) {
 		GoBangGame gbg = GoBangGame.getInstance();
-		
-		/*
-		Scanner sc = new Scanner(System.in);
-		boolean win = false;
-		while (!win) {
-			// win = interpretInput(sc.nextLine())
-			
-			
-		}*/
 	}
 
 	public IGbLogic getController() {

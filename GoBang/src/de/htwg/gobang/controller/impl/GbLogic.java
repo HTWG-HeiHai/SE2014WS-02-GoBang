@@ -83,8 +83,8 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 			return false;
 		}
 		counter--;
-		changePlayer(counter);
 		notifyObservers('r', 0, 0);
+		changePlayer(counter);
 		return true;
 	}
 

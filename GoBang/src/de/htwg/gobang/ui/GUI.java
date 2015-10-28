@@ -347,23 +347,22 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 
 	@Override
 	public void update(char s, int x, int y) {
-		currentPlayerLabelText.setText("blaaaa");
-		if (s != 'r') {
-			String tmp = Integer.toString(x) + "," + Integer.toString(y);
-			Enumeration<AbstractButton> tbutton = group.getElements();
-			JButton e = (JButton) tbutton.nextElement();
-			do {
-				if (e.getName().equals(tmp)) {
-					position = e;
-					break;
-				}
-				e = (JButton) tbutton.nextElement();
-			} while (e != null);
-			putStone(s);
-		} else
-			removeToken();
-		// currentPlayerLabelText.setText(myGame.getcPlayer().getName());
-		// currentPlayerLabelText.setForeground(myGame.getcPlayer().getColor());
+		if (s == 'e'){
+			/*
+			for (JButton cButton : group.getElements().) {
+				
+			} )
+			position.setName((i-1) + "," + (k-1));
+			position = (JButton) e.getSource();
+			lastPosition = position;
+			String[] tmp = position.getName().split(",");
+			char status = controller.setToken(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]));
+			*/
+		} else if (s == 'b'){
+			
+		} else if (s == 'r') {
+			
+		}
 	}
 
 }

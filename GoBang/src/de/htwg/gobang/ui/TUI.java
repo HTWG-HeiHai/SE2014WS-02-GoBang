@@ -1,9 +1,5 @@
 package de.htwg.gobang.ui;
 
-import java.util.Scanner;
-
-import org.apache.log4j.Logger;
-
 import com.google.inject.Inject;
 
 import de.htwg.gobang.controller.IGbLogic;
@@ -32,6 +28,8 @@ public final class TUI implements IObserver {
 	public TUI(IGbLogic engine)
 	{
 		newGame(engine);
+		controller = engine;
+		engine.addObserver(this);
 	}
 
 	public String setToken(String cord){
@@ -97,7 +95,7 @@ public final class TUI implements IObserver {
 	}
 	
 	public String pTurn() {
-		return "Player " + cPlayer + " it is your turn.\n"
+		return "Player1 " + cPlayer + " it is your turn.\n"
 			+ "Please enter the position of your token (x,y):";
 	}
 
@@ -172,7 +170,13 @@ public final class TUI implements IObserver {
 
 	@Override
 	public void update(char s, int x, int y) {
-		
+		if (s == 'e'){
+			line[y-1][x] = setLine(x,cPlayer);
+		} else if (s == 'b'){
+			
+		} else if (s == 'r') {
+			
+		}
 	}
 	
 	public String changeTName(String cname) {
