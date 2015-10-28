@@ -14,7 +14,6 @@ public final class TUI implements IObserver {
 	//private Logger logger = Logger.getLogger("GoBang");
 	
 	private String cPlayer;
-	private String wPlayer;
 	private IGbLogic controller;
 	static final int BORDER = 19;
 	static final int LOOP = 20;
@@ -22,98 +21,69 @@ public final class TUI implements IObserver {
 	static final int THREE = 3;
 	static final int TWO = 2;
 	static final int ONE = 1;
+	private int lx = 0;
+	private int ly = 0;
 	
-	private static Scanner scanner = new Scanner(System.in); 
+	//private static Scanner scanner = new Scanner(System.in); 
 	private static String[][] line;
-	private static String headLine = "    01  02  03  04  05  06  07  08  09  10  11  12  13  14  15  16  17  18  19";
+	private static String headLine = "00  01  02  03  04  05  06  07  08  09  10  11  12  13  14  15  16  17  18  19";
 
 	@Inject
 	public TUI(IGbLogic engine)
 	{
 		newGame(engine);
-		game();
 	}
 
-	private void game() {
-		scanner = new Scanner(System.in);
-		char s = 'a';
-		String cord;
+	public String setToken(String cord){
+		
 		String[] position;
-		int x,y; 
-		int lx = 0;
-		int ly = 0;
-		while (s != 'g')
+		
+		if (!cord.contains(","))
 		{
-			field();
-			pTurn();
-			cord = scanner.nextLine();
-			
-			if (checkRemove(cord, ly, lx))
-			{
-				continue;
-			}
-			
-			if (!cord.contains(","))
-			{
-				myprint("Not seperated with ','.");
-				continue;
-			}
-			position = cord.split(",");
-			
-			if(isNumeric(position[0]) && (isNumeric(position[1])))
-			{
-				x = Integer.valueOf(position[0]);
-				y = Integer.valueOf(position[1]);
-				s = controller.setToken(x, y);
-				controller.changePlayer(controller.getCounter());
-			}
-			else
-			{
-				myprint("2 numbers are needed.");
-				continue;
-			}
+			return myprint("Not seperated with ','.");
+		}
+		position = cord.split(",");
+		
+		if(isNumeric(position[0]) && (isNumeric(position[1])))
+		{
+			char s = controller.setToken(Integer.valueOf(position[0]), Integer.valueOf(position[1]));
+			int x = Integer.valueOf(position[0]);
+			int y = Integer.valueOf(position[1]);
 			switch (s) {
 				case 'f':
-					myprint("Only number between 1 and 19 valid.");
-					continue;
+					return myprint("Only number between 1 and 19 valid.");
 				case 'b':
-					myprint("There is already a token.");
-					continue;
+					return myprint("There is already a token.");
 				case 'g':
-					wPlayer = cPlayer;
+					return myprint("won");
 				case 'e':
 					line[y-1][x] = setLine(x,cPlayer);
 					cPlayer = changeTName(controller.getcPlayer().getName());
 					lx = x;
 					ly = y;
-					break;
-				default:
-					myprint("Something went wrong with myGame.setToken");
-					continue;
+					controller.changePlayer(controller.getCounter());
+					return myprint("Token is put on " + x + ", " + y);
 			}
 		}
-		field();
-		myprint(wPlayer + " you won after " + Integer.toString(controller.getCounter())  + " turns!");
-		System.exit(0);
+		else
+		{
+			return myprint("2 numbers are needed.");
+		}
+		return myprint("Something went wrong with myGame.setToken");
 	}
 	
-	private boolean checkRemove(String s, int y, int x){
-		if (s.equals("b") || s.equals("B"))
+	public String removeToken(){
 		{
 			if(controller.removeToken())
 			{
-				line[y-1][x] = setLine(x,"_");
+				line[ly-1][lx] = setLine(lx,"_");
 				myprint("Token deleted.");
 				cPlayer = changeTName(controller.getcPlayer().getName());
-				return true;
+				return myprint("Last token deleted");
 			}
-			else
-			{
-				myprint("No token left to delete.");
-				return true;
-			}
+			
+			return myprint("No token left to delete."); 
 		}
-		return false;
 	}
 	
 	private String setLine(int x, String current) {
@@ -128,7 +98,6 @@ public final class TUI implements IObserver {
 	
 	public String pTurn() {
 		return "Player " + cPlayer + " it is your turn.\n"
-			+ "With 'b' oder 'B' you remove your last move.\n"
 			+ "Please enter the position of your token (x,y):";
 	}
 
@@ -140,8 +109,9 @@ public final class TUI implements IObserver {
 		{
 			for(int k = 0; k < LOOP; k++)
 			{
-				tSB.append(line[i][k]).append("\n");
+				tSB.append(line[i][k]);
 			}
+			tSB.append("\n");
 		}
 		return tSB.toString();
 	}
@@ -152,7 +122,6 @@ public final class TUI implements IObserver {
 		controller.addObserver(this);
 
 		cPlayer = changeTName(controller.getcPlayer().getName());
-		wPlayer = "";
 		line = new String[BORDER][LOOP];
 		StringBuilder tmp = new StringBuilder();
 		for(int i = 1; i < HALFLOOP; i++)

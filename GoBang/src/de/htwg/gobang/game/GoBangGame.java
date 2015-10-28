@@ -3,6 +3,7 @@ import java.util.Observable;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.sun.java_cup.internal.runtime.Scanner;
 
 import de.htwg.gobang.controller.IGbLogic;
 import de.htwg.gobang.ui.GUI;
@@ -29,7 +30,16 @@ public class GoBangGame extends Observable{
 	}
 
 	public static void main(String[] args) {
-		GoBangGame.getInstance();
+		GoBangGame gbg = GoBangGame.getInstance();
+		
+		/*
+		Scanner sc = new Scanner(System.in);
+		boolean win = false;
+		while (!win) {
+			// win = interpretInput(sc.nextLine())
+			
+			
+		}*/
 	}
 
 	public IGbLogic getController() {
