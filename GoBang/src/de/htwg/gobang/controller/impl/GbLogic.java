@@ -21,6 +21,8 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	private IChecker myChecker;
 	private int lastX;
 	private int lastY;
+	private int cWinPlayer1;
+	private int cWinPlayer2;
 	private int counter;
 	private char status;
 
@@ -57,7 +59,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		counter++;
 		lastX = x;
 		lastY = y;
-		notifyObservers();
+		notifyObservers(status, cPlayer);
 		return getWin(x, y, cPlayer);
 	}
 
@@ -76,6 +78,14 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	public IGameToken getcPlayer() {
 		return cPlayer;
 	}
+	
+	public int getWinPlayer1(){
+		return cWinPlayer1;
+	}
+	
+	public int getWinPlayer2(){
+		return cWinPlayer2;
+	}
 
 	public boolean removeToken() {
 		status = myField.removeToken(lastX, lastY);
@@ -83,7 +93,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 			return false;
 		}
 		counter--;
-		notifyObservers();
+		notifyObservers(status, cPlayer);
 		changePlayer(counter);
 		return true;
 	}

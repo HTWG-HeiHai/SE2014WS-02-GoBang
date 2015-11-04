@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import com.google.inject.Inject;
 
 import de.htwg.gobang.controller.IGbLogic;
+import de.htwg.gobang.entities.IGameToken;
 import de.htwg.gobang.observer.IObserver;
 
 public class GUI extends JFrame implements ActionListener, IObserver {
@@ -105,6 +106,8 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 		g.ipadx = FIVE;
 		g.ipady = FIVE;
 		g.weightx = EIGHT;
+		
+		
 
 		for (int i = 1; i < LENGTH; i++) {
 			for (int k = 1; k < LENGTH; k++) {
@@ -114,7 +117,7 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 				position.setName((i-1) + "," + (k-1));
 				gameField.add(position, g);
 				position.addActionListener(this);
-				group.add(position);
+				buttonField[i][k] = position;
 			}
 		}
 
@@ -348,8 +351,12 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 	}
 
 	@Override
-	public void update() {
-		
+	public void update(char action, IGameToken player) {
+		if (action == 'r' || action == 'e'){
+			
+		} else if (action == 'g') {
+			
+		}
 	}
 
 }

@@ -1,5 +1,7 @@
 package de.htwg.gobang.observer;
 
+import de.htwg.gobang.entities.IGameToken;
+
 public interface IObservable {
 
 	void addObserver(IObserver s);
@@ -8,5 +10,5 @@ public interface IObservable {
 
 	void removeAllObservers();
 
-	void notifyObservers();
+	void notifyObservers(char action, IGameToken player);
 }
