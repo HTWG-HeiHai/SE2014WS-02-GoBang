@@ -33,6 +33,8 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 
 	public GbLogic(boolean pStartplayer) {
 		newGame(pStartplayer);
+		cWinPlayer1 = 0;
+		cWinPlayer2 = 0;
 	}
 
 	public void newGame(boolean pStartplayer) {
@@ -109,6 +111,11 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	private char getWin(int x, int y, IGameToken token) {
 		if (myChecker.checkWin(x, y, token))
 		{ 
+			if (token.equals(player1)) {
+				cWinPlayer1 += 1;
+			} else {
+				cWinPlayer2 += 1;
+			}
 			return 'g';
 		}
 		return 'e';
