@@ -70,6 +70,7 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 		JPanel choice;
 		JMenuBar menuBar;
 		JMenu menu;
+		buttonField = new JButton[19][19];
 
 		JLabel wins;
 		JLabel currentPlayerLabel;
