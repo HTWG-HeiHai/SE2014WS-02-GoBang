@@ -126,7 +126,7 @@ public final class TUI implements IObserver {
 	}
 
 	@Override
-	public void update(char action, IGameToken player, int x, int y) {
+	public void update() {
 		field = controller.getField();
 	}
 	

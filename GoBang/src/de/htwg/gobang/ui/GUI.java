@@ -40,7 +40,6 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 	private JButton[][] buttonField;
 	private IGameToken[][] tokenField;
 
-	private ButtonGroup group;
 	private JButton position;
 	private JButton lastPosition;
 	private JButton remove;
@@ -50,20 +49,9 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 	private JLabel player1LabelText;
 	private JLabel player2LabelText;
 
-	private static final int LENGTH = 20;
-	private static final int ZERO = 0;
-	private static final int ONE = 1;
-	private static final int TWO = 2;
-	private static final int THREE = 3;
-	private static final int FOUR = 4;
-	private static final int FIVE = 5;
-	private static final int SIX = 6;
-	private static final int SEVEN = 7;
-	private static final int EIGHT = 8;
-	private static final int NINE = 9;
-
 	@Inject
 	public GUI(IGbLogic engine) {
+		
 		controller = engine;
 		controller.addObserver(this);
 
@@ -99,41 +87,27 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 		// GameField
 		gameField = new JPanel();
 		gameField.setLayout(new GridBagLayout());
-		group = new ButtonGroup();
 
 		g = new GridBagConstraints();
 		g.fill = GridBagConstraints.HORIZONTAL;
-		g.ipadx = FIVE;
-		g.ipady = FIVE;
-		g.weightx = EIGHT;
+		g.ipadx = 5;
+		g.ipady = 5;
+		g.weightx = 8;
 		
 		
 
-		for (int i = 1; i < LENGTH; i++) {
-			for (int k = 1; k < LENGTH; k++) {
+		for (int i = 0; i < 19; i++) {
+			for (int k = 0; k < 19; k++) {
 				g.gridx = i;
 				g.gridy = k;
 				position = new JButton();
-				position.setName((i-1) + "," + (k-1));
+				position.setName((i) + "," + (k));
 				gameField.add(position, g);
 				position.addActionListener(this);
 				buttonField[i][k] = position;
 			}
 		}
 
-		g.gridx = LENGTH;
-		g.gridy = ZERO;
-		gameField.add(new JLabel(" "), g);
-
-		g.gridx = LENGTH;
-		g.gridy = LENGTH;
-		gameField.add(new JLabel(" "), g);
-
-		g.gridx = ZERO;
-		g.gridy = LENGTH;
-		gameField.add(new JLabel(" "), g);
-
-		// Choice
 		choice = new JPanel();
 		choice.setLayout(new GridBagLayout());
 
@@ -156,64 +130,64 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.ipadx = FIVE;
-		c.ipady = FIVE;
-		c.weightx = ONE;
+		c.ipadx = 5;
+		c.ipady = 5;
+		c.weightx = 1;
 
-		c.gridx = ZERO;
-		c.gridy = ZERO;
+		c.gridx = 0;
+		c.gridy = 0;
 		choice.add(currentPlayerLabel, c);
 
-		c.gridx = ONE;
-		c.gridy = ZERO;
+		c.gridx = 1;
+		c.gridy = 0;
 		choice.add(currentPlayerLabelText, c);
 
-		c.gridx = ONE;
-		c.gridy = ONE;
+		c.gridx = 1;
+		c.gridy = 1;
 		choice.add(fakeLabel, c);
 
-		c.gridx = ZERO;
-		c.gridy = TWO;
+		c.gridx = 0;
+		c.gridy = 2;
 		choice.add(new JLabel(" "), c);
 
-		c.gridx = ZERO;
-		c.gridy = THREE;
+		c.gridx = 0;
+		c.gridy = 3;
 		choice.add(wins, c);
 
-		c.gridx = ZERO;
-		c.gridy = FOUR;
+		c.gridx = 0;
+		c.gridy = 4;
 		choice.add(player1Label, c);
 
-		c.gridx = ONE;
-		c.gridy = FOUR;
+		c.gridx = 1;
+		c.gridy = 4;
 		choice.add(player1LabelText, c);
 
-		c.gridx = ZERO;
-		c.gridy = FIVE;
+		c.gridx = 0;
+		c.gridy = 5;
 		choice.add(player2Label, c);
 
-		c.gridx = ONE;
-		c.gridy = FIVE;
+		c.gridx = 1;
+		c.gridy = 5;
 		choice.add(player2LabelText, c);
 
-		c.gridx = ZERO;
-		c.gridy = SIX;
+		c.gridx = 0;
+		c.gridy = 6;
 		choice.add(new JLabel(" "), c);
 
-		c.gridx = ZERO;
-		c.gridy = SEVEN;
+		c.gridx = 0;
+		c.gridy = 7;
 		choice.add(remove, c);
 
-		c.gridx = ZERO;
-		c.gridy = EIGHT;
+		c.gridx = 0;
+		c.gridy = 8;
 		choice.add(new JLabel(" "), c);
 
-		c.gridx = ZERO;
-		c.gridy = NINE;
+		c.gridx = 0;
+		c.gridy = 9;
 		choice.add(newRound, c);
 
-		c.gridx = FIVE;
-		c.gridy = ZERO;
+		c.gridx = 5;
+		c.gridy = 0;
 		choice.add(new JLabel(" "), c);
 
 		remove.addActionListener(this);
@@ -277,14 +251,12 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 
 	private void putStone(char s) {
 
-		char status = s;
-
-		switch (status) {
+		switch (s) {
 		case 'b':
 			JOptionPane.showMessageDialog(null, "Already used", "Wrong Field", JOptionPane.OK_OPTION);
 			break;
 		case 'e':
-			removeStone(position);
+			remove.setEnabled(true);
 			break;
 		case 'g':
 			win(position);
@@ -294,13 +266,7 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 		}
 	}
 	
-	private void removeStone(JButton position){
-		position.setBackground(controller.getcPlayer().getColor());
-		remove.setEnabled(true);
-	}
-	
 	private void win(JButton position){
-		position.setBackground(controller.getcPlayer().getColor());
 		JOptionPane.showMessageDialog(null, "Player " + controller.getcPlayer().getName() + " you won!", "Win",
 				JOptionPane.OK_OPTION);
 		player1LabelText.setText(new Integer(controller.getWinPlayer1()).toString());
@@ -309,27 +275,16 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 		newRound.setEnabled(true);
 	}
 
-	//to-do
 	private void changeButtons(boolean state) {
-		Enumeration<AbstractButton> tbutton = group.getElements();
-		AbstractButton e = tbutton.nextElement();
-		try {
-			if (state) {
-				do {
-					e.setEnabled(state);
-					e.setBackground(new JButton().getBackground());
-					e = tbutton.nextElement();
-				} while (e != null);
-			} else {
-				do {
-					e.setEnabled(state);
-					e = tbutton.nextElement();
-				} while (e != null);
+		
+		for (int i = 0; i < 19; i++){
+			for (int y = 0; y < 19; y++){
+				if (state) {
+					buttonField[i][y].setBackground(new JButton().getBackground());
+				}
+				buttonField[i][y].setEnabled(state);
 			}
-		} catch (Exception NoSuchElementException) {
-
 		}
-
 		this.remove.setEnabled(state);
 		this.newRound.setEnabled(false);
 		currentPlayerLabelText.setVisible(state);
@@ -353,17 +308,16 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 	}
 
 	@Override
-	public void update(char action, IGameToken player, int x, int y) {
+	public void update() {
 		tokenField = controller.getField();
 		for (int i = 0; i < 19; i++){
-			
-		}
-		if (action == 'e'){
-			
-		} else if (action == 'r'){
-			
-		} else if (action == 'g') {
-			
+			for (int n = 0; n < 19; n++){
+				if (tokenField[i][n].getName().equals("none")){
+					buttonField[i][n].setBackground(new JButton().getBackground());
+				} else {
+					buttonField[i][n].setBackground(tokenField[i][n].getColor());
+				}
+			}
 		}
 	}
 
