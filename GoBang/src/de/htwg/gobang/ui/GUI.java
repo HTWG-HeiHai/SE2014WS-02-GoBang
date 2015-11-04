@@ -37,6 +37,8 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 	private JMenuItem help;
 	private JMenuItem exit;
 	private JMenuItem menuRound;
+	
+	private JButton[][] buttonField;
 
 	private ButtonGroup group;
 	private JButton position;

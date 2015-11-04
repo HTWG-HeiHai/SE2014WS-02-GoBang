@@ -12,17 +12,8 @@ public final class TUI implements IObserver {
 	
 	private String cPlayer;
 	private IGbLogic controller;
-	static final int BORDER = 19;
-	static final int LOOP = 20;
-	static final int HALFLOOP = 10;
-	static final int THREE = 3;
-	static final int TWO = 2;
-	static final int ONE = 1;
-	private int lx = 0;
-	private int ly = 0;
 	
 	//private static Scanner scanner = new Scanner(System.in); 
-	private static String[][] line;
 	private IGameToken[][] field;
 	private static String headLine = "00  01  02  03  04  05  06  07  08  09  10  11  12  13  14  15  16  17  18  19";
 
@@ -32,7 +23,7 @@ public final class TUI implements IObserver {
 		controller = engine;
 		engine.addObserver(this);
 		field = controller.getField();
-//		newGame();
+		newGame();
 	}
 
 	public String setToken(String cord){
@@ -59,8 +50,6 @@ public final class TUI implements IObserver {
 					return myprint("won");
 				case 'e':
 					cPlayer = changeTName(controller.getcPlayer().getName());
-					lx = x;
-					ly = y;
 					controller.changePlayer(controller.getCounter());
 					return myprint("Token is put on " + x + ", " + y);
 			}
