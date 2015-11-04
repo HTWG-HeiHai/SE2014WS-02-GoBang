@@ -75,10 +75,6 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		}
 	}
 
-	public int getCounter() {
-		return counter;
-	}
-
 	public IGameToken getcPlayer() {
 		return cPlayer;
 	}
@@ -111,6 +107,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	}
 
 	private char getWin(int x, int y, IGameToken token) {
+		changePlayer(counter);
 		if (myChecker.checkWin(x, y, token))
 		{ 
 			if (token.equals(player1)) {

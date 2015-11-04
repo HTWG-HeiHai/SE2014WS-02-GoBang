@@ -228,8 +228,6 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 			String[] tmp = position.getName().split(",");
 			char status = controller.setToken(Integer.parseInt(tmp[1]), Integer.parseInt(tmp[0]));
 			putStone(status);
-			controller.changePlayer(controller.getCounter());
-
 		}
 		currentPlayerLabelText.setText(controller.getcPlayer().getName());
 		currentPlayerLabelText.setForeground(controller.getcPlayer().getColor());

@@ -50,7 +50,6 @@ public final class TUI implements IObserver {
 					return myprint("won");
 				case 'e':
 					cPlayer = changeTName(controller.getcPlayer().getName());
-					controller.changePlayer(controller.getCounter());
 					return myprint("Token is put on " + x + ", " + y);
 			}
 			field = controller.getField();

@@ -11,8 +11,6 @@ public interface IGbLogic extends IObservable {
 	
 	void changePlayer(int counter);
 	
-	int getCounter();
-	
 	IGameToken getcPlayer();
 	
 	IGameToken[][] getField();
@@ -24,5 +22,6 @@ public interface IGbLogic extends IObservable {
 	IGameToken getPlayer2();
 	
 	int getWinPlayer1();
+	
 	int getWinPlayer2();
 }
