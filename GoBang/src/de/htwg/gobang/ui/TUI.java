@@ -23,7 +23,7 @@ public final class TUI implements IObserver {
 		controller = engine;
 		engine.addObserver(this);
 		field = controller.getField();
-		newGame();
+		//newGame();
 	}
 
 	public String setToken(String cord){

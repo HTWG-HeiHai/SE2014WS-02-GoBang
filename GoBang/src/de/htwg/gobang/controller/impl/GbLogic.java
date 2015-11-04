@@ -3,6 +3,7 @@ package de.htwg.gobang.controller.impl;
 import java.awt.Color;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
 import de.htwg.gobang.controller.IChecker;
 import de.htwg.gobang.controller.IGbLogic;
@@ -12,6 +13,7 @@ import de.htwg.gobang.entities.impl.GameField;
 import de.htwg.gobang.entities.impl.GameToken;
 import de.htwg.gobang.observer.MyObserverable;
 
+@Singleton
 public class GbLogic extends MyObserverable implements IGbLogic {
 
 	private IGameField myField;
