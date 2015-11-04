@@ -226,7 +226,7 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 			position = (JButton) e.getSource();
 			lastPosition = position;
 			String[] tmp = position.getName().split(",");
-			char status = controller.setToken(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]));
+			char status = controller.setToken(Integer.parseInt(tmp[1]), Integer.parseInt(tmp[0]));
 			putStone(status);
 			controller.changePlayer(controller.getCounter());
 
@@ -312,10 +312,10 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 		tokenField = controller.getField();
 		for (int i = 0; i < 19; i++){
 			for (int n = 0; n < 19; n++){
-				if (tokenField[i][n].getName().equals("none")){
+				if (tokenField[n][i].getName().equals("none")){
 					buttonField[i][n].setBackground(new JButton().getBackground());
 				} else {
-					buttonField[i][n].setBackground(tokenField[i][n].getColor());
+					buttonField[i][n].setBackground(tokenField[n][i].getColor());
 				}
 			}
 		}
