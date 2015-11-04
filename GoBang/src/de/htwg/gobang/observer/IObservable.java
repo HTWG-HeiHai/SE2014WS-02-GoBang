@@ -8,5 +8,5 @@ public interface IObservable {
 
 	void removeAllObservers();
 
-	void notifyObservers(char s, int x, int y);
+	void notifyObservers();
 }

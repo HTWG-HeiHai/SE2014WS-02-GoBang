@@ -29,10 +29,10 @@ public final class TUI implements IObserver {
 	@Inject
 	public TUI(IGbLogic engine)
 	{
-		newGame(engine);
 		controller = engine;
 		engine.addObserver(this);
 		field = controller.getField();
+//		newGame();
 	}
 
 	public String setToken(String cord){
@@ -86,7 +86,7 @@ public final class TUI implements IObserver {
 		}
 	}
 	
-	public void drawField(){
+	public String drawField(){
 		StringBuilder tSB = new StringBuilder();
 		tSB.append(headLine).append("\n");
 		String eLine = "|___";
@@ -94,19 +94,21 @@ public final class TUI implements IObserver {
 			if(i<9){
 				tSB.append("0");
 			}
-			tSB.append(i);
+			tSB.append(i+1);
 			for (int y=0; y<19; y++){
-				if(field[i][y] != null){
-					tSB.append(drawCell(field[i][y]));
+				if(!field[i][y].getName().equals("none")){
+					tSB.append(drawCell(changeTName(field[i][y].getName())));
 				}
 				tSB.append(eLine);
 			}
 			tSB.append("|\n");
 		}
+		return tSB.toString();
+		
 	}
 	
-	private String drawCell(IGameToken pT){
-		return "|_" + pT.getName() + "_";
+	private String drawCell(String pT){
+		return "|_" + pT + "_";
 	}
 	
 	public String pTurn() {
@@ -114,12 +116,8 @@ public final class TUI implements IObserver {
 			+ "Please enter the position of your token (x,y):";
 	}
 
-	private void newGame(IGbLogic engine){
-
-		controller = engine;
-		controller.addObserver(this);
+	private void newGame(){
 		cPlayer = changeTName(controller.getcPlayer().getName());
-		
 	}
 	
 	private boolean isNumeric(String str)  

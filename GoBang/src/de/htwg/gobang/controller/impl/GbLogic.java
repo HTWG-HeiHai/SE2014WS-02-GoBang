@@ -57,7 +57,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		counter++;
 		lastX = x;
 		lastY = y;
-		notifyObservers(status, x, y);
+		notifyObservers();
 		return getWin(x, y, cPlayer);
 	}
 
@@ -83,7 +83,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 			return false;
 		}
 		counter--;
-		notifyObservers('r', 0, 0);
+		notifyObservers();
 		changePlayer(counter);
 		return true;
 	}

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MyObserverable implements IObservable {
 	
-	protected List<IObserver> subscriber = new ArrayList<IObserver>(2); 
+	protected List<IObserver> subscriber = new ArrayList<IObserver>(); 
 
 	public void addObserver(IObserver s) {
 		subscriber.add(s);
@@ -19,7 +19,7 @@ public class MyObserverable implements IObservable {
 		subscriber.clear();
 	}
 
-	public void notifyObservers(char s, int x, int y) {
+	public void notifyObservers() {
 		
 		for (IObserver myob : subscriber) {
 			IObserver observer = myob;
