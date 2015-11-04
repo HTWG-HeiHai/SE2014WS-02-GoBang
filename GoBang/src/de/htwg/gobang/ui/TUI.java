@@ -87,8 +87,9 @@ public final class TUI implements IObserver {
 			for (int y=0; y<19; y++){
 				if(!field[i][y].getName().equals("none")){
 					tSB.append("|_" + changeTName(field[i][y].getName()) + "_");
+				} else {
+					tSB.append(eLine);
 				}
-				tSB.append(eLine);
 			}
 			tSB.append("|\n");
 		}
