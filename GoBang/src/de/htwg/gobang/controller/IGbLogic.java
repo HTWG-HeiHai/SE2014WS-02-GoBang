@@ -15,6 +15,8 @@ public interface IGbLogic extends IObservable {
 	
 	IGameToken getcPlayer();
 	
+	IGameToken[][] getField();
+	
 	boolean removeToken();
 	
 	IGameToken getPlayer1();

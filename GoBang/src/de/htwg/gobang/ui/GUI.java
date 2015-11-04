@@ -346,23 +346,8 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 	}
 
 	@Override
-	public void update(char s, int x, int y) {
-		if (s == 'e'){
-			/*
-			for (JButton cButton : group.getElements().) {
-				
-			} )
-			position.setName((i-1) + "," + (k-1));
-			position = (JButton) e.getSource();
-			lastPosition = position;
-			String[] tmp = position.getName().split(",");
-			char status = controller.setToken(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]));
-			*/
-		} else if (s == 'b'){
-			
-		} else if (s == 'r') {
-			
-		}
+	public void update() {
+		
 	}
 
 }

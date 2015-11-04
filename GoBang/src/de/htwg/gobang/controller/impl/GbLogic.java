@@ -103,4 +103,9 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		}
 		return 'e';
 	}
+
+	@Override
+	public IGameToken[][] getField() {
+		return myField.getGameField();
+	}
 }

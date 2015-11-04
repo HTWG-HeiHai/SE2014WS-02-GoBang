@@ -3,6 +3,7 @@ package de.htwg.gobang.ui;
 import com.google.inject.Inject;
 
 import de.htwg.gobang.controller.IGbLogic;
+import de.htwg.gobang.entities.IGameToken;
 import de.htwg.gobang.observer.IObserver;
 
 public final class TUI implements IObserver {
@@ -22,6 +23,7 @@ public final class TUI implements IObserver {
 	
 	//private static Scanner scanner = new Scanner(System.in); 
 	private static String[][] line;
+	private IGameToken[][] field;
 	private static String headLine = "00  01  02  03  04  05  06  07  08  09  10  11  12  13  14  15  16  17  18  19";
 
 	@Inject
@@ -30,6 +32,7 @@ public final class TUI implements IObserver {
 		newGame(engine);
 		controller = engine;
 		engine.addObserver(this);
+		field = controller.getField();
 	}
 
 	public String setToken(String cord){
@@ -55,13 +58,13 @@ public final class TUI implements IObserver {
 				case 'g':
 					return myprint("won");
 				case 'e':
-					line[y-1][x] = setLine(x,cPlayer);
 					cPlayer = changeTName(controller.getcPlayer().getName());
 					lx = x;
 					ly = y;
 					controller.changePlayer(controller.getCounter());
 					return myprint("Token is put on " + x + ", " + y);
 			}
+			field = controller.getField();
 		}
 		else
 		{
@@ -74,7 +77,6 @@ public final class TUI implements IObserver {
 		{
 			if(controller.removeToken())
 			{
-				line[ly-1][lx] = setLine(lx,"_");
 				myprint("Token deleted.");
 				cPlayer = changeTName(controller.getcPlayer().getName());
 				return myprint("Last token deleted");
@@ -84,14 +86,27 @@ public final class TUI implements IObserver {
 		}
 	}
 	
-	private String setLine(int x, String current) {
-		StringBuilder tmp = new StringBuilder();
-		tmp.append("|_").append(current).append("_");
-		if (x==BORDER)
-		{
-			tmp.append("|");
+	public void drawField(){
+		StringBuilder tSB = new StringBuilder();
+		tSB.append(headLine).append("\n");
+		String eLine = "|___";
+		for (int i=0; i<19; i++){
+			if(i<9){
+				tSB.append("0");
+			}
+			tSB.append(i);
+			for (int y=0; y<19; y++){
+				if(field[i][y] != null){
+					tSB.append(drawCell(field[i][y]));
+				}
+				tSB.append(eLine);
+			}
+			tSB.append("|\n");
 		}
-		return tmp.toString();
+	}
+	
+	private String drawCell(IGameToken pT){
+		return "|_" + pT.getName() + "_";
 	}
 	
 	public String pTurn() {
@@ -99,54 +114,12 @@ public final class TUI implements IObserver {
 			+ "Please enter the position of your token (x,y):";
 	}
 
-	public String field() {
-		StringBuilder tSB = new StringBuilder();
-		tSB.append(headLine).append("\n");
-		
-		for(int i = 0; i < BORDER; i++)
-		{
-			for(int k = 0; k < LOOP; k++)
-			{
-				tSB.append(line[i][k]);
-			}
-			tSB.append("\n");
-		}
-		return tSB.toString();
-	}
-
 	private void newGame(IGbLogic engine){
 
 		controller = engine;
 		controller.addObserver(this);
-
 		cPlayer = changeTName(controller.getcPlayer().getName());
-		line = new String[BORDER][LOOP];
-		StringBuilder tmp = new StringBuilder();
-		for(int i = 1; i < HALFLOOP; i++)
-		{
-			tmp.append("0").append(i);
-			line[i-1][0] = tmp.toString();
-			for(int k = 1; k < LOOP; k++)
-			{
-				line[i-1][k] = newGameLine();
-			}
-			line[i-1][BORDER] = line[i-1][BORDER] + "|"; 
-			tmp = new StringBuilder();
-		}
 		
-		for(int i = HALFLOOP; i < LOOP; i++)
-		{
-			line[i-1][0] = Integer.toString(i);
-			for(int k = 1; k < LOOP; k++)
-			{
-				line[i-1][k] = newGameLine();
-			}
-			line[i-1][BORDER] = line[i-1][BORDER] + "|";
-		}
-	}
-	
-	private String newGameLine()	{
-		return "|___";
 	}
 	
 	private boolean isNumeric(String str)  
@@ -169,14 +142,8 @@ public final class TUI implements IObserver {
 	}
 
 	@Override
-	public void update(char s, int x, int y) {
-		if (s == 'e'){
-			line[y-1][x] = setLine(x,cPlayer);
-		} else if (s == 'b'){
-			
-		} else if (s == 'r') {
-			
-		}
+	public void update() {
+		field = controller.getField();
 	}
 	
 	public String changeTName(String cname) {

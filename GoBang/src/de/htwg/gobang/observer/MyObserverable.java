@@ -23,7 +23,7 @@ public class MyObserverable implements IObservable {
 		
 		for (IObserver myob : subscriber) {
 			IObserver observer = myob;
-			observer.update(s, x, y);
+			observer.update();
 		}
 	}
 }
