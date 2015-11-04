@@ -97,7 +97,7 @@ public final class TUI implements IObserver {
 			tSB.append(i+1);
 			for (int y=0; y<19; y++){
 				if(!field[i][y].getName().equals("none")){
-					tSB.append(drawCell(changeTName(field[i][y].getName())));
+					tSB.append("|_" + changeTName(field[i][y].getName()) + "_");
 				}
 				tSB.append(eLine);
 			}
@@ -105,10 +105,6 @@ public final class TUI implements IObserver {
 		}
 		return tSB.toString();
 		
-	}
-	
-	private String drawCell(String pT){
-		return "|_" + pT + "_";
 	}
 	
 	public String pTurn() {
