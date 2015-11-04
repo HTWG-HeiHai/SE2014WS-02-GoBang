@@ -29,8 +29,6 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 	private static final long serialVersionUID = 1L;
 
 	private IGbLogic controller;
-	private int cp1 = 0;
-	private int cp2 = 0;
 
 	private GridBagConstraints g;
 	private JPanel gameField;
@@ -40,6 +38,7 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 	private JMenuItem menuRound;
 	
 	private JButton[][] buttonField;
+	private IGameToken[][] tokenField;
 
 	private ButtonGroup group;
 	private JButton position;
@@ -146,8 +145,8 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 		player1Label.setForeground(controller.getPlayer1().getColor());
 		player2Label = new JLabel("Player blue");
 		player2Label.setForeground(controller.getPlayer2().getColor());
-		player1LabelText = new JLabel(new Integer(cp1).toString());
-		player2LabelText = new JLabel(new Integer(cp2).toString());
+		player1LabelText = new JLabel(new Integer(controller.getWinPlayer1()).toString());
+		player2LabelText = new JLabel(new Integer(controller.getWinPlayer2()).toString());
 		player1LabelText.setForeground(controller.getPlayer1().getColor());
 		player2LabelText.setForeground(controller.getPlayer2().getColor());
 		remove = new JButton("remove last token");
@@ -284,28 +283,32 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 			JOptionPane.showMessageDialog(null, "Already used", "Wrong Field", JOptionPane.OK_OPTION);
 			break;
 		case 'e':
-			position.setBackground(controller.getcPlayer().getColor());
-			remove.setEnabled(true);
+			removeStone(position);
 			break;
 		case 'g':
-			position.setBackground(controller.getcPlayer().getColor());
-			JOptionPane.showMessageDialog(null, "Player " + controller.getcPlayer().getName() + " you won!", "Win",
-					JOptionPane.OK_OPTION);
-			if (controller.getcPlayer() == controller.getPlayer1()) {
-				cp1 += 1;
-				player1LabelText.setText(new Integer(cp1).toString());
-			} else {
-				cp2 += 1;
-				player2LabelText.setText(new Integer(cp2).toString());
-			}
-			changeButtons(false);
-			newRound.setEnabled(true);
+			win(position);
 			break;
 		default:
 			break;
 		}
 	}
+	
+	private void removeStone(JButton position){
+		position.setBackground(controller.getcPlayer().getColor());
+		remove.setEnabled(true);
+	}
+	
+	private void win(JButton position){
+		position.setBackground(controller.getcPlayer().getColor());
+		JOptionPane.showMessageDialog(null, "Player " + controller.getcPlayer().getName() + " you won!", "Win",
+				JOptionPane.OK_OPTION);
+		player1LabelText.setText(new Integer(controller.getWinPlayer1()).toString());
+		player2LabelText.setText(new Integer(controller.getWinPlayer2()).toString());
+		changeButtons(false);
+		newRound.setEnabled(true);
+	}
 
+	//to-do
 	private void changeButtons(boolean state) {
 		Enumeration<AbstractButton> tbutton = group.getElements();
 		AbstractButton e = tbutton.nextElement();
@@ -344,15 +347,19 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 
 	private void newGame() {
 		createGame();
-		cp1 = 0;
-		cp2 = 0;
-		player1LabelText.setText(new Integer(cp1).toString());
-		player2LabelText.setText(new Integer(cp2).toString());
+		player1LabelText.setText(new Integer(controller.getWinPlayer1()).toString());
+		player2LabelText.setText(new Integer(controller.getWinPlayer2()).toString());
 	}
 
 	@Override
-	public void update(char action, IGameToken player) {
-		if (action == 'r' || action == 'e'){
+	public void update(char action, IGameToken player, int x, int y) {
+		tokenField = controller.getField();
+		for (int i = 0; i < 19; i++){
+			
+		}
+		if (action == 'e'){
+			
+		} else if (action == 'r'){
 			
 		} else if (action == 'g') {
 			

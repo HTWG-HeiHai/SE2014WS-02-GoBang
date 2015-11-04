@@ -22,4 +22,7 @@ public interface IGbLogic extends IObservable {
 	IGameToken getPlayer1();
 	
 	IGameToken getPlayer2();
+	
+	int getWinPlayer1();
+	int getWinPlayer2();
 }

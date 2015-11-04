@@ -21,10 +21,10 @@ public class MyObserverable implements IObservable {
 		subscriber.clear();
 	}
 
-	public void notifyObservers(char action, IGameToken player) {		
+	public void notifyObservers(char action, IGameToken player, int x, int y) {		
 		for (IObserver myob : subscriber) {
 			IObserver observer = myob;
-			observer.update(action, player);
+			observer.update(action, player, x, y);
 		}
 	}
 }

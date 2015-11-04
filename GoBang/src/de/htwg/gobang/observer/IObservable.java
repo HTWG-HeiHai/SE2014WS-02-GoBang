@@ -10,5 +10,5 @@ public interface IObservable {
 
 	void removeAllObservers();
 
-	void notifyObservers(char action, IGameToken player);
+	void notifyObservers(char action, IGameToken player, int x, int y);
 }
