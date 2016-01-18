@@ -53,18 +53,26 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		}
 		lastX = 1;
 		lastY = 1;
+		status = 'n';
+		notifyObservers();
+	}
+
+	public char getStatus() {
+		return status;
 	}
 
 	public char setToken(int x, int y) {
 		status = myField.putStone(x, y, cPlayer);
 		if (status == 'f' || status == 'b') {
+			notifyObservers();
 			return status;
 		}
 		counter++;
 		lastX = x;
 		lastY = y;
+		status = getWin(x, y, cPlayer);
 		notifyObservers();
-		return getWin(x, y, cPlayer);
+		return status;
 	}
 
 	public void changePlayer(int counter) {
@@ -90,11 +98,12 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	public boolean removeToken() {
 		status = myField.removeToken(lastX, lastY);
 		if (status == 'f') {
+			notifyObservers();
 			return false;
 		}
 		counter--;
-		notifyObservers();
 		changePlayer(counter);
+		notifyObservers();
 		return true;
 	}
 

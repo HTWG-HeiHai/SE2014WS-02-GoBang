@@ -5,10 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Enumeration;
 
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,7 +15,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import com.google.inject.Inject;
+//import com.google.inject.Inject;
 
 import de.htwg.gobang.controller.IGbLogic;
 import de.htwg.gobang.entities.IGameToken;
@@ -49,7 +46,7 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 	private JLabel player1LabelText;
 	private JLabel player2LabelText;
 
-	@Inject
+	//@Inject
 	public GUI(IGbLogic engine) {
 		
 		controller = engine;
@@ -316,7 +313,7 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 					buttonField[i][n].setBackground(tokenField[n][i].getColor());
 				}
 			}
-		}
+		}//status prüfen, falls g, dann win(position);
 	}
 
 }

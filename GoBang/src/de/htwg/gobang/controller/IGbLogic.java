@@ -24,4 +24,6 @@ public interface IGbLogic extends IObservable {
 	int getWinPlayer1();
 	
 	int getWinPlayer2();
+
+	char getStatus();
 }
