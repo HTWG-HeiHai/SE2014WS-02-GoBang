@@ -5,8 +5,8 @@ import de.htwg.gobang.entities.IGameToken;
 
 public class GameField implements IGameField {
 
-	final int TOKENTOWIN = 5;
-	private final int FIELDSIZE = 19;
+	final static int TOKENTOWIN = 5;
+	private final static int FIELDSIZE = 19;
 
 	private IGameToken[][] matrix;
 
@@ -29,7 +29,7 @@ public class GameField implements IGameField {
 
 	public char putStone(int x, int y, IGameToken token) {
 
-		if (!matrix[x][y].getName().equals("none")) {
+		if (!"none".equals(matrix[x][y].getName())) {
 			return 'b';
 		}
 		this.matrix[x][y] = token;
@@ -38,7 +38,7 @@ public class GameField implements IGameField {
 
 	public char removeToken(int x, int y) {
 
-		if (matrix[x][y].getName().equals("none")) {
+		if (!"none".equals(matrix[x][y].getName())) {
 			return 'f';
 		}
 		matrix[x][y] = new GameToken();

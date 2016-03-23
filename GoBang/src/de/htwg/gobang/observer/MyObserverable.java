@@ -3,8 +3,6 @@ package de.htwg.gobang.observer;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.htwg.gobang.entities.IGameToken;
-
 public class MyObserverable implements IObservable {
 	
 	private List<IObserver> subscriber = new ArrayList<IObserver>(2); 

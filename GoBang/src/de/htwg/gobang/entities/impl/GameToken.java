@@ -8,15 +8,7 @@ public class GameToken implements IGameToken {
 
 	private String name;
 	private Color mcolor;
-
-	public String getName() {
-		return name;
-	}
-
-	public Color getColor() {
-		return mcolor;
-	}
-
+	
 	public GameToken() {
 		this("none", null);
 	}
@@ -25,5 +17,12 @@ public class GameToken implements IGameToken {
 		name = pname;
 		mcolor = pcolor;
 	}
+	
+	public String getName() {
+		return name;
+	}
 
+	public Color getColor() {
+		return mcolor;
+	}
 }
