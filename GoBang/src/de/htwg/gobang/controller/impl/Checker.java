@@ -5,12 +5,12 @@ import de.htwg.gobang.entities.IGameToken;
 
 public class Checker implements IChecker {
 
-	private final int FIELDSIZE;
+	private final int fieldsize;
 	private IGameToken[][] matrix;
 
 	public Checker(IGameToken[][] matrix) {
 		this.matrix = matrix;
-		FIELDSIZE = matrix.length;
+		fieldsize = matrix.length;
 	}
 
 	public void setMatrix(IGameToken[][] pMatrix) {
@@ -50,7 +50,7 @@ public class Checker implements IChecker {
 
 	public boolean isValid(int x, int y) {
 
-		if (x >= FIELDSIZE || x < 0 || y >= FIELDSIZE || y < 0) {
+		if (x >= fieldsize || x < 0 || y >= fieldsize || y < 0) {
 			return false;
 		}
 		return true;
