@@ -2,9 +2,13 @@ package de.htwg.gobang.entities.impl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import org.hibernate.*;
+import org.hibernate.annotations.Entity;
+import org.hibernate.cfg.*;
 
 import de.htwg.gobang.entities.IGamePlayer;
 
+@Entity
 public class GamePlayer implements IGamePlayer, Serializable {
 
 	private static final long serialVersionUID = 2783195758195385831L;
