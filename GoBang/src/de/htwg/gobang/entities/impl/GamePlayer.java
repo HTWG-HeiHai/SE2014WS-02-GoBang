@@ -2,9 +2,8 @@ package de.htwg.gobang.entities.impl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import org.hibernate.*;
+
 import org.hibernate.annotations.Entity;
-import org.hibernate.cfg.*;
 
 import de.htwg.gobang.entities.IGamePlayer;
 
@@ -13,12 +12,12 @@ public class GamePlayer implements IGamePlayer, Serializable {
 
 	private static final long serialVersionUID = 2783195758195385831L;
 	
-	String name;
-	int wins;
-	int losses;
-	ArrayList<IGamePlayer> enemies;
+	private String name;
+	private int wins;
+	private int losses;
+	private ArrayList<IGamePlayer> enemies;
 	
-	GamePlayer(String pName){
+	public GamePlayer(String pName){
 		name = pName;
 		wins = 0;
 		losses = 0;

@@ -7,15 +7,15 @@ import de.htwg.gobang.entities.IGameToken;
 public class GameToken implements IGameToken {
 
 	private String name;
-	private Color mcolor;
+	private Color color;
 	
 	public GameToken() {
 		this("none", null);
 	}
 
-	public GameToken(String pname, Color pcolor) {
-		name = pname;
-		mcolor = pcolor;
+	public GameToken(String name, Color color) {
+		this.name = name;
+		this.color = color;
 	}
 	
 	public String getName() {
@@ -23,6 +23,16 @@ public class GameToken implements IGameToken {
 	}
 
 	public Color getColor() {
-		return mcolor;
+		return color;
+	}
+
+	@Override
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public void setColor(Color color) {
+		this.color = color;
 	}
 }

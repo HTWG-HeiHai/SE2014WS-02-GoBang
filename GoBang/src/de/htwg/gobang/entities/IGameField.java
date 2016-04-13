@@ -6,7 +6,7 @@ public interface IGameField {
 
 	IGameToken[][] getGameField();
 
-	char putStone(int x, int y, IGameToken token);
+	char putStone(int x, int y);
 
 	char removeToken(int x, int y);
 

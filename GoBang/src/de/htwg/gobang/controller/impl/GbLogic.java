@@ -8,23 +8,22 @@ import com.google.inject.Singleton;
 import de.htwg.gobang.controller.IChecker;
 import de.htwg.gobang.controller.IGbLogic;
 import de.htwg.gobang.entities.IGameField;
+import de.htwg.gobang.entities.IGamePlayer;
 import de.htwg.gobang.entities.IGameToken;
 import de.htwg.gobang.entities.impl.GameField;
-import de.htwg.gobang.entities.impl.GameToken;
+import de.htwg.gobang.entities.impl.GamePlayer;
 import de.htwg.gobang.observer.MyObserverable;
 
 @Singleton
 public class GbLogic extends MyObserverable implements IGbLogic {
 
 	private IGameField myField;
-	private IGameToken player1;
-	private IGameToken player2;
-	private IGameToken cPlayer;
+	private IGamePlayer player1;
+	private IGamePlayer player2;
+	private IGamePlayer cPlayer;
 	private IChecker myChecker;
 	private int lastX;
 	private int lastY;
-	private int cWinPlayer1;
-	private int cWinPlayer2;
 	private int counter;
 	private char status;
 
@@ -34,15 +33,13 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	}
 
 	public GbLogic(boolean pStartplayer) {
+		player1 = new GamePlayer("asdf");
+		player2 = new GamePlayer("qwer");
 		newGame(pStartplayer);
-		cWinPlayer1 = 0;
-		cWinPlayer2 = 0;
 	}
 
 	public void newGame(boolean pStartplayer) {
 		myField = new GameField();
-		player1 = new GameToken("black", Color.BLACK);
-		player2 = new GameToken("blue", Color.BLUE);
 		myChecker = new Checker(myField.getGameField());
 		counter = 0;
 		if (pStartplayer) {
@@ -62,7 +59,9 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	}
 
 	public char setToken(int x, int y) {
-		status = myField.putStone(x, y, cPlayer);
+		status = myField.putStone(x, y);
+		myField.getGameField()[x][y].setColor(getcColor());
+		myField.getGameField()[x][y].setName(cPlayer.getName());
 		if (status == 'f' || status == 'b') {
 			notifyObservers();
 			return status;
@@ -75,6 +74,13 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		return status;
 	}
 
+	public Color getcColor() {
+		if(cPlayer.equals(player1)) {
+			return Color.BLACK;
+		}
+		return Color.BLUE;
+	}
+
 	public void changePlayer(int counter) {
 		if (counter % 2 == 0) {
 			cPlayer = player1;
@@ -83,16 +89,16 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		}
 	}
 
-	public IGameToken getcPlayer() {
+	public IGamePlayer getcPlayer() {
 		return cPlayer;
 	}
 	
 	public int getWinPlayer1(){
-		return cWinPlayer1;
+		return player1.getWins();
 	}
 	
 	public int getWinPlayer2(){
-		return cWinPlayer2;
+		return player2.getWins();
 	}
 
 	public boolean removeToken() {
@@ -107,22 +113,32 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		return true;
 	}
 
-	public IGameToken getPlayer1() {
+	public IGamePlayer getPlayer1() {
 		return player1;
 	}
 
-	public IGameToken getPlayer2() {
+	public IGamePlayer getPlayer2() {
 		return player2;
 	}
+	
+	public Color getColor1() {
+		return Color.BLACK;
+	}
 
-	private char getWin(int x, int y, IGameToken token) {
+	public Color getColor2() {
+		return Color.BLUE;
+	}
+
+	private char getWin(int x, int y, IGamePlayer player) {
 		changePlayer(counter);
-		if (myChecker.checkWin(x, y, token))
+		if (myChecker.checkWin(x, y, myField.getGameField()[x][y]))
 		{ 
-			if (token.equals(player1)) {
-				cWinPlayer1 += 1;
+			if (player.equals(player1)) {
+				player.addWin(player2);
+				player2.addLoss(player);
 			} else {
-				cWinPlayer2 += 1;
+				player.addWin(player1);
+				player1.addLoss(player);
 			}
 			return 'g';
 		}

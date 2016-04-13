@@ -1,5 +1,8 @@
 package de.htwg.gobang.controller;
 
+import java.awt.Color;
+
+import de.htwg.gobang.entities.IGamePlayer;
 import de.htwg.gobang.entities.IGameToken;
 import de.htwg.gobang.observer.IObservable;
 
@@ -11,19 +14,25 @@ public interface IGbLogic extends IObservable {
 	
 	void changePlayer(int counter);
 	
-	IGameToken getcPlayer();
+	IGamePlayer getcPlayer();
 	
 	IGameToken[][] getField();
 	
 	boolean removeToken();
 	
-	IGameToken getPlayer1();
+	IGamePlayer getPlayer1();
 	
-	IGameToken getPlayer2();
+	IGamePlayer getPlayer2();
+	
+	Color getColor1();
+	
+	Color getColor2();
 	
 	int getWinPlayer1();
 	
 	int getWinPlayer2();
 
 	char getStatus();
+
+	Color getcColor();
 }

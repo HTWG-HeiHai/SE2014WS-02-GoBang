@@ -15,7 +15,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-//import com.google.inject.Inject;
+import com.google.inject.Inject;
 
 import de.htwg.gobang.controller.IGbLogic;
 import de.htwg.gobang.entities.IGameToken;
@@ -46,7 +46,7 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 	private JLabel player1LabelText;
 	private JLabel player2LabelText;
 
-	//@Inject
+	@Inject
 	public GUI(IGbLogic engine) {
 		
 		controller = engine;
@@ -113,14 +113,14 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 		JLabel fakeLabel = new JLabel("black");
 		fakeLabel.setForeground(new JButton().getBackground());
 		wins = new JLabel("Wins: ");
-		player1Label = new JLabel("Player black");
-		player1Label.setForeground(controller.getPlayer1().getColor());
-		player2Label = new JLabel("Player blue");
-		player2Label.setForeground(controller.getPlayer2().getColor());
+		player1Label = new JLabel(controller.getPlayer1().getName());
+		player1Label.setForeground(controller.getColor1());
+		player2Label = new JLabel(controller.getPlayer2().getName());
+		player2Label.setForeground(controller.getColor2());
 		player1LabelText = new JLabel(new Integer(controller.getWinPlayer1()).toString());
 		player2LabelText = new JLabel(new Integer(controller.getWinPlayer2()).toString());
-		player1LabelText.setForeground(controller.getPlayer1().getColor());
-		player2LabelText.setForeground(controller.getPlayer2().getColor());
+		player1LabelText.setForeground(controller.getColor1());
+		player2LabelText.setForeground(controller.getColor2());
 		remove = new JButton("remove last token");
 		newRound = new JButton("new round");
 		newRound.setEnabled(false);
@@ -227,7 +227,7 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 			putStone(status);
 		}
 		currentPlayerLabelText.setText(controller.getcPlayer().getName());
-		currentPlayerLabelText.setForeground(controller.getcPlayer().getColor());
+		currentPlayerLabelText.setForeground(controller.getcColor());
 	}
 
 	private void removeToken() {
@@ -262,7 +262,12 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 	}
 	
 	private void win(JButton position){
-		JOptionPane.showMessageDialog(null, "Player " + controller.getcPlayer().getName() + " you won!", "Win",
+		String tmp;
+		if (controller.getcPlayer().equals(controller.getPlayer1()))
+			 tmp = controller.getPlayer2().getName();
+		else
+			tmp = controller.getPlayer1().getName();
+		JOptionPane.showMessageDialog(null, tmp + " you won!", "Win",
 				JOptionPane.OK_OPTION);
 		player1LabelText.setText(new Integer(controller.getWinPlayer1()).toString());
 		player2LabelText.setText(new Integer(controller.getWinPlayer2()).toString());
@@ -283,7 +288,7 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 		this.remove.setEnabled(state);
 		this.newRound.setEnabled(false);
 		currentPlayerLabelText.setVisible(state);
-		currentPlayerLabelText.setForeground(controller.getcPlayer().getColor());
+		currentPlayerLabelText.setForeground(controller.getcColor());
 	}
 
 	private void createGame() {

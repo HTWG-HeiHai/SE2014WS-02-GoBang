@@ -4,8 +4,9 @@ import java.awt.Color;
 
 public interface IGameToken {
 
-	String getName();
-
-	Color getColor();
+	public String getName();
+	public void setName(String name);
+	public Color getColor();
+	public void setColor(Color color);
 
 }

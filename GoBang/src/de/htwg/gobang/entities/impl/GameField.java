@@ -27,12 +27,11 @@ public class GameField implements IGameField {
 		return matrix;
 	}
 
-	public char putStone(int x, int y, IGameToken token) {
+	public char putStone(int x, int y) {
 
 		if (!"none".equals(matrix[x][y].getName())) {
 			return 'b';
 		}
-		this.matrix[x][y] = token;
 		return 'e';
 	}
 
