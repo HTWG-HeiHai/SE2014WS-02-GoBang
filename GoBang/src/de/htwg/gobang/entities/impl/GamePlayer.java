@@ -1,17 +1,13 @@
 package de.htwg.gobang.entities.impl;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-
-import org.hibernate.annotations.Entity;
+import java.util.Random;
 
 import de.htwg.gobang.entities.IGamePlayer;
 
-@Entity
-public class GamePlayer implements IGamePlayer, Serializable {
+public class GamePlayer implements IGamePlayer {
 
-	private static final long serialVersionUID = 2783195758195385831L;
-	
+	private int id;
 	private String name;
 	private int wins;
 	private int losses;
@@ -22,11 +18,17 @@ public class GamePlayer implements IGamePlayer, Serializable {
 		wins = 0;
 		losses = 0;
 		enemies = new ArrayList<>();
+		id = (new Random()).nextInt(Integer.MAX_VALUE - 1) + 1;
 	}
 	
 	@Override
 	public String getName() {
 		return name;
+	}
+	
+	@Override
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
@@ -59,6 +61,16 @@ public class GamePlayer implements IGamePlayer, Serializable {
 	@Override
 	public int getEnemyCounter() {
 		return enemies.size();
+	}
+
+	@Override
+	public int getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

@@ -4,6 +4,9 @@ import java.util.Observable;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import de.htwg.gobang.controller.IGbLogic;
+import de.htwg.gobang.dao.IGameDao;
+import de.htwg.gobang.dao.hibernate.HibernateGameDao;
 import de.htwg.gobang.ui.GUI;
 import de.htwg.gobang.ui.TUI;
 
@@ -13,6 +16,7 @@ public class GoBangGame extends Observable{
 
 	private TUI tui;
 	private Injector injector;
+	private IGbLogic controller;
 
 	public static GoBangGame getInstance() {
 	if (instance == null) {
@@ -28,7 +32,9 @@ public class GoBangGame extends Observable{
 	}
 
 	public static void main(String[] args) {
-		GoBangGame.getInstance();
+		GoBangGame game = GoBangGame.getInstance();
+		IGameDao dao = new HibernateGameDao();
+		dao.saveOrUpdateGame(game.getController());
 	}
 
     public Injector getIn() {
@@ -37,5 +43,9 @@ public class GoBangGame extends Observable{
 
 	public TUI getTui() {
 		return tui;
+	}
+	
+	public IGbLogic getController() {
+		return controller;
 	}
 }

@@ -13,6 +13,7 @@ import de.htwg.gobang.entities.IGameToken;
 import de.htwg.gobang.entities.impl.GameField;
 import de.htwg.gobang.entities.impl.GamePlayer;
 import de.htwg.gobang.observer.MyObserverable;
+import de.htwg.gobang.persistence.IGameSaver;
 
 @Singleton
 public class GbLogic extends MyObserverable implements IGbLogic {
@@ -149,4 +150,12 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	public IGameToken[][] getField() {
 		return myField.getGameField();
 	}
+	
+    @Override
+    public final void restoreGame(IGameSaver saver) {
+        player1.setName(saver.getPlayer1().getName());
+        player2.setName(saver.getPlayer2().getName());
+        status = saver.getStatus();
+        myField = saver.getGameField();
+    }
 }

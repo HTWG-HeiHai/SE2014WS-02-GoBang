@@ -37,10 +37,11 @@ public class GameField implements IGameField {
 
 	public char removeToken(int x, int y) {
 
-		if (!"none".equals(matrix[x][y].getName())) {
+		if ("none".equals(matrix[x][y].getName())) {
 			return 'f';
 		}
-		matrix[x][y] = new GameToken();
+		matrix[x][y].setName("none");
+		matrix[x][y].setColor(null);
 		return 'r';
 	}
 }
