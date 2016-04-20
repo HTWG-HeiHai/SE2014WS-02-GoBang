@@ -34,15 +34,18 @@ public class HibernateGameDao implements IGameDao {
 
     @Override
     public void saveOrUpdateGame(IGbLogic controller) {
+    	Session session = null;
         Transaction tx = null;
         try {
-            Session session = sessionFactory.getCurrentSession();
+            session = sessionFactory.getCurrentSession();
             tx = session.beginTransaction();
-            IGameSaver save = injector.getInstance(IGameSaver.class);
+//            IGameSaver save = injector.getInstance(IGameSaver.class);
+            HibernateGameSaver save = new HibernateGameSaver();
             save.saveGame(controller);
             session.save(save);
             tx.commit();
         } catch (HibernateException ex) {
+        	System.out.println(ex + "asdfasdfasdfas");
             handleHibernateException(ex, tx);
         }
     }

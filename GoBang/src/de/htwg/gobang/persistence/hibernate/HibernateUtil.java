@@ -2,14 +2,14 @@ package de.htwg.gobang.persistence.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
     private static final SessionFactory sessionFactory;
 
     static {
-        final Configuration cfg = new AnnotationConfiguration();
+        final AnnotationConfiguration cfg = new AnnotationConfiguration();
         cfg.configure(HibernateUtil.class.getResource("/hibernate.cfg.xml"));
+//        cfg.addAnnotatedClass(HibernateGameSaver.class);
         sessionFactory = cfg.buildSessionFactory();
     }
 

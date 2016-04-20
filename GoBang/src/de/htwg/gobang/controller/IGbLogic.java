@@ -2,6 +2,7 @@ package de.htwg.gobang.controller;
 
 import java.awt.Color;
 
+import de.htwg.gobang.entities.IGameField;
 import de.htwg.gobang.entities.IGamePlayer;
 import de.htwg.gobang.entities.IGameToken;
 import de.htwg.gobang.observer.IObservable;
@@ -38,4 +39,6 @@ public interface IGbLogic extends IObservable {
 	Color getcColor();
 
 	void restoreGame(IGameSaver saver);
+	
+	IGameField getGameField();
 }

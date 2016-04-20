@@ -3,12 +3,13 @@ package de.htwg.gobang.persistence.hibernate;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Entity;
+//import org.hibernate.annotations.Entity;
 
 import com.google.inject.Injector;
 
@@ -18,7 +19,7 @@ import de.htwg.gobang.entities.IGamePlayer;
 import de.htwg.gobang.persistence.IGameSaver;
 
 @Entity
-@Table(name = "HibernateGameSaver")
+@Table(name = "game")
 public class HibernateGameSaver implements IGameSaver, Serializable {
 
 	private static final long serialVersionUID = 4897937764693014224L;
@@ -112,7 +113,7 @@ public class HibernateGameSaver implements IGameSaver, Serializable {
 		this.player2 = controller.getPlayer2();
 		this.cPlayer = controller.getcPlayer();
 		this.status = controller.getStatus();
-//		this.myField = controller.getField().;
+		this.myField = controller.getGameField();
 	}
 
 }

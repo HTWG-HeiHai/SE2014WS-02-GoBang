@@ -27,6 +27,7 @@ public class GoBangGame extends Observable{
 
 	private GoBangGame() {
 		Injector injector = Guice.createInjector(new GoBangModule());
+		controller = injector.getInstance(IGbLogic.class);
 		injector.getInstance(GUI.class);
 		tui = injector.getInstance(TUI.class);
 	}

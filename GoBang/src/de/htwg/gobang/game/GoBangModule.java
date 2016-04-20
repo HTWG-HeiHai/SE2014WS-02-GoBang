@@ -16,6 +16,6 @@ public class GoBangModule extends AbstractModule {
 	protected void configure() {
 		bind(IGbLogic.class).to(de.htwg.gobang.controller.impl.GbLogic.class).in(Singleton.class);
 		bind(IGameDao.class).to(HibernateGameDao.class);
-        bind(IGameSaver.class).to(HibernateGameSaver.class);
+//        bind(IGameSaver.class).to(HibernateGameSaver.class);
 	}
 }

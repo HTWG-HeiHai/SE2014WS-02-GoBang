@@ -158,4 +158,9 @@ public class GbLogic extends MyObserverable implements IGbLogic {
         status = saver.getStatus();
         myField = saver.getGameField();
     }
+
+	@Override
+	public IGameField getGameField() {
+		return myField;
+	}
 }
