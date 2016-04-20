@@ -1,9 +1,11 @@
 package de.htwg.gobang.entities.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import de.htwg.gobang.entities.IGamePlayer;
+import de.htwg.gobang.persistence.IPersistentPlayer;
 
 public class GamePlayer implements IGamePlayer {
 
@@ -59,8 +61,8 @@ public class GamePlayer implements IGamePlayer {
 	}
 
 	@Override
-	public int getEnemyCounter() {
-		return enemies.size();
+	public List<IGamePlayer> getEnemies() {
+		return enemies;
 	}
 
 	@Override
@@ -71,6 +73,15 @@ public class GamePlayer implements IGamePlayer {
 	@Override
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@Override
+	public void load(IPersistentPlayer persistentPlayer) {
+		id = persistentPlayer.getId();
+		name = persistentPlayer.getName();
+		wins = persistentPlayer.getWins();
+		losses = persistentPlayer.getLosses();
+		//enemies = persistentPlayer.getEnemies();
 	}
 
 }

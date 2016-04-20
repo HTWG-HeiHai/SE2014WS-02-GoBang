@@ -20,7 +20,8 @@
 		<property name="hibernate.dialect">
 			org.hibernate.dialect.MySQL5Dialect
 		</property>
-		<mapping class="de.htwg.gobang.persistence.hibernate.HibernateGameSaver" />
+<!-- 		<mapping class="de.htwg.gobang.persistence.hibernate.HibernateGameSaver" /> -->
+		<mapping class="de.htwg.gobang.persistence.hibernate.HibernatePlayer" />
 <!-- 		<mapping class="de.htwg.sudoku.persistence.hibernate.PersistentCell" /> -->
 <!-- 		<mapping class="de.htwg.sudoku.persistence.hibernate.PersistentGrid" /> -->
 	</session-factory>

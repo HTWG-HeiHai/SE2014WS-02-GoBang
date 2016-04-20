@@ -6,8 +6,9 @@ import com.google.inject.Singleton;
 import de.htwg.gobang.controller.IGbLogic;
 import de.htwg.gobang.dao.IGameDao;
 import de.htwg.gobang.dao.hibernate.HibernateGameDao;
-import de.htwg.gobang.persistence.IGameSaver;
+import de.htwg.gobang.persistence.IPersistentPlayer;
 import de.htwg.gobang.persistence.hibernate.HibernateGameSaver;
+import de.htwg.gobang.persistence.hibernate.HibernatePlayer;
 
 
 public class GoBangModule extends AbstractModule {
@@ -17,5 +18,6 @@ public class GoBangModule extends AbstractModule {
 		bind(IGbLogic.class).to(de.htwg.gobang.controller.impl.GbLogic.class).in(Singleton.class);
 		bind(IGameDao.class).to(HibernateGameDao.class);
 //        bind(IGameSaver.class).to(HibernateGameSaver.class);
+        bind(IPersistentPlayer.class).to(HibernatePlayer.class);
 	}
 }
