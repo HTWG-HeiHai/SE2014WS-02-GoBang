@@ -17,7 +17,6 @@ import de.htwg.gobang.controller.IGbLogic;
 import de.htwg.gobang.dao.IGameDao;
 import de.htwg.gobang.entities.IGamePlayer;
 import de.htwg.gobang.game.GoBangModule;
-import de.htwg.gobang.persistence.IGameSaver;
 import de.htwg.gobang.persistence.hibernate.HibernateGameSaver;
 import de.htwg.gobang.persistence.hibernate.HibernateUtil;
 import de.htwg.gobang.persistence.impl.GameSaver;

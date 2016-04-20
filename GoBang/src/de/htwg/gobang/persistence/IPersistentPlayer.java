@@ -2,10 +2,6 @@ package de.htwg.gobang.persistence;
 
 import java.util.List;
 
-import com.google.inject.Injector;
-
-import de.htwg.gobang.entities.IGamePlayer;
-
 public interface IPersistentPlayer {
 
 	int getId();
@@ -18,15 +14,13 @@ public interface IPersistentPlayer {
 
 	int getWins();
 
-	void addWin(int id);
+	void setWins(int wins);
 
 	int getLosses();
 
-	void addLoss(int id);
+	void setLosses(int losses);
 
-	List getEnemies();
+	List<String> getEnemies();
 	
-	void savePlayer(IGamePlayer player);
-
-	IGamePlayer loadPlayer(Injector injector);
+	void setEnemies(List<String> enemies);
 }

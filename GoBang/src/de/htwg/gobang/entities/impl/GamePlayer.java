@@ -81,7 +81,12 @@ public class GamePlayer implements IGamePlayer {
 		name = persistentPlayer.getName();
 		wins = persistentPlayer.getWins();
 		losses = persistentPlayer.getLosses();
-		//enemies = persistentPlayer.getEnemies();
+//		enemies = persistentPlayer.getEnemies();
+	}
+
+	@Override
+	public void setEnemies(List<IGamePlayer> enemies) {
+		this.enemies = (ArrayList<IGamePlayer>)enemies;
 	}
 
 }

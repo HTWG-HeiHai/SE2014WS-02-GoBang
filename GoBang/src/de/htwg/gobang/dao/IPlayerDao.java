@@ -13,4 +13,10 @@ public interface IPlayerDao {
     IGamePlayer loadPlayer(IGamePlayer player);
 
     List<IGamePlayer> listAllPlayers();
+
+	IGamePlayer getPlayerById(int id);
+
+	boolean containsPlayerById(int id);
+
+	List<IGamePlayer> getPlayersByName(String name);
 }

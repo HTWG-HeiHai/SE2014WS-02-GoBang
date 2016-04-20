@@ -7,6 +7,8 @@ import com.google.inject.Singleton;
 
 import de.htwg.gobang.controller.IChecker;
 import de.htwg.gobang.controller.IGbLogic;
+import de.htwg.gobang.dao.IPlayerDao;
+import de.htwg.gobang.dao.hibernate.HibernatePlayerDao;
 import de.htwg.gobang.entities.IGameField;
 import de.htwg.gobang.entities.IGamePlayer;
 import de.htwg.gobang.entities.IGameToken;
@@ -27,15 +29,19 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	private int lastY;
 	private int counter;
 	private char status;
+	private IPlayerDao dao;
 
 	@Inject
 	public GbLogic() {
-		this(true);
+		this(true, new HibernatePlayerDao());//hm,
 	}
 
-	public GbLogic(boolean pStartplayer) {
-		player1 = new GamePlayer("asdf");
-		player2 = new GamePlayer("qwer");
+	public GbLogic(boolean pStartplayer, IPlayerDao dao) {
+//		player1 = new GamePlayer("yxcv");
+//		player2 = new GamePlayer("ghjk");
+		this.dao = dao;
+		player1 = dao.getPlayerById(1888186442);//
+		player2 = dao.getPlayerById(2010019457);//
 		newGame(pStartplayer);
 	}
 
@@ -53,6 +59,13 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		lastY = 1;
 		status = 'n';
 		notifyObservers();
+		for(IGamePlayer gp : dao.listAllPlayers()) {
+			System.out.println(gp.getId());
+			System.out.println(gp.getName());
+			System.out.println(gp.getWins());
+			System.out.println(gp.getLosses());
+			System.out.println(gp.getEnemies() + "\n");
+		}
 	}
 
 	public char getStatus() {
@@ -141,6 +154,8 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 				player.addWin(player1);
 				player1.addLoss(player);
 			}
+			dao.saveOrUpdatePlayer(player1);//
+			dao.saveOrUpdatePlayer(player2);//
 			return 'g';
 		}
 		return 'e';

@@ -1,11 +1,7 @@
 package de.htwg.gobang.persistence.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.google.inject.Injector;
-
-import de.htwg.gobang.entities.IGamePlayer;
 import de.htwg.gobang.persistence.IPersistentPlayer;
 
 public class PersistentPlayer implements IPersistentPlayer {
@@ -14,7 +10,7 @@ public class PersistentPlayer implements IPersistentPlayer {
 	private String name;
 	private int wins;
 	private int losses;
-	private List<Integer> enemies;
+	private List<String> enemies;
 
 	@Override
 	public int getId() {
@@ -42,9 +38,8 @@ public class PersistentPlayer implements IPersistentPlayer {
 	}
 
 	@Override
-	public void addWin(int id) {
-		addEnemy(id);
-		wins++;
+	public void setWins(int wins) {
+		this.wins = wins;
 	}
 
 	@Override
@@ -53,39 +48,17 @@ public class PersistentPlayer implements IPersistentPlayer {
 	}
 
 	@Override
-	public void addLoss(int id) {
-		addEnemy(id);
-		losses++;
+	public void setLosses(int losses) {
+		this.losses = losses;
 	}
 
 	@Override
-	public List getEnemies() {
+	public List<String> getEnemies() {
 		return enemies;
 	}
 
-	private void addEnemy(int id) {
-		if (!enemies.contains(id)) {
-			enemies.add(id);
-		}
-	}
-
 	@Override
-	public void savePlayer(IGamePlayer player) {
-		this.id = player.getId();
-		this.name = player.getName();
-		this.wins = player.getWins();
-		this.losses = player.getLosses();
-		List l = new ArrayList();
-		for(IGamePlayer p : player.getEnemies()) {
-			l.add(p.getId());
-		}
-		this.enemies = l;
-	}
-
-	@Override
-	public IGamePlayer loadPlayer(Injector injector) {
-		IGamePlayer player = injector.getInstance(IGamePlayer.class);
-		player.load(this);
-		return player;
+	public void setEnemies(List<String> enemies) {
+		this.enemies = enemies;
 	}
 }

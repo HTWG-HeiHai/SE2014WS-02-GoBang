@@ -1,23 +1,25 @@
 package de.htwg.gobang.dao.hibernate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.htwg.gobang.dao.IPlayerDao;
 import de.htwg.gobang.entities.IGamePlayer;
+import de.htwg.gobang.entities.impl.GamePlayer;
 import de.htwg.gobang.game.GoBangModule;
+import de.htwg.gobang.persistence.IPersistentPlayer;
 import de.htwg.gobang.persistence.hibernate.HibernatePlayer;
 import de.htwg.gobang.persistence.hibernate.HibernateUtil;
-import de.htwg.gobang.persistence.impl.GameSaver;
 
 public class HibernatePlayerDao implements IPlayerDao {
 
@@ -29,6 +31,57 @@ public class HibernatePlayerDao implements IPlayerDao {
 		injector = Guice.createInjector(new GoBangModule());
 	}
 
+	private IGamePlayer copyPlayer(IPersistentPlayer persistentPlayer) {
+		if (persistentPlayer == null) {
+			return null;
+		}
+		IGamePlayer player = new GamePlayer(persistentPlayer.getName());
+		player.setId(persistentPlayer.getId());
+		// player.setName(persistentPlayer.getName());
+		for (int i = 0; i < persistentPlayer.getWins(); i++) {
+			player.addWin(player);// ?
+		}
+		for (int i = 0; i < persistentPlayer.getLosses(); i++) {
+			player.addLoss(player);// ?
+		}
+		List<IGamePlayer> list = new ArrayList<>();
+		for(String name : persistentPlayer.getEnemies()) {
+//			list.addAll((getPlayersByName(name)));
+		}
+		player.setEnemies(list);
+
+		return player;
+	}
+
+	private IPersistentPlayer copyPlayer(IGamePlayer player) {
+		if (player == null) {
+			return null;
+		}
+
+		int playerId = player.getId();
+		IPersistentPlayer persistentPlayer;
+		if (containsPlayerById(playerId)) {
+			// The Object already exists within the session
+			Session session = HibernateUtil.getInstance().getCurrentSession();
+			persistentPlayer = (HibernatePlayer) session.get(HibernatePlayer.class, playerId);
+		} else {
+			// A new database entry
+			persistentPlayer = new HibernatePlayer();
+		}
+
+		// List<Integer> enemies = new ArrayList<>();
+		persistentPlayer.setId(playerId);
+		persistentPlayer.setName(player.getName());
+		persistentPlayer.setWins(player.getWins());
+		persistentPlayer.setLosses(player.getLosses());
+		List<String> list = new ArrayList<>();
+		for (IGamePlayer p : player.getEnemies()) {
+//			list.add(p.getName());
+		}
+		persistentPlayer.setEnemies(list);
+		return persistentPlayer;
+	}
+
 	@Override
 	public void saveOrUpdatePlayer(IGamePlayer player) {
 		Session session = null;
@@ -36,13 +89,12 @@ public class HibernatePlayerDao implements IPlayerDao {
 		try {
 			session = sessionFactory.getCurrentSession();
 			tx = session.beginTransaction();
-			// IGameSaver save = injector.getInstance(IGameSaver.class);
-			HibernatePlayer save = new HibernatePlayer();
-			save.savePlayer(player);
-			session.save(save);
+//			SQLQuery query = session.createSQLQuery("drop table player"); 
+//			query.executeUpdate();
+			IPersistentPlayer persistentPlayer = copyPlayer(player);
+			session.saveOrUpdate(persistentPlayer);
 			tx.commit();
 		} catch (HibernateException ex) {
-			System.out.println(ex + "asdfasdfasdfas");
 			handleHibernateException(ex, tx);
 		}
 	}
@@ -50,39 +102,82 @@ public class HibernatePlayerDao implements IPlayerDao {
 	@Override
 	public IGamePlayer loadPlayer(IGamePlayer player) {
 
-    	IGamePlayer result = null;
-        Transaction tx = null;
-        try {
-            Session session = sessionFactory.getCurrentSession();
-            tx = session.beginTransaction();
-
-            Criteria criteria = session.createCriteria(GameSaver.class);
-            criteria.add(Restrictions.eq("id", player.getId()));
-            List<?> list = criteria.list();
-            if (!list.isEmpty()) {
-                result =
-                    ((HibernatePlayer) list.get(0)).loadPlayer(injector);
-            } else {
-                criteria = session.createCriteria(GameSaver.class);
-                criteria.add(Restrictions.eq("id", player.getId()));
-                list = criteria.list();
-                if (!list.isEmpty()) {
-                    result =
-                        ((HibernatePlayer) list.get(0)).loadPlayer(injector);
-                }
-            }
-        } catch (HibernateException ex) {
-            handleHibernateException(ex, tx);
-        }
-        return result;
+		IGamePlayer result = null;
+		// Transaction tx = null;
+		// try {
+		// Session session = sessionFactory.getCurrentSession();
+		// tx = session.beginTransaction();
+		//
+		// Criteria criteria = session.createCriteria(GameSaver.class);
+		// criteria.add(Restrictions.eq("id", player.getId()));
+		// List<?> list = criteria.list();
+		// if (!list.isEmpty()) {
+		// result = ((HibernatePlayer) list.get(0)).loadPlayer(injector);
+		// } else {
+		// criteria = session.createCriteria(GameSaver.class);
+		// criteria.add(Restrictions.eq("id", player.getId()));
+		// list = criteria.list();
+		// if (!list.isEmpty()) {
+		// result = ((HibernatePlayer) list.get(0)).loadPlayer(injector);
+		// }
+		// }
+		// } catch (HibernateException ex) {
+		// handleHibernateException(ex, tx);
+		// }
+		return result;
 	}
 
 	@Override
 	public List<IGamePlayer> listAllPlayers() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = HibernateUtil.getInstance().getCurrentSession();
+		session.beginTransaction();
+		Criteria criteria = session.createCriteria(HibernatePlayer.class);
+
+		@SuppressWarnings("unchecked")
+		List<IPersistentPlayer> results = criteria.list();
+
+		List<IGamePlayer> players = new ArrayList<>();
+		for (IPersistentPlayer persistentPlayer : results) {
+			IGamePlayer player = copyPlayer(persistentPlayer);
+			players.add(player);
+		}
+		return players;
 	}
 
+	@Override
+	public boolean containsPlayerById(int id) {
+		if (getPlayerById(id) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public IGamePlayer getPlayerById(int id) {
+		Session session = HibernateUtil.getInstance().getCurrentSession();
+		session.beginTransaction();
+		return copyPlayer((HibernatePlayer) session.get(HibernatePlayer.class, id));
+	}
+
+	@Override
+	public List<IGamePlayer> getPlayersByName(String name) {
+		Session session = HibernateUtil.getInstance().getCurrentSession();
+		session.beginTransaction();
+		Criteria criteria = session.createCriteria(HibernatePlayer.class);
+		
+		@SuppressWarnings("unchecked")
+		List<IPersistentPlayer> results = criteria.list();
+
+		List<IGamePlayer> players = new ArrayList<>();
+		for (IPersistentPlayer p : results) {
+			IGamePlayer player = copyPlayer(p);
+			if(p.getName().equals(player.getName())) {
+				players.add(player);
+			}
+		}
+		return players;
+	}
+	
 	private void handleHibernateException(HibernateException ex, Transaction tx) {
 		if (tx != null) {
 			try {

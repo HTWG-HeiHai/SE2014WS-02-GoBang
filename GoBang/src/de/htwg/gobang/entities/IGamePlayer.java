@@ -14,5 +14,6 @@ public interface IGamePlayer {
 	int getLosses();
 	void addLoss(IGamePlayer pPlayer);
 	List<IGamePlayer> getEnemies();
+	void setEnemies(List<IGamePlayer> enemies);
 	void load(IPersistentPlayer persistentPlayer);
 }
