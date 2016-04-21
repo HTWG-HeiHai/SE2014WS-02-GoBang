@@ -10,7 +10,7 @@ public class PersistentPlayer implements IPersistentPlayer {
 	private String name;
 	private int wins;
 	private int losses;
-	private List<String> enemies;
+	private List<Integer> enemies;
 
 	@Override
 	public int getId() {
@@ -53,12 +53,12 @@ public class PersistentPlayer implements IPersistentPlayer {
 	}
 
 	@Override
-	public List<String> getEnemies() {
+	public List<Integer> getEnemies() {
 		return enemies;
 	}
 
 	@Override
-	public void setEnemies(List<String> enemies) {
+	public void setEnemies(List<Integer> enemies) {
 		this.enemies = enemies;
 	}
 }

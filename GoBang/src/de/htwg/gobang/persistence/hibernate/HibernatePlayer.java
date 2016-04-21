@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import de.htwg.gobang.persistence.IPersistentPlayer;
@@ -31,8 +32,8 @@ public class HibernatePlayer implements IPersistentPlayer, Serializable {
 	private int losses;
 	
 	@ElementCollection
-	@Column( name="enemies")
-	private List<String> enemies;
+	@JoinColumn(name="enemies_id")
+	private List<Integer> enemies;
 	
 	@Override
 	public int getId() {
@@ -75,12 +76,12 @@ public class HibernatePlayer implements IPersistentPlayer, Serializable {
 	}
 
 	@Override
-	public List<String> getEnemies() {
+	public List<Integer> getEnemies() {
 		return enemies;
 	}
 
 	@Override
-	public void setEnemies(List<String> enemies) {
+	public void setEnemies(List<Integer> enemies) {
 		this.enemies = enemies;
 	}
 }

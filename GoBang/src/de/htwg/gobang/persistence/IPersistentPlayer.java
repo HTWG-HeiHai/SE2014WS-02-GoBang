@@ -20,7 +20,7 @@ public interface IPersistentPlayer {
 
 	void setLosses(int losses);
 
-	List<String> getEnemies();
+	List<Integer> getEnemies();
 	
-	void setEnemies(List<String> enemies);
+	void setEnemies(List<Integer> enemies);
 }

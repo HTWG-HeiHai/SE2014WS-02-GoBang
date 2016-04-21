@@ -13,7 +13,7 @@ public interface IGamePlayer {
 	void addWin(IGamePlayer pPlayer);
 	int getLosses();
 	void addLoss(IGamePlayer pPlayer);
-	List<IGamePlayer> getEnemies();
-	void setEnemies(List<IGamePlayer> enemies);
+	List<Integer> getEnemies();
+	void setEnemies(List<Integer> enemies);
 	void load(IPersistentPlayer persistentPlayer);
 }

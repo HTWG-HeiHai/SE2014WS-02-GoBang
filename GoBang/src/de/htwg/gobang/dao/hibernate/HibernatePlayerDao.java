@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -44,9 +43,9 @@ public class HibernatePlayerDao implements IPlayerDao {
 		for (int i = 0; i < persistentPlayer.getLosses(); i++) {
 			player.addLoss(player);// ?
 		}
-		List<IGamePlayer> list = new ArrayList<>();
-		for(String name : persistentPlayer.getEnemies()) {
-//			list.addAll((getPlayersByName(name)));
+		List<Integer> list = new ArrayList<>();
+		for(Integer id : persistentPlayer.getEnemies()) {
+			list.add(id);
 		}
 		player.setEnemies(list);
 
@@ -69,14 +68,15 @@ public class HibernatePlayerDao implements IPlayerDao {
 			persistentPlayer = new HibernatePlayer();
 		}
 
-		// List<Integer> enemies = new ArrayList<>();
 		persistentPlayer.setId(playerId);
 		persistentPlayer.setName(player.getName());
 		persistentPlayer.setWins(player.getWins());
 		persistentPlayer.setLosses(player.getLosses());
-		List<String> list = new ArrayList<>();
-		for (IGamePlayer p : player.getEnemies()) {
-//			list.add(p.getName());
+		List<Integer> list = new ArrayList<>();
+		System.out.println(player.getEnemies());
+
+		for (Integer id : player.getEnemies()) {
+			list.add(id);
 		}
 		persistentPlayer.setEnemies(list);
 		return persistentPlayer;

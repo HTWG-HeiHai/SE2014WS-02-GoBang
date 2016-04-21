@@ -13,7 +13,7 @@ public class GamePlayer implements IGamePlayer {
 	private String name;
 	private int wins;
 	private int losses;
-	private ArrayList<IGamePlayer> enemies;
+	private ArrayList<Integer> enemies;
 	
 	public GamePlayer(String pName){
 		name = pName;
@@ -41,7 +41,7 @@ public class GamePlayer implements IGamePlayer {
 	@Override
 	public void addWin(IGamePlayer pPlayer) {
 		if (!enemies.contains(pPlayer)) {
-			enemies.add(pPlayer);
+			enemies.add(pPlayer.getId());
 		}
 		wins++;
 	}
@@ -55,13 +55,13 @@ public class GamePlayer implements IGamePlayer {
 	@Override
 	public void addLoss(IGamePlayer pPlayer) {
 		if (!enemies.contains(pPlayer)) {
-			enemies.add(pPlayer);
+			enemies.add(pPlayer.getId());
 		}
 		losses++;
 	}
 
 	@Override
-	public List<IGamePlayer> getEnemies() {
+	public List<Integer> getEnemies() {
 		return enemies;
 	}
 
@@ -85,8 +85,8 @@ public class GamePlayer implements IGamePlayer {
 	}
 
 	@Override
-	public void setEnemies(List<IGamePlayer> enemies) {
-		this.enemies = (ArrayList<IGamePlayer>)enemies;
+	public void setEnemies(List<Integer> enemies) {
+		this.enemies = (ArrayList<Integer>)enemies;
 	}
 
 }
