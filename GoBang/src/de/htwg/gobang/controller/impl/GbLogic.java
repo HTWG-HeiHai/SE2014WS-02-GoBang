@@ -8,7 +8,7 @@ import com.google.inject.Singleton;
 import de.htwg.gobang.controller.IChecker;
 import de.htwg.gobang.controller.IGbLogic;
 import de.htwg.gobang.dao.IPlayerDao;
-import de.htwg.gobang.dao.hibernate.HibernatePlayerDao;
+import de.htwg.gobang.dao.couchdb.CouchDbPlayerDao;
 import de.htwg.gobang.entities.IGameField;
 import de.htwg.gobang.entities.IGamePlayer;
 import de.htwg.gobang.entities.IGameToken;
@@ -33,15 +33,15 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 
 	@Inject
 	public GbLogic() {
-		this(true, new HibernatePlayerDao());//hm,
+		this(true, new CouchDbPlayerDao());//hm,
 	}
 
 	public GbLogic(boolean pStartplayer, IPlayerDao dao) {
-//		player1 = new GamePlayer("yxcv");
-//		player2 = new GamePlayer("ghjk");
+		player1 = new GamePlayer("qwer");
+		player2 = new GamePlayer("asdf");
 		this.dao = dao;
-		player1 = dao.getPlayerById(1888186442);//
-		player2 = dao.getPlayerById(2010019457);//
+//		player1 = dao.getPlayerById(1888186442);//
+//		player2 = dao.getPlayerById(2010019457);//
 		newGame(pStartplayer);
 	}
 

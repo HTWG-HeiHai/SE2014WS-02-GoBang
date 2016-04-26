@@ -1,16 +1,85 @@
 package de.htwg.gobang.dao.couchdb;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.ektorp.CouchDbConnector;
+import org.ektorp.ViewQuery;
+import org.ektorp.ViewResult;
+import org.ektorp.ViewResult.Row;
 
 import de.htwg.gobang.dao.IPlayerDao;
 import de.htwg.gobang.entities.IGamePlayer;
+import de.htwg.gobang.entities.impl.GamePlayer;
+import de.htwg.gobang.persistence.couchdb.CouchDbPlayer;
+import de.htwg.gobang.persistence.couchdb.CouchDbUtil;
 
 public class CouchDbPlayerDao implements IPlayerDao {
 
+	private final CouchDbConnector db;
+	
+	public CouchDbPlayerDao() {
+		db = CouchDbUtil.getDB();
+	}
+
+	private IGamePlayer copyPlayer(CouchDbPlayer persistentPlayer) {
+		if (persistentPlayer == null) {
+			return null;
+		}
+		IGamePlayer player = new GamePlayer(persistentPlayer.getName());
+		player.setId(Integer.parseInt(persistentPlayer.getId()));
+
+		for (int i = 0; i < persistentPlayer.getWins(); i++) {
+			player.addWin(player);// ?
+		}
+		for (int i = 0; i < persistentPlayer.getLosses(); i++) {
+			player.addLoss(player);// ?
+		}
+		List<Integer> list = new ArrayList<>();
+		for(Integer id : persistentPlayer.getEnemies()) {
+			list.add(id);
+		}
+		player.setEnemies(list);
+
+		return player;
+	}
+
+	private CouchDbPlayer copyPlayer(IGamePlayer player) {
+		if (player == null) {
+			return null;
+		}
+
+		int playerId = player.getId();
+		CouchDbPlayer persistentPlayer;
+		if (containsPlayerById(playerId)) {
+			// The Object already exists within the session
+			persistentPlayer = (CouchDbPlayer) db.find(CouchDbPlayer.class, String.valueOf(playerId));
+		} else {
+			// A new database entry
+			persistentPlayer = new CouchDbPlayer();
+		}
+
+		persistentPlayer.setId(String.valueOf(playerId));
+		persistentPlayer.setName(player.getName());
+		persistentPlayer.setWins(player.getWins());
+		persistentPlayer.setLosses(player.getLosses());
+		List<Integer> list = new ArrayList<>();
+		System.out.println(player.getEnemies());
+
+		for (Integer id : player.getEnemies()) {
+			list.add(id);
+		}
+		persistentPlayer.setEnemies(list);
+		return persistentPlayer;
+	}
+
 	@Override
 	public void saveOrUpdatePlayer(IGamePlayer player) {
-		// TODO Auto-generated method stub
-		
+		if (containsPlayerById(player.getId())) {
+			db.update(copyPlayer(player));
+		} else {
+			db.create(String.valueOf(player.getId()), copyPlayer(player));
+		}
 	}
 
 	@Override
@@ -21,20 +90,31 @@ public class CouchDbPlayerDao implements IPlayerDao {
 
 	@Override
 	public List<IGamePlayer> listAllPlayers() {
-		// TODO Auto-generated method stub
-		return null;
+		List<IGamePlayer> players = new ArrayList<>();
+		ViewQuery query = new ViewQuery().allDocs();
+		ViewResult vr = db.queryView(query);
+
+		for (Row r : vr.getRows()) {
+			players.add(getPlayerById(Integer.parseInt(r.getId())));
+		}
+		return players;
 	}
 
 	@Override
 	public IGamePlayer getPlayerById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		CouchDbPlayer p = db.find(CouchDbPlayer.class, String.valueOf(id));
+		if (p == null) {
+			return null;
+		}
+		return copyPlayer(p);
 	}
 
 	@Override
 	public boolean containsPlayerById(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		if (getPlayerById(id) == null) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override

@@ -2,8 +2,6 @@ package de.htwg.gobang.entities;
 
 import java.util.List;
 
-import de.htwg.gobang.persistence.IPersistentPlayer;
-
 public interface IGamePlayer {
 	int getId();
 	void setId(int id);
@@ -15,5 +13,4 @@ public interface IGamePlayer {
 	void addLoss(IGamePlayer pPlayer);
 	List<Integer> getEnemies();
 	void setEnemies(List<Integer> enemies);
-	void load(IPersistentPlayer persistentPlayer);
 }

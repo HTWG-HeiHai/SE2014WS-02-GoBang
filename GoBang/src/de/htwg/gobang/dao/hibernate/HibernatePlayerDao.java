@@ -16,7 +16,6 @@ import de.htwg.gobang.dao.IPlayerDao;
 import de.htwg.gobang.entities.IGamePlayer;
 import de.htwg.gobang.entities.impl.GamePlayer;
 import de.htwg.gobang.game.GoBangModule;
-import de.htwg.gobang.persistence.IPersistentPlayer;
 import de.htwg.gobang.persistence.hibernate.HibernatePlayer;
 import de.htwg.gobang.persistence.hibernate.HibernateUtil;
 
@@ -30,7 +29,7 @@ public class HibernatePlayerDao implements IPlayerDao {
 		injector = Guice.createInjector(new GoBangModule());
 	}
 
-	private IGamePlayer copyPlayer(IPersistentPlayer persistentPlayer) {
+	private IGamePlayer copyPlayer(HibernatePlayer persistentPlayer) {
 		if (persistentPlayer == null) {
 			return null;
 		}
@@ -52,13 +51,13 @@ public class HibernatePlayerDao implements IPlayerDao {
 		return player;
 	}
 
-	private IPersistentPlayer copyPlayer(IGamePlayer player) {
+	private HibernatePlayer copyPlayer(IGamePlayer player) {
 		if (player == null) {
 			return null;
 		}
 
 		int playerId = player.getId();
-		IPersistentPlayer persistentPlayer;
+		HibernatePlayer persistentPlayer;
 		if (containsPlayerById(playerId)) {
 			// The Object already exists within the session
 			Session session = HibernateUtil.getInstance().getCurrentSession();
@@ -91,7 +90,7 @@ public class HibernatePlayerDao implements IPlayerDao {
 			tx = session.beginTransaction();
 //			SQLQuery query = session.createSQLQuery("drop table player"); 
 //			query.executeUpdate();
-			IPersistentPlayer persistentPlayer = copyPlayer(player);
+			HibernatePlayer persistentPlayer = copyPlayer(player);
 			session.saveOrUpdate(persistentPlayer);
 			tx.commit();
 		} catch (HibernateException ex) {
@@ -134,10 +133,10 @@ public class HibernatePlayerDao implements IPlayerDao {
 		Criteria criteria = session.createCriteria(HibernatePlayer.class);
 
 		@SuppressWarnings("unchecked")
-		List<IPersistentPlayer> results = criteria.list();
+		List<HibernatePlayer> results = criteria.list();
 
 		List<IGamePlayer> players = new ArrayList<>();
-		for (IPersistentPlayer persistentPlayer : results) {
+		for (HibernatePlayer persistentPlayer : results) {
 			IGamePlayer player = copyPlayer(persistentPlayer);
 			players.add(player);
 		}
@@ -166,10 +165,10 @@ public class HibernatePlayerDao implements IPlayerDao {
 		Criteria criteria = session.createCriteria(HibernatePlayer.class);
 		
 		@SuppressWarnings("unchecked")
-		List<IPersistentPlayer> results = criteria.list();
+		List<HibernatePlayer> results = criteria.list();
 
 		List<IGamePlayer> players = new ArrayList<>();
-		for (IPersistentPlayer p : results) {
+		for (HibernatePlayer p : results) {
 			IGamePlayer player = copyPlayer(p);
 			if(p.getName().equals(player.getName())) {
 				players.add(player);

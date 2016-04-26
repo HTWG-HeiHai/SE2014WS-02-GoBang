@@ -35,12 +35,10 @@ public class HibernatePlayer implements IPersistentPlayer, Serializable {
 	@JoinColumn(name="enemies_id")
 	private List<Integer> enemies;
 	
-	@Override
 	public int getId() {
 		return id;
 	}
 
-	@Override
 	public void setId(int id) {
 		this.id = id;
 	}

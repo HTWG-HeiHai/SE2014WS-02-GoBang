@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface IPersistentPlayer {
 
-	int getId();
-
-	void setId(int id);
+//	int getId();
+//
+//	void setId(int id);
 
 	String getName();
 
