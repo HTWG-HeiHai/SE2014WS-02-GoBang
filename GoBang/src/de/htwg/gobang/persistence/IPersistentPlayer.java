@@ -4,23 +4,24 @@ import java.util.List;
 
 public interface IPersistentPlayer {
 
-//	int getId();
-//
-//	void setId(int id);
+	// int getId();
+	//
+	// void setId(int id);
 
 	String getName();
 
 	void setName(String name);
 
-	int getWins();
+	int getWinsTotal();
 
-	void setWins(int wins);
+	int getLossesTotal();
 
-	int getLosses();
-
-	void setLosses(int losses);
-
-	List<Integer> getEnemies();
+	void setWinsTotal(int wins);
 	
-	void setEnemies(List<Integer> enemies);
+	void setLossesTotal(int losses);
+
+	List<IPersistentResult> getResults();
+
+	void setResults(List<IPersistentResult> enemies);
+
 }

@@ -62,9 +62,9 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		for(IGamePlayer gp : dao.listAllPlayers()) {
 			System.out.println(gp.getId());
 			System.out.println(gp.getName());
-			System.out.println(gp.getWins());
-			System.out.println(gp.getLosses());
-			System.out.println(gp.getEnemies() + "\n");
+			System.out.println(gp.getWinsTotal());
+			System.out.println(gp.getLossesTotal());
+			System.out.println(gp.getResults() + "\n");
 		}
 	}
 
@@ -108,11 +108,11 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	}
 	
 	public int getWinPlayer1(){
-		return player1.getWins();
+		return player1.getWinsAgainst(player2.getId());
 	}
 	
 	public int getWinPlayer2(){
-		return player2.getWins();
+		return player2.getWinsAgainst(player1.getId());
 	}
 
 	public boolean removeToken() {
@@ -148,11 +148,11 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		if (myChecker.checkWin(x, y, myField.getGameField()[x][y]))
 		{ 
 			if (player.equals(player1)) {
-				player.addWin(player2);
-				player2.addLoss(player);
+				player.addWinAgainst(player2.getId());
+				player2.addLossAgainst(player.getId());
 			} else {
-				player.addWin(player1);
-				player1.addLoss(player);
+				player.addWinAgainst(player1.getId());
+				player1.addLossAgainst(player.getId());
 			}
 			dao.saveOrUpdatePlayer(player1);//
 			dao.saveOrUpdatePlayer(player2);//

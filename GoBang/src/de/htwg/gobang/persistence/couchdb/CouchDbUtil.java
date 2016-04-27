@@ -2,7 +2,6 @@ package de.htwg.gobang.persistence.couchdb;
 
 import java.net.MalformedURLException;
 
-import org.apache.log4j.Logger;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.CouchDbInstance;
 import org.ektorp.http.HttpClient;
@@ -26,7 +25,7 @@ public class CouchDbUtil {
 //            LOGGER.error("Malformed URL", e);
         }
         CouchDbInstance dbInstance = new StdCouchDbInstance(client);
-        db = dbInstance.createConnector("goBangPlayers", true);
+        db = dbInstance.createConnector("goBangPlayers0", true);
         db.createDatabaseIfNotExists();
     }
 

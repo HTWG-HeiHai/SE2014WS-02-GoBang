@@ -1,8 +1,10 @@
 package de.htwg.gobang.persistence.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.htwg.gobang.persistence.IPersistentPlayer;
+import de.htwg.gobang.persistence.IPersistentResult;
 
 public class PersistentPlayer implements IPersistentPlayer {
 
@@ -10,15 +12,15 @@ public class PersistentPlayer implements IPersistentPlayer {
 	private String name;
 	private int wins;
 	private int losses;
-	private List<Integer> enemies;
+	private List<IPersistentResult> results;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+//	public PersistentPlayer(String pName) {
+//		name = pName;
+//		wins = 0;
+//		losses = 0;
+//		results = new ArrayList<>();
+//		id = (new Random()).nextInt(Integer.MAX_VALUE - 1) + 1;
+//	}
 
 	@Override
 	public String getName() {
@@ -31,32 +33,40 @@ public class PersistentPlayer implements IPersistentPlayer {
 	}
 
 	@Override
-	public int getWins() {
+	public int getWinsTotal() {
 		return wins;
 	}
 
 	@Override
-	public void setWins(int wins) {
-		this.wins = wins;
-	}
-
-	@Override
-	public int getLosses() {
+	public int getLossesTotal() {
 		return losses;
 	}
 
 	@Override
-	public void setLosses(int losses) {
+	public List<IPersistentResult> getResults() {
+		return results;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public void setResults(List<IPersistentResult> enemies) {
+		this.results = (ArrayList<IPersistentResult>) enemies;
+	}
+
+	@Override
+	public void setWinsTotal(int wins) {
+		this.wins = wins;
+	}
+
+	@Override
+	public void setLossesTotal(int losses) {
 		this.losses = losses;
-	}
-
-	@Override
-	public List<Integer> getEnemies() {
-		return enemies;
-	}
-
-	@Override
-	public void setEnemies(List<Integer> enemies) {
-		this.enemies = enemies;
 	}
 }

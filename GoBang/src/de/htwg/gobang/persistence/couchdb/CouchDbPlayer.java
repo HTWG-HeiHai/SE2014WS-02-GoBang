@@ -1,12 +1,14 @@
 package de.htwg.gobang.persistence.couchdb;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.TypeDiscriminator;
 
 import de.htwg.gobang.persistence.IPersistentPlayer;
+import de.htwg.gobang.persistence.IPersistentResult;
 
 public class CouchDbPlayer extends CouchDbDocument  implements IPersistentPlayer, Serializable  {
 
@@ -21,18 +23,10 @@ public class CouchDbPlayer extends CouchDbDocument  implements IPersistentPlayer
 
 	private int losses;
 
-	private List<Integer> enemies;
+	private List<IPersistentResult> results;
 
 	public CouchDbPlayer() {
 		
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	@Override
@@ -46,32 +40,40 @@ public class CouchDbPlayer extends CouchDbDocument  implements IPersistentPlayer
 	}
 
 	@Override
-	public int getWins() {
+	public int getWinsTotal() {
 		return wins;
 	}
 
 	@Override
-	public void setWins(int wins) {
-		this.wins = wins;
-	}
-
-	@Override
-	public int getLosses() {
+	public int getLossesTotal() {
 		return losses;
 	}
 
 	@Override
-	public void setLosses(int losses) {
+	public List<IPersistentResult> getResults() {
+		return results;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	@Override
+	public void setResults(List<IPersistentResult> enemies) {
+		this.results = (ArrayList<IPersistentResult>) enemies;
+	}
+
+	@Override
+	public void setWinsTotal(int wins) {
+		this.wins = wins;
+	}
+
+	@Override
+	public void setLossesTotal(int losses) {
 		this.losses = losses;
-	}
-
-	@Override
-	public List<Integer> getEnemies() {
-		return enemies;
-	}
-
-	@Override
-	public void setEnemies(List<Integer> enemies) {
-		this.enemies = enemies;
 	}
 }

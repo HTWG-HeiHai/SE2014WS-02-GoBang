@@ -14,9 +14,13 @@ import com.google.inject.Injector;
 
 import de.htwg.gobang.dao.IPlayerDao;
 import de.htwg.gobang.entities.IGamePlayer;
+import de.htwg.gobang.entities.IResult;
 import de.htwg.gobang.entities.impl.GamePlayer;
+import de.htwg.gobang.entities.impl.Result;
 import de.htwg.gobang.game.GoBangModule;
+import de.htwg.gobang.persistence.IPersistentResult;
 import de.htwg.gobang.persistence.hibernate.HibernatePlayer;
+import de.htwg.gobang.persistence.hibernate.HibernateResult;
 import de.htwg.gobang.persistence.hibernate.HibernateUtil;
 
 public class HibernatePlayerDao implements IPlayerDao {
@@ -35,18 +39,14 @@ public class HibernatePlayerDao implements IPlayerDao {
 		}
 		IGamePlayer player = new GamePlayer(persistentPlayer.getName());
 		player.setId(persistentPlayer.getId());
-		// player.setName(persistentPlayer.getName());
-		for (int i = 0; i < persistentPlayer.getWins(); i++) {
-			player.addWin(player);// ?
+
+		List<IResult> list = new ArrayList<>();
+		for(IPersistentResult r : persistentPlayer.getResults()) {
+			list.add(new Result(r.getEnemyId(), r.getWins(), r.getLosses()));
 		}
-		for (int i = 0; i < persistentPlayer.getLosses(); i++) {
-			player.addLoss(player);// ?
-		}
-		List<Integer> list = new ArrayList<>();
-		for(Integer id : persistentPlayer.getEnemies()) {
-			list.add(id);
-		}
-		player.setEnemies(list);
+		player.setResults(list);
+		player.setWinsTotal(persistentPlayer.getWinsTotal());
+		player.setLossesTotal(persistentPlayer.getLossesTotal());
 
 		return player;
 	}
@@ -69,15 +69,17 @@ public class HibernatePlayerDao implements IPlayerDao {
 
 		persistentPlayer.setId(playerId);
 		persistentPlayer.setName(player.getName());
-		persistentPlayer.setWins(player.getWins());
-		persistentPlayer.setLosses(player.getLosses());
-		List<Integer> list = new ArrayList<>();
-		System.out.println(player.getEnemies());
+		persistentPlayer.setWinsTotal(player.getWinsTotal());
+		persistentPlayer.setLossesTotal(player.getLossesTotal());
 
-		for (Integer id : player.getEnemies()) {
-			list.add(id);
+//		System.out.println(player.getResults());
+
+		List<IPersistentResult> list = new ArrayList<>();
+		for(IResult r : player.getResults()) {
+			list.add(new HibernateResult(r.getEnemyId(), r.getWins(), r.getLosses()));
 		}
-		persistentPlayer.setEnemies(list);
+		persistentPlayer.setResults(list);
+
 		return persistentPlayer;
 	}
 

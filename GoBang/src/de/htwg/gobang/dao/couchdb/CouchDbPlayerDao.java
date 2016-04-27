@@ -10,8 +10,12 @@ import org.ektorp.ViewResult.Row;
 
 import de.htwg.gobang.dao.IPlayerDao;
 import de.htwg.gobang.entities.IGamePlayer;
+import de.htwg.gobang.entities.IResult;
 import de.htwg.gobang.entities.impl.GamePlayer;
+import de.htwg.gobang.entities.impl.Result;
+import de.htwg.gobang.persistence.IPersistentResult;
 import de.htwg.gobang.persistence.couchdb.CouchDbPlayer;
+import de.htwg.gobang.persistence.couchdb.CouchDbResult;
 import de.htwg.gobang.persistence.couchdb.CouchDbUtil;
 
 public class CouchDbPlayerDao implements IPlayerDao {
@@ -29,17 +33,13 @@ public class CouchDbPlayerDao implements IPlayerDao {
 		IGamePlayer player = new GamePlayer(persistentPlayer.getName());
 		player.setId(Integer.parseInt(persistentPlayer.getId()));
 
-		for (int i = 0; i < persistentPlayer.getWins(); i++) {
-			player.addWin(player);// ?
+		List<IResult> list = new ArrayList<>();
+		for(IPersistentResult r : persistentPlayer.getResults()) {
+			list.add(new Result(r.getEnemyId(), r.getWins(), r.getLosses()));
 		}
-		for (int i = 0; i < persistentPlayer.getLosses(); i++) {
-			player.addLoss(player);// ?
-		}
-		List<Integer> list = new ArrayList<>();
-		for(Integer id : persistentPlayer.getEnemies()) {
-			list.add(id);
-		}
-		player.setEnemies(list);
+		player.setResults(list);
+		player.setWinsTotal(persistentPlayer.getWinsTotal());
+		player.setLossesTotal(persistentPlayer.getLossesTotal());
 
 		return player;
 	}
@@ -61,15 +61,16 @@ public class CouchDbPlayerDao implements IPlayerDao {
 
 		persistentPlayer.setId(String.valueOf(playerId));
 		persistentPlayer.setName(player.getName());
-		persistentPlayer.setWins(player.getWins());
-		persistentPlayer.setLosses(player.getLosses());
-		List<Integer> list = new ArrayList<>();
-		System.out.println(player.getEnemies());
+		persistentPlayer.setWinsTotal(player.getWinsTotal());
+		persistentPlayer.setLossesTotal(player.getLossesTotal());
 
-		for (Integer id : player.getEnemies()) {
-			list.add(id);
+//		System.out.println(player.getResults());
+
+		List<IPersistentResult> list = new ArrayList<>();
+		for(IResult r : player.getResults()) {
+			list.add(new CouchDbResult(r.getEnemyId(), r.getWins(), r.getLosses()));
 		}
-		persistentPlayer.setEnemies(list);
+		persistentPlayer.setResults(list);
 		return persistentPlayer;
 	}
 
