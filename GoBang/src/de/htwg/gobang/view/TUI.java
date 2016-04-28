@@ -1,10 +1,10 @@
-package de.htwg.gobang.ui;
+package de.htwg.gobang.view;
 
 import com.google.inject.Inject;
 
 import de.htwg.gobang.controller.IGbLogic;
-import de.htwg.gobang.entities.IGameToken;
-import de.htwg.gobang.observer.IObserver;
+import de.htwg.gobang.model.IToken;
+import de.htwg.gobang.util.observer.IObserver;
 
 public final class TUI implements IObserver {
 
@@ -14,7 +14,7 @@ public final class TUI implements IObserver {
 	private IGbLogic controller;
 	
 	//private static Scanner scanner = new Scanner(System.in); 
-	private IGameToken[][] field;
+	private IToken[][] field;
 	private static String headLine = "00  01  02  03  04  05  06  07  08  09  10  11  12  13  14  15  16  17  18  19";
 
 	@Inject

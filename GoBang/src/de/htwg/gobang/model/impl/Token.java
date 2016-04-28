@@ -1,19 +1,19 @@
-package de.htwg.gobang.entities.impl;
+package de.htwg.gobang.model.impl;
 
 import java.awt.Color;
 
-import de.htwg.gobang.entities.IGameToken;
+import de.htwg.gobang.model.IToken;
 
-public class GameToken implements IGameToken {
+public class Token implements IToken {
 
 	private String name;
 	private Color color;
 	
-	public GameToken() {
+	public Token() {
 		this("none", null);
 	}
 
-	public GameToken(String name, Color color) {
+	public Token(String name, Color color) {
 		this.name = name;
 		this.color = color;
 	}

@@ -1,4 +1,4 @@
-package de.htwg.gobang.observer;
+package de.htwg.gobang.util.observer;
 
 public interface IObservable {
 

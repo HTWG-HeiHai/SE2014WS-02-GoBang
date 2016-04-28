@@ -1,6 +1,6 @@
-package de.htwg.gobang.entities.impl;
+package de.htwg.gobang.model.impl;
 
-import de.htwg.gobang.entities.IResult;
+import de.htwg.gobang.model.IResult;
 
 public class Result implements IResult {
 

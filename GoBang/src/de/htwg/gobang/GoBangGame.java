@@ -1,4 +1,4 @@
-package de.htwg.gobang.game;
+package de.htwg.gobang;
 import java.util.Observable;
 
 import com.google.inject.Guice;
@@ -7,9 +7,9 @@ import com.google.inject.Injector;
 import de.htwg.gobang.controller.IGbLogic;
 import de.htwg.gobang.dao.IPlayerDao;
 import de.htwg.gobang.dao.hibernate.HibernatePlayerDao;
-import de.htwg.gobang.entities.IGamePlayer;
-import de.htwg.gobang.ui.GUI;
-import de.htwg.gobang.ui.TUI;
+import de.htwg.gobang.model.IPlayer;
+import de.htwg.gobang.view.GUI;
+import de.htwg.gobang.view.TUI;
 
 public class GoBangGame extends Observable{
 

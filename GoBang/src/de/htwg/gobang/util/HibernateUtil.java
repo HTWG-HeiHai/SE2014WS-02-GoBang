@@ -1,4 +1,4 @@
-package de.htwg.gobang.persistence.hibernate;
+package de.htwg.gobang.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;

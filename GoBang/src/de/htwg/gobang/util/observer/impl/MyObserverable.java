@@ -1,7 +1,10 @@
-package de.htwg.gobang.observer;
+package de.htwg.gobang.util.observer.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.htwg.gobang.util.observer.IObservable;
+import de.htwg.gobang.util.observer.IObserver;
 
 public class MyObserverable implements IObservable {
 	

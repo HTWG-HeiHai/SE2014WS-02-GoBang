@@ -9,21 +9,21 @@ import de.htwg.gobang.controller.IChecker;
 import de.htwg.gobang.controller.IGbLogic;
 import de.htwg.gobang.dao.IPlayerDao;
 import de.htwg.gobang.dao.couchdb.CouchDbPlayerDao;
-import de.htwg.gobang.entities.IGameField;
-import de.htwg.gobang.entities.IGamePlayer;
-import de.htwg.gobang.entities.IGameToken;
-import de.htwg.gobang.entities.impl.GameField;
-import de.htwg.gobang.entities.impl.GamePlayer;
-import de.htwg.gobang.observer.MyObserverable;
+import de.htwg.gobang.model.IField;
+import de.htwg.gobang.model.IPlayer;
+import de.htwg.gobang.model.IToken;
+import de.htwg.gobang.model.impl.Field;
+import de.htwg.gobang.model.impl.Player;
 import de.htwg.gobang.persistence.IGameSaver;
+import de.htwg.gobang.util.observer.impl.MyObserverable;
 
 @Singleton
 public class GbLogic extends MyObserverable implements IGbLogic {
 
-	private IGameField myField;
-	private IGamePlayer player1;
-	private IGamePlayer player2;
-	private IGamePlayer cPlayer;
+	private IField myField;
+	private IPlayer player1;
+	private IPlayer player2;
+	private IPlayer cPlayer;
 	private IChecker myChecker;
 	private int lastX;
 	private int lastY;
@@ -37,8 +37,8 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	}
 
 	public GbLogic(boolean pStartplayer, IPlayerDao dao) {
-		player1 = new GamePlayer("qwer");
-		player2 = new GamePlayer("asdf");
+		player1 = new Player("qwer");
+		player2 = new Player("asdf");
 		this.dao = dao;
 //		player1 = dao.getPlayerById(1888186442);//
 //		player2 = dao.getPlayerById(2010019457);//
@@ -46,7 +46,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	}
 
 	public void newGame(boolean pStartplayer) {
-		myField = new GameField();
+		myField = new Field();
 		myChecker = new Checker(myField.getGameField());
 		counter = 0;
 		if (pStartplayer) {
@@ -59,7 +59,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		lastY = 1;
 		status = 'n';
 		notifyObservers();
-		for(IGamePlayer gp : dao.listAllPlayers()) {
+		for(IPlayer gp : dao.listAllPlayers()) {
 			System.out.println(gp.getId());
 			System.out.println(gp.getName());
 			System.out.println(gp.getWinsTotal());
@@ -103,7 +103,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		}
 	}
 
-	public IGamePlayer getcPlayer() {
+	public IPlayer getcPlayer() {
 		return cPlayer;
 	}
 	
@@ -127,11 +127,11 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		return true;
 	}
 
-	public IGamePlayer getPlayer1() {
+	public IPlayer getPlayer1() {
 		return player1;
 	}
 
-	public IGamePlayer getPlayer2() {
+	public IPlayer getPlayer2() {
 		return player2;
 	}
 	
@@ -143,7 +143,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		return Color.BLUE;
 	}
 
-	private char getWin(int x, int y, IGamePlayer player) {
+	private char getWin(int x, int y, IPlayer player) {
 		changePlayer(counter);
 		if (myChecker.checkWin(x, y, myField.getGameField()[x][y]))
 		{ 
@@ -162,7 +162,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	}
 
 	@Override
-	public IGameToken[][] getField() {
+	public IToken[][] getField() {
 		return myField.getGameField();
 	}
 	
@@ -175,7 +175,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
     }
 
 	@Override
-	public IGameField getGameField() {
+	public IField getGameField() {
 		return myField;
 	}
 }

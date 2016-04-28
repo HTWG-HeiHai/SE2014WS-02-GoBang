@@ -9,14 +9,14 @@ import org.ektorp.ViewResult;
 import org.ektorp.ViewResult.Row;
 
 import de.htwg.gobang.dao.IPlayerDao;
-import de.htwg.gobang.entities.IGamePlayer;
-import de.htwg.gobang.entities.IResult;
-import de.htwg.gobang.entities.impl.GamePlayer;
-import de.htwg.gobang.entities.impl.Result;
+import de.htwg.gobang.model.IPlayer;
+import de.htwg.gobang.model.IResult;
+import de.htwg.gobang.model.impl.Player;
+import de.htwg.gobang.model.impl.Result;
 import de.htwg.gobang.persistence.IPersistentResult;
 import de.htwg.gobang.persistence.couchdb.CouchDbPlayer;
 import de.htwg.gobang.persistence.couchdb.CouchDbResult;
-import de.htwg.gobang.persistence.couchdb.CouchDbUtil;
+import de.htwg.gobang.util.CouchDbUtil;
 
 public class CouchDbPlayerDao implements IPlayerDao {
 
@@ -26,11 +26,11 @@ public class CouchDbPlayerDao implements IPlayerDao {
 		db = CouchDbUtil.getDB();
 	}
 
-	private IGamePlayer copyPlayer(CouchDbPlayer persistentPlayer) {
+	private IPlayer copyPlayer(CouchDbPlayer persistentPlayer) {
 		if (persistentPlayer == null) {
 			return null;
 		}
-		IGamePlayer player = new GamePlayer(persistentPlayer.getName());
+		IPlayer player = new Player(persistentPlayer.getName());
 		player.setId(Integer.parseInt(persistentPlayer.getId()));
 
 		List<IResult> list = new ArrayList<>();
@@ -44,7 +44,7 @@ public class CouchDbPlayerDao implements IPlayerDao {
 		return player;
 	}
 
-	private CouchDbPlayer copyPlayer(IGamePlayer player) {
+	private CouchDbPlayer copyPlayer(IPlayer player) {
 		if (player == null) {
 			return null;
 		}
@@ -75,7 +75,7 @@ public class CouchDbPlayerDao implements IPlayerDao {
 	}
 
 	@Override
-	public void saveOrUpdatePlayer(IGamePlayer player) {
+	public void saveOrUpdatePlayer(IPlayer player) {
 		if (containsPlayerById(player.getId())) {
 			db.update(copyPlayer(player));
 		} else {
@@ -84,14 +84,14 @@ public class CouchDbPlayerDao implements IPlayerDao {
 	}
 
 	@Override
-	public IGamePlayer loadPlayer(IGamePlayer player) {
+	public IPlayer loadPlayer(IPlayer player) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<IGamePlayer> listAllPlayers() {
-		List<IGamePlayer> players = new ArrayList<>();
+	public List<IPlayer> listAllPlayers() {
+		List<IPlayer> players = new ArrayList<>();
 		ViewQuery query = new ViewQuery().allDocs();
 		ViewResult vr = db.queryView(query);
 
@@ -102,7 +102,7 @@ public class CouchDbPlayerDao implements IPlayerDao {
 	}
 
 	@Override
-	public IGamePlayer getPlayerById(int id) {
+	public IPlayer getPlayerById(int id) {
 		CouchDbPlayer p = db.find(CouchDbPlayer.class, String.valueOf(id));
 		if (p == null) {
 			return null;
@@ -119,7 +119,7 @@ public class CouchDbPlayerDao implements IPlayerDao {
 	}
 
 	@Override
-	public List<IGamePlayer> getPlayersByName(String name) {
+	public List<IPlayer> getPlayersByName(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,20 +1,20 @@
-package de.htwg.gobang.entities.impl;
+package de.htwg.gobang.model.impl;
 
-import de.htwg.gobang.entities.IGameField;
-import de.htwg.gobang.entities.IGameToken;
+import de.htwg.gobang.model.IField;
+import de.htwg.gobang.model.IToken;
 
-public class GameField implements IGameField {
+public class Field implements IField {
 
 	final static int TOKENTOWIN = 5;
 	private final static int FIELDSIZE = 19;
 
-	private IGameToken[][] matrix;
+	private IToken[][] matrix;
 
-	public GameField() {
-		matrix = new GameToken[FIELDSIZE][FIELDSIZE];
+	public Field() {
+		matrix = new Token[FIELDSIZE][FIELDSIZE];
 		for(int i = 0; i < FIELDSIZE; i++) {
 			for(int j = 0; j < FIELDSIZE; j++) {
-				matrix[i][j] = new GameToken();
+				matrix[i][j] = new Token();
 			}
 		}
 	}
@@ -23,7 +23,7 @@ public class GameField implements IGameField {
 		return FIELDSIZE;
 	}
 
-	public IGameToken[][] getGameField() {
+	public IToken[][] getGameField() {
 		return matrix;
 	}
 

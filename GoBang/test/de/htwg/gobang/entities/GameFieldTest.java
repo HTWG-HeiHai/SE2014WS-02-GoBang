@@ -6,14 +6,14 @@ import java.awt.Color;
 
 import org.junit.Test;
 
-import de.htwg.gobang.entities.impl.GameField;
-import de.htwg.gobang.entities.impl.GameToken;
+import de.htwg.gobang.model.impl.Field;
+import de.htwg.gobang.model.impl.Token;
 
 public class GameFieldTest {
 	
-	GameToken tokenB;
-	GameToken tokenW;
-	GameField myField;
+	Token tokenB;
+	Token tokenW;
+	Field myField;
 
 	@Test
 	public void winTop() {

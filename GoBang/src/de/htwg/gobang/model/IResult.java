@@ -1,4 +1,4 @@
-package de.htwg.gobang.entities;
+package de.htwg.gobang.model;
 
 public interface IResult {
 

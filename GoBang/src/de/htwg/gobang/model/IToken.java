@@ -1,8 +1,8 @@
-package de.htwg.gobang.entities;
+package de.htwg.gobang.model;
 
 import java.awt.Color;
 
-public interface IGameToken {
+public interface IToken {
 
 	public String getName();
 	public void setName(String name);

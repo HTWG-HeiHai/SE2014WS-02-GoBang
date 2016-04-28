@@ -1,13 +1,13 @@
-package de.htwg.gobang.entities.impl;
+package de.htwg.gobang.model.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import de.htwg.gobang.entities.IGamePlayer;
-import de.htwg.gobang.entities.IResult;
+import de.htwg.gobang.model.IPlayer;
+import de.htwg.gobang.model.IResult;
 
-public class GamePlayer implements IGamePlayer {
+public class Player implements IPlayer {
 
 	private int id;
 	private String name;
@@ -15,7 +15,7 @@ public class GamePlayer implements IGamePlayer {
 	private int losses;
 	private List<IResult> results;
 
-	public GamePlayer(String pName) {
+	public Player(String pName) {
 		name = pName;
 		wins = 0;
 		losses = 0;

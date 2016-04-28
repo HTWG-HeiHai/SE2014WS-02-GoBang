@@ -1,8 +1,8 @@
-package de.htwg.gobang.entities;
+package de.htwg.gobang.model;
 
 import java.util.List;
 
-public interface IGamePlayer {
+public interface IPlayer {
 	
 	int getId();
 

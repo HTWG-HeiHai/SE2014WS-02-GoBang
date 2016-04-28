@@ -12,16 +12,16 @@ import org.hibernate.Transaction;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import de.htwg.gobang.GoBangModule;
 import de.htwg.gobang.dao.IPlayerDao;
-import de.htwg.gobang.entities.IGamePlayer;
-import de.htwg.gobang.entities.IResult;
-import de.htwg.gobang.entities.impl.GamePlayer;
-import de.htwg.gobang.entities.impl.Result;
-import de.htwg.gobang.game.GoBangModule;
+import de.htwg.gobang.model.IPlayer;
+import de.htwg.gobang.model.IResult;
+import de.htwg.gobang.model.impl.Player;
+import de.htwg.gobang.model.impl.Result;
 import de.htwg.gobang.persistence.IPersistentResult;
 import de.htwg.gobang.persistence.hibernate.HibernatePlayer;
 import de.htwg.gobang.persistence.hibernate.HibernateResult;
-import de.htwg.gobang.persistence.hibernate.HibernateUtil;
+import de.htwg.gobang.util.HibernateUtil;
 
 public class HibernatePlayerDao implements IPlayerDao {
 
@@ -33,11 +33,11 @@ public class HibernatePlayerDao implements IPlayerDao {
 		injector = Guice.createInjector(new GoBangModule());
 	}
 
-	private IGamePlayer copyPlayer(HibernatePlayer persistentPlayer) {
+	private IPlayer copyPlayer(HibernatePlayer persistentPlayer) {
 		if (persistentPlayer == null) {
 			return null;
 		}
-		IGamePlayer player = new GamePlayer(persistentPlayer.getName());
+		IPlayer player = new Player(persistentPlayer.getName());
 		player.setId(persistentPlayer.getId());
 
 		List<IResult> list = new ArrayList<>();
@@ -51,7 +51,7 @@ public class HibernatePlayerDao implements IPlayerDao {
 		return player;
 	}
 
-	private HibernatePlayer copyPlayer(IGamePlayer player) {
+	private HibernatePlayer copyPlayer(IPlayer player) {
 		if (player == null) {
 			return null;
 		}
@@ -84,7 +84,7 @@ public class HibernatePlayerDao implements IPlayerDao {
 	}
 
 	@Override
-	public void saveOrUpdatePlayer(IGamePlayer player) {
+	public void saveOrUpdatePlayer(IPlayer player) {
 		Session session = null;
 		Transaction tx = null;
 		try {
@@ -101,9 +101,9 @@ public class HibernatePlayerDao implements IPlayerDao {
 	}
 
 	@Override
-	public IGamePlayer loadPlayer(IGamePlayer player) {
+	public IPlayer loadPlayer(IPlayer player) {
 
-		IGamePlayer result = null;
+		IPlayer result = null;
 		// Transaction tx = null;
 		// try {
 		// Session session = sessionFactory.getCurrentSession();
@@ -129,7 +129,7 @@ public class HibernatePlayerDao implements IPlayerDao {
 	}
 
 	@Override
-	public List<IGamePlayer> listAllPlayers() {
+	public List<IPlayer> listAllPlayers() {
 		Session session = HibernateUtil.getInstance().getCurrentSession();
 		session.beginTransaction();
 		Criteria criteria = session.createCriteria(HibernatePlayer.class);
@@ -137,9 +137,9 @@ public class HibernatePlayerDao implements IPlayerDao {
 		@SuppressWarnings("unchecked")
 		List<HibernatePlayer> results = criteria.list();
 
-		List<IGamePlayer> players = new ArrayList<>();
+		List<IPlayer> players = new ArrayList<>();
 		for (HibernatePlayer persistentPlayer : results) {
-			IGamePlayer player = copyPlayer(persistentPlayer);
+			IPlayer player = copyPlayer(persistentPlayer);
 			players.add(player);
 		}
 		return players;
@@ -154,14 +154,14 @@ public class HibernatePlayerDao implements IPlayerDao {
 	}
 
 	@Override
-	public IGamePlayer getPlayerById(int id) {
+	public IPlayer getPlayerById(int id) {
 		Session session = HibernateUtil.getInstance().getCurrentSession();
 		session.beginTransaction();
 		return copyPlayer((HibernatePlayer) session.get(HibernatePlayer.class, id));
 	}
 
 	@Override
-	public List<IGamePlayer> getPlayersByName(String name) {
+	public List<IPlayer> getPlayersByName(String name) {
 		Session session = HibernateUtil.getInstance().getCurrentSession();
 		session.beginTransaction();
 		Criteria criteria = session.createCriteria(HibernatePlayer.class);
@@ -169,9 +169,9 @@ public class HibernatePlayerDao implements IPlayerDao {
 		@SuppressWarnings("unchecked")
 		List<HibernatePlayer> results = criteria.list();
 
-		List<IGamePlayer> players = new ArrayList<>();
+		List<IPlayer> players = new ArrayList<>();
 		for (HibernatePlayer p : results) {
-			IGamePlayer player = copyPlayer(p);
+			IPlayer player = copyPlayer(p);
 			if(p.getName().equals(player.getName())) {
 				players.add(player);
 			}

@@ -2,21 +2,21 @@ package de.htwg.gobang.dao;
 
 import java.util.List;
 
-import de.htwg.gobang.entities.IGamePlayer;
+import de.htwg.gobang.model.IPlayer;
 
 public interface IPlayerDao {
 
-    void saveOrUpdatePlayer(IGamePlayer player);
+    void saveOrUpdatePlayer(IPlayer player);
 
 //    boolean isGameExisting(IGamePlayer player1, IGamePlayer player2);
 
-    IGamePlayer loadPlayer(IGamePlayer player);
+    IPlayer loadPlayer(IPlayer player);
 
-    List<IGamePlayer> listAllPlayers();
+    List<IPlayer> listAllPlayers();
 
-	IGamePlayer getPlayerById(int id);
+	IPlayer getPlayerById(int id);
 
 	boolean containsPlayerById(int id);
 
-	List<IGamePlayer> getPlayersByName(String name);
+	List<IPlayer> getPlayersByName(String name);
 }

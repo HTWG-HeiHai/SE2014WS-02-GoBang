@@ -1,4 +1,4 @@
-package de.htwg.gobang.ui;
+package de.htwg.gobang.view;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
@@ -18,8 +18,8 @@ import javax.swing.JPanel;
 import com.google.inject.Inject;
 
 import de.htwg.gobang.controller.IGbLogic;
-import de.htwg.gobang.entities.IGameToken;
-import de.htwg.gobang.observer.IObserver;
+import de.htwg.gobang.model.IToken;
+import de.htwg.gobang.util.observer.IObserver;
 
 public class GUI extends JFrame implements ActionListener, IObserver {
 
@@ -35,7 +35,7 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 	private JMenuItem menuRound;
 	
 	private JButton[][] buttonField;
-	private IGameToken[][] tokenField;
+	private IToken[][] tokenField;
 
 	private JButton position;
 	private JButton lastPosition;

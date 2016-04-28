@@ -1,4 +1,4 @@
-package de.htwg.gobang.game;
+package de.htwg.gobang;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;

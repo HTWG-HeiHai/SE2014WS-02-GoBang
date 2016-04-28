@@ -1,4 +1,4 @@
-package de.htwg.gobang.persistence.couchdb;
+package de.htwg.gobang.util;
 
 import java.net.MalformedURLException;
 
