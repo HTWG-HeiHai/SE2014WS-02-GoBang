@@ -5,7 +5,6 @@ import java.awt.Color;
 import de.htwg.gobang.model.IField;
 import de.htwg.gobang.model.IPlayer;
 import de.htwg.gobang.model.IToken;
-import de.htwg.gobang.persistence.IGameSaver;
 import de.htwg.gobang.util.observer.IObservable;
 
 public interface IGbLogic extends IObservable {
@@ -38,7 +37,5 @@ public interface IGbLogic extends IObservable {
 
 	Color getcColor();
 
-	void restoreGame(IGameSaver saver);
-	
 	IField getGameField();
 }

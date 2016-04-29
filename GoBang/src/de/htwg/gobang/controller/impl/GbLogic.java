@@ -14,7 +14,6 @@ import de.htwg.gobang.model.IPlayer;
 import de.htwg.gobang.model.IToken;
 import de.htwg.gobang.model.impl.Field;
 import de.htwg.gobang.model.impl.Player;
-import de.htwg.gobang.persistence.IGameSaver;
 import de.htwg.gobang.util.observer.impl.MyObserverable;
 
 @Singleton
@@ -166,14 +165,6 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		return myField.getGameField();
 	}
 	
-    @Override
-    public final void restoreGame(IGameSaver saver) {
-        player1.setName(saver.getPlayer1().getName());
-        player2.setName(saver.getPlayer2().getName());
-        status = saver.getStatus();
-        myField = saver.getGameField();
-    }
-
 	@Override
 	public IField getGameField() {
 		return myField;

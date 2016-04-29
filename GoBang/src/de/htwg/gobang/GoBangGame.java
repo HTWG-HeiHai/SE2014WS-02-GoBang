@@ -4,10 +4,10 @@ import java.util.Observable;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import akka.actor.Props;
 import de.htwg.gobang.controller.IGbLogic;
-import de.htwg.gobang.dao.IPlayerDao;
-import de.htwg.gobang.dao.hibernate.HibernatePlayerDao;
-import de.htwg.gobang.model.IPlayer;
 import de.htwg.gobang.view.GUI;
 import de.htwg.gobang.view.TUI;
 
@@ -35,19 +35,9 @@ public class GoBangGame extends Observable{
 
 	public static void main(String[] args) {
 		GoBangGame.getInstance();
-//		IPlayerDao dao = new HibernatePlayerDao();
-//		dao.saveOrUpdatePlayer(game.getController().getPlayer1());
-//		dao.saveOrUpdatePlayer(game.getController().getPlayer2());
-//		for(IGamePlayer gp : dao.listAllPlayers()) {
-//			System.out.println(gp.getId());
-//			System.out.println(gp.getName());
-//			System.out.println(gp.getWins());
-//			System.out.println(gp.getLosses());
-//			System.out.println(gp.getEnemies() + "\n");
-//		}
-		
-//		IGameDao dao = new HibernateGameDao();
-//		dao.saveOrUpdateGame(game.getController());
+		ActorSystem _system = ActorSystem.create("GoBangActorSystem");
+		ActorRef master = _system.actorOf(Props.create(GameActor.class), "game");
+		master.tell("start", ActorRef.noSender());
 	}
 
     public Injector getIn() {
