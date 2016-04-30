@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.google.inject.Inject;
+
 import de.htwg.gobang.model.IPlayer;
 import de.htwg.gobang.model.IResult;
 
@@ -14,6 +16,11 @@ public class Player implements IPlayer {
 	private int wins;
 	private int losses;
 	private List<IResult> results;
+
+	@Inject
+	public Player() {
+		this("user");
+	}
 
 	public Player(String pName) {
 		name = pName;

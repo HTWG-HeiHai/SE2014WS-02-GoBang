@@ -6,7 +6,7 @@ import java.util.List;
 import de.htwg.gobang.util.observer.IObservable;
 import de.htwg.gobang.util.observer.IObserver;
 
-public class MyObserverable implements IObservable {
+public class Observerable implements IObservable {
 	
 	private List<IObserver> subscriber = new ArrayList<IObserver>(2); 
 

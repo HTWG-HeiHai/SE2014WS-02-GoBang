@@ -8,6 +8,8 @@ import org.ektorp.ViewQuery;
 import org.ektorp.ViewResult;
 import org.ektorp.ViewResult.Row;
 
+import com.google.inject.Inject;
+
 import de.htwg.gobang.dao.IPlayerDao;
 import de.htwg.gobang.model.IPlayer;
 import de.htwg.gobang.model.IResult;
@@ -21,7 +23,8 @@ import de.htwg.gobang.util.CouchDbUtil;
 public class CouchDbPlayerDao implements IPlayerDao {
 
 	private final CouchDbConnector db;
-	
+
+	@Inject
 	public CouchDbPlayerDao() {
 		db = CouchDbUtil.getDB();
 	}
@@ -120,8 +123,14 @@ public class CouchDbPlayerDao implements IPlayerDao {
 
 	@Override
 	public List<IPlayer> getPlayersByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		List<IPlayer> ps = listAllPlayers();
+		List<IPlayer> players = new ArrayList<>();
+		for(IPlayer p : ps) {
+			if(p.getName().equals(name)) {
+				players.add(p);
+			}
+		}
+		return players;
 	}
 
 }

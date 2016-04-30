@@ -9,10 +9,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import com.google.inject.Inject;
 
-import de.htwg.gobang.GoBangModule;
 import de.htwg.gobang.dao.IPlayerDao;
 import de.htwg.gobang.model.IPlayer;
 import de.htwg.gobang.model.IResult;
@@ -26,11 +24,12 @@ import de.htwg.gobang.util.HibernateUtil;
 public class HibernatePlayerDao implements IPlayerDao {
 
 	private final SessionFactory sessionFactory;
-	private final Injector injector;
+//	private final Injector injector;
 
+	@Inject
 	public HibernatePlayerDao() {
 		sessionFactory = HibernateUtil.getInstance();
-		injector = Guice.createInjector(new GoBangModule());
+//		injector = Guice.createInjector(new GoBangModule());
 	}
 
 	private IPlayer copyPlayer(HibernatePlayer persistentPlayer) {

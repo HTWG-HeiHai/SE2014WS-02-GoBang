@@ -4,9 +4,6 @@ import java.util.Observable;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
-import akka.actor.Props;
 import de.htwg.gobang.controller.IGbLogic;
 import de.htwg.gobang.view.GUI;
 import de.htwg.gobang.view.TUI;
@@ -35,9 +32,9 @@ public class GoBangGame extends Observable{
 
 	public static void main(String[] args) {
 		GoBangGame.getInstance();
-		ActorSystem _system = ActorSystem.create("GoBangActorSystem");
-		ActorRef master = _system.actorOf(Props.create(GameActor.class), "game");
-		master.tell("start", ActorRef.noSender());
+//		ActorSystem _system = ActorSystem.create("GoBangActorSystem");
+//		ActorRef master = _system.actorOf(Props.create(GameActor.class), "game");
+//		master.tell("start", ActorRef.noSender());
 	}
 
     public Injector getIn() {

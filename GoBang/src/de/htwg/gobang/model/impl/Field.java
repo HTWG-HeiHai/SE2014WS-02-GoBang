@@ -1,5 +1,7 @@
 package de.htwg.gobang.model.impl;
 
+import com.google.inject.Inject;
+
 import de.htwg.gobang.model.IField;
 import de.htwg.gobang.model.IToken;
 
@@ -10,6 +12,7 @@ public class Field implements IField {
 
 	private IToken[][] matrix;
 
+	@Inject
 	public Field() {
 		matrix = new Token[FIELDSIZE][FIELDSIZE];
 		for(int i = 0; i < FIELDSIZE; i++) {

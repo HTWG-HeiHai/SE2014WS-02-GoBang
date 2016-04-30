@@ -1,5 +1,7 @@
 package de.htwg.gobang.model.impl;
 
+import com.google.inject.Inject;
+
 import de.htwg.gobang.model.IResult;
 
 public class Result implements IResult {
@@ -7,6 +9,11 @@ public class Result implements IResult {
 	private int id;
 	private int wins;
 	private int losses;
+
+	@Inject
+	public Result() {
+		this(0, 0, 0);
+	}
 
 	public Result(int id, int wins, int losses) {
 		this.id = id;

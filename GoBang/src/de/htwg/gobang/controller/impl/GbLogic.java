@@ -1,23 +1,24 @@
 package de.htwg.gobang.controller.impl;
 
 import java.awt.Color;
+import java.util.List;
 
+import com.google.inject.Guice;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 import com.google.inject.Singleton;
 
+import de.htwg.gobang.GoBangModule;
 import de.htwg.gobang.controller.IChecker;
 import de.htwg.gobang.controller.IGbLogic;
 import de.htwg.gobang.dao.IPlayerDao;
-import de.htwg.gobang.dao.couchdb.CouchDbPlayerDao;
 import de.htwg.gobang.model.IField;
 import de.htwg.gobang.model.IPlayer;
 import de.htwg.gobang.model.IToken;
-import de.htwg.gobang.model.impl.Field;
-import de.htwg.gobang.model.impl.Player;
-import de.htwg.gobang.util.observer.impl.MyObserverable;
+import de.htwg.gobang.util.observer.impl.Observerable;
 
 @Singleton
-public class GbLogic extends MyObserverable implements IGbLogic {
+public class GbLogic extends Observerable implements IGbLogic {
 
 	private IField myField;
 	private IPlayer player1;
@@ -29,23 +30,37 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	private int counter;
 	private char status;
 	private IPlayerDao dao;
+	private Injector injector;
 
 	@Inject
 	public GbLogic() {
-		this(true, new CouchDbPlayerDao());//hm,
+		this(true);// hm,
 	}
 
-	public GbLogic(boolean pStartplayer, IPlayerDao dao) {
-		player1 = new Player("qwer");
-		player2 = new Player("asdf");
-		this.dao = dao;
-//		player1 = dao.getPlayerById(1888186442);//
-//		player2 = dao.getPlayerById(2010019457);//
+	public GbLogic(boolean pStartplayer) {
+		injector = Guice.createInjector(new GoBangModule());
+		dao = injector.getInstance(IPlayerDao.class);
+		player1 = createOrLoadPlayer("qwer");
+		player2 = createOrLoadPlayer("asdf");
+		// player1 = dao.getPlayerById(1888186442);//
+		// player2 = dao.getPlayerById(2010019457);//
 		newGame(pStartplayer);
 	}
 
+	private IPlayer createOrLoadPlayer(String name) {
+		List<IPlayer> list = dao.getPlayersByName(name);
+		IPlayer player;
+		if(list == null) {
+			player = injector.getInstance(IPlayer.class);
+			player.setName(name);
+		} else {
+			player = list.get(0);//?naja
+		}
+		return player;
+	}
+
 	public void newGame(boolean pStartplayer) {
-		myField = new Field();
+		myField = injector.getInstance(IField.class);
 		myChecker = new Checker(myField.getGameField());
 		counter = 0;
 		if (pStartplayer) {
@@ -58,7 +73,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 		lastY = 1;
 		status = 'n';
 		notifyObservers();
-		for(IPlayer gp : dao.listAllPlayers()) {
+		for (IPlayer gp : dao.listAllPlayers()) {
 			System.out.println(gp.getId());
 			System.out.println(gp.getName());
 			System.out.println(gp.getWinsTotal());
@@ -88,7 +103,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	}
 
 	public Color getcColor() {
-		if(cPlayer.equals(player1)) {
+		if (cPlayer.equals(player1)) {
 			return Color.BLACK;
 		}
 		return Color.BLUE;
@@ -105,12 +120,12 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	public IPlayer getcPlayer() {
 		return cPlayer;
 	}
-	
-	public int getWinPlayer1(){
+
+	public int getWinPlayer1() {
 		return player1.getWinsAgainst(player2.getId());
 	}
-	
-	public int getWinPlayer2(){
+
+	public int getWinPlayer2() {
 		return player2.getWinsAgainst(player1.getId());
 	}
 
@@ -133,7 +148,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	public IPlayer getPlayer2() {
 		return player2;
 	}
-	
+
 	public Color getColor1() {
 		return Color.BLACK;
 	}
@@ -144,8 +159,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 
 	private char getWin(int x, int y, IPlayer player) {
 		changePlayer(counter);
-		if (myChecker.checkWin(x, y, myField.getGameField()[x][y]))
-		{ 
+		if (myChecker.checkWin(x, y, myField.getGameField()[x][y])) {
 			if (player.equals(player1)) {
 				player.addWinAgainst(player2.getId());
 				player2.addLossAgainst(player.getId());
@@ -153,8 +167,8 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 				player.addWinAgainst(player1.getId());
 				player1.addLossAgainst(player.getId());
 			}
-			dao.saveOrUpdatePlayer(player1);//
-			dao.saveOrUpdatePlayer(player2);//
+			 dao.saveOrUpdatePlayer(player1);//
+			 dao.saveOrUpdatePlayer(player2);//
 			return 'g';
 		}
 		return 'e';
@@ -164,7 +178,7 @@ public class GbLogic extends MyObserverable implements IGbLogic {
 	public IToken[][] getField() {
 		return myField.getGameField();
 	}
-	
+
 	@Override
 	public IField getGameField() {
 		return myField;

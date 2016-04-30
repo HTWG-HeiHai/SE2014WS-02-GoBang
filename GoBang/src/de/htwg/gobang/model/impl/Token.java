@@ -2,13 +2,16 @@ package de.htwg.gobang.model.impl;
 
 import java.awt.Color;
 
+import com.google.inject.Inject;
+
 import de.htwg.gobang.model.IToken;
 
 public class Token implements IToken {
 
 	private String name;
 	private Color color;
-	
+
+	@Inject
 	public Token() {
 		this("none", null);
 	}
