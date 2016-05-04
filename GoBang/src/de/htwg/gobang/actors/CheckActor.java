@@ -1,4 +1,4 @@
-package de.htwg.gobang;
+package de.htwg.gobang.actors;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,6 +10,8 @@ import akka.event.LoggingAdapter;
 import akka.pattern.Patterns;
 import akka.routing.RoundRobinPool;
 import akka.util.Timeout;
+import de.htwg.gobang.messages.RemoveToken;
+import de.htwg.gobang.messages.SetToken;
 import scala.concurrent.Await;
 import scala.concurrent.Future;
 

@@ -1,4 +1,4 @@
-package de.htwg.gobang;
+package de.htwg.gobang.actors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +35,8 @@ public class CouchDbDaoActor extends UntypedActor {
 			getSender().tell(getPlayersByName((String) message), getSelf());
 		} else if (message instanceof IPlayer) {
 			saveOrUpdatePlayer((IPlayer) message);
+		} else {
+			unhandled(message);
 		}
 	}
 

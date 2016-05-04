@@ -1,8 +1,9 @@
-package de.htwg.gobang;
+package de.htwg.gobang.actors;
 
 import akka.actor.UntypedActor;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
+import de.htwg.gobang.messages.SetToken;
 import de.htwg.gobang.model.IToken;
 
 public class CheckDirectionActor extends UntypedActor {

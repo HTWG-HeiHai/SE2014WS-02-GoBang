@@ -1,4 +1,4 @@
-package de.htwg.gobang;
+package de.htwg.gobang.messages;
 
 import de.htwg.gobang.model.IPlayer;
 

@@ -1,4 +1,4 @@
-package de.htwg.gobang;
+package de.htwg.gobang.actors;
 
 import akka.actor.UntypedActor;
 import akka.event.Logging;
