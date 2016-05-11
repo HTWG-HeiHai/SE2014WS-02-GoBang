@@ -40,17 +40,13 @@ public class GbLogic extends Observerable implements IGbLogic {
 	public GbLogic(boolean pStartplayer) {
 		injector = Guice.createInjector(new GoBangModule());
 		dao = injector.getInstance(IPlayerDao.class);
-		player1 = createOrLoadPlayer("qwer");
-		player2 = createOrLoadPlayer("asdf");
-		// player1 = dao.getPlayerById(1888186442);//
-		// player2 = dao.getPlayerById(2010019457);//
-		newGame(pStartplayer);
+//		newGame(pStartplayer);
 	}
 
 	private IPlayer createOrLoadPlayer(String name) {
 		List<IPlayer> list = dao.getPlayersByName(name);
 		IPlayer player;
-		if(list == null) {
+		if(list.isEmpty()) {
 			player = injector.getInstance(IPlayer.class);
 			player.setName(name);
 		} else {
@@ -182,5 +178,15 @@ public class GbLogic extends Observerable implements IGbLogic {
 	@Override
 	public IField getGameField() {
 		return myField;
+	}
+
+	@Override
+	public void setPlayer1(String name) {
+		player1 = createOrLoadPlayer(name);
+	}
+
+	@Override
+	public void setPlayer2(String name) {
+		player2 = createOrLoadPlayer(name);
 	}
 }

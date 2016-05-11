@@ -113,7 +113,6 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 		choice.setLayout(new GridBagLayout());
 
 		currentPlayerLabel = new JLabel("current Player: ");
-//		currentPlayerLabelText = new JLabel(controller.getcPlayer().getName());
 		currentPlayerLabelText = new JLabel(controller.getPlayer1().getName());
 		JLabel fakeLabel = new JLabel("black");
 		fakeLabel.setForeground(new JButton().getBackground());
