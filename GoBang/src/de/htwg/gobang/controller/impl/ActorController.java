@@ -56,21 +56,14 @@ public class ActorController extends Observerable implements IGbLogic {
 
 		injector = Guice.createInjector(new GoBangModule());
 		dao = injector.getInstance(IPlayerDao.class);
-		player1 = createOrLoadPlayer("asdf");
-		player2 = createOrLoadPlayer("qwer");
-		newGame(pStartplayer);
-		// cPlayer = new Player("tztztu");
-		// setToken(2, 3);
-		// setToken(2, 4);
-		// setToken(2, 5);
-		// setToken(2, 6);
-		// setToken(2, 7);
+
+//		newGame(pStartplayer);
 	}
 
 	private IPlayer createOrLoadPlayer(String name) {
 		List<IPlayer> list = dao.getPlayersByName(name);
 		IPlayer player;
-		if (list == null) {
+		if (list.isEmpty()) {
 			player = injector.getInstance(IPlayer.class);
 			player.setName(name);
 		} else {
@@ -114,6 +107,12 @@ public class ActorController extends Observerable implements IGbLogic {
 	public void newGame(boolean pStartplayer) {
 		myField = injector.getInstance(IField.class);
 		counter = 0;
+		if(player1 == null) {
+			player1 = createOrLoadPlayer("asdf");
+		}
+		if(player2 == null) {
+			player2 = createOrLoadPlayer("qwer");
+		}
 		if (pStartplayer) {
 			cPlayer = player1;
 		} else {
@@ -228,6 +227,16 @@ public class ActorController extends Observerable implements IGbLogic {
 	@Override
 	public IField getGameField() {
 		return myField;
+	}
+
+	@Override
+	public void setPlayer1(String name) {
+		player1 = createOrLoadPlayer(name);
+	}
+
+	@Override
+	public void setPlayer2(String name) {
+		player2 = createOrLoadPlayer(name);
 	}
 
 }

@@ -38,4 +38,8 @@ public interface IGbLogic extends IObservable {
 	Color getcColor();
 
 	IField getGameField();
+
+	void setPlayer1(String name);
+
+	void setPlayer2(String name);
 }

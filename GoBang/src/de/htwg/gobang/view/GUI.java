@@ -81,6 +81,10 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 
 		this.setJMenuBar(menuBar);
 
+		// Players
+		controller.setPlayer1(JOptionPane.showInputDialog(null, "Please enter your name, Player1:", "Player1", JOptionPane.PLAIN_MESSAGE));
+		controller.setPlayer2(JOptionPane.showInputDialog(null, "Please enter your name, Player2:", "Player2", JOptionPane.PLAIN_MESSAGE));
+		
 		// GameField
 		gameField = new JPanel();
 		gameField.setLayout(new GridBagLayout());
@@ -109,7 +113,8 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 		choice.setLayout(new GridBagLayout());
 
 		currentPlayerLabel = new JLabel("current Player: ");
-		currentPlayerLabelText = new JLabel(controller.getcPlayer().getName());
+//		currentPlayerLabelText = new JLabel(controller.getcPlayer().getName());
+		currentPlayerLabelText = new JLabel(controller.getPlayer1().getName());
 		JLabel fakeLabel = new JLabel("black");
 		fakeLabel.setForeground(new JButton().getBackground());
 		wins = new JLabel("Wins: ");
@@ -201,6 +206,7 @@ public class GUI extends JFrame implements ActionListener, IObserver {
 		this.setResizable(false);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		controller.newGame(true);
 	}
 
 	@Override
