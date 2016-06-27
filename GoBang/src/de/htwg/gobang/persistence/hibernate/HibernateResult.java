@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import de.htwg.gobang.persistence.IPersistentResult;
 
 @Entity
-@Table(name = "results")
+@Table(name = "results_new_version")
 public class HibernateResult implements IPersistentResult, Serializable {
 
 	private static final long serialVersionUID = -1130452671664393744L;
@@ -23,6 +23,10 @@ public class HibernateResult implements IPersistentResult, Serializable {
 
 	@Column(name = "losses")
 	private int losses;
+
+	public HibernateResult() {
+		
+	}
 
 	public HibernateResult(int id, int wins, int losses) {
 		this.id = id;

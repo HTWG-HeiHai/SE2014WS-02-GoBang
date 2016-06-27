@@ -15,7 +15,7 @@ import de.htwg.gobang.persistence.IPersistentPlayer;
 import de.htwg.gobang.persistence.IPersistentResult;
 
 @Entity
-@Table(name = "player")
+@Table(name = "player_new_version")
 public class HibernatePlayer implements IPersistentPlayer, Serializable {
 
 	private static final long serialVersionUID = 2099727281780128347L;
@@ -33,8 +33,8 @@ public class HibernatePlayer implements IPersistentPlayer, Serializable {
 	@Column( name="losses")
 	private int losses;
 	
-	@ElementCollection
-	@JoinColumn(name="results")//
+	@ElementCollection(targetClass=HibernateResult.class)
+	@JoinColumn(name="results_new_version")//
 	private List<IPersistentResult> results;
 	
 	@Override

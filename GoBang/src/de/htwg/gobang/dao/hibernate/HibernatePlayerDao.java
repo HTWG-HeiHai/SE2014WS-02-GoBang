@@ -167,7 +167,7 @@ public class HibernatePlayerDao implements IPlayerDao {
 		
 		@SuppressWarnings("unchecked")
 		List<HibernatePlayer> results = criteria.list();
-
+		System.out.println(results.isEmpty() + " üüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüü");
 		List<IPlayer> players = new ArrayList<>();
 		for (HibernatePlayer p : results) {
 			IPlayer player = copyPlayer(p);
