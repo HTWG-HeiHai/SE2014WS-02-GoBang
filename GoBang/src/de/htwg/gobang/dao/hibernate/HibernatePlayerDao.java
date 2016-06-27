@@ -65,19 +65,19 @@ public class HibernatePlayerDao implements IPlayerDao {
 			// A new database entry
 			persistentPlayer = new HibernatePlayer();
 		}
-
-		persistentPlayer.setId(playerId);
-		persistentPlayer.setName(player.getName());
-		persistentPlayer.setWinsTotal(player.getWinsTotal());
-		persistentPlayer.setLossesTotal(player.getLossesTotal());
-
-//		System.out.println(player.getResults());
-
-		List<IPersistentResult> list = new ArrayList<>();
-		for(IResult r : player.getResults()) {
-			list.add(new HibernateResult(r.getEnemyId(), r.getWins(), r.getLosses()));
-		}
-		persistentPlayer.setResults(list);
+		System.out.println(persistentPlayer.getId() + " " + persistentPlayer.getName());
+//		persistentPlayer.setId(playerId);
+//		persistentPlayer.setName(player.getName());
+//		persistentPlayer.setWinsTotal(player.getWinsTotal());
+//		persistentPlayer.setLossesTotal(player.getLossesTotal());
+//
+////		System.out.println(player.getResults());
+//
+//		List<IPersistentResult> list = new ArrayList<>();
+//		for(IResult r : player.getResults()) {
+//			list.add(new HibernateResult(r.getEnemyId(), r.getWins(), r.getLosses()));
+//		}
+//		persistentPlayer.setResults(list);
 
 		return persistentPlayer;
 	}
@@ -93,6 +93,9 @@ public class HibernatePlayerDao implements IPlayerDao {
 //			query.executeUpdate();
 			HibernatePlayer persistentPlayer = copyPlayer(player);
 			session.saveOrUpdate(persistentPlayer);
+			for (IPersistentResult result : persistentPlayer.getResults()) {
+				session.saveOrUpdate(result);
+			}
 			tx.commit();
 		} catch (HibernateException ex) {
 			handleHibernateException(ex, tx);
@@ -163,16 +166,14 @@ public class HibernatePlayerDao implements IPlayerDao {
 	public List<IPlayer> getPlayersByName(String name) {
 		Session session = HibernateUtil.getInstance().getCurrentSession();
 		session.beginTransaction();
-		Criteria criteria = session.createCriteria(HibernatePlayer.class);
+		Criteria criteria = session.createCriteria(HibernatePlayer.class, name);
 		
 		@SuppressWarnings("unchecked")
 		List<HibernatePlayer> results = criteria.list();
-		System.out.println(results.isEmpty() + " üüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüüü");
 		List<IPlayer> players = new ArrayList<>();
 		for (HibernatePlayer p : results) {
-			IPlayer player = copyPlayer(p);
-			if(p.getName().equals(player.getName())) {
-				players.add(player);
+			if(p.getName().equals(name)) {
+				players.add(copyPlayer(p));
 			}
 		}
 		return players;
