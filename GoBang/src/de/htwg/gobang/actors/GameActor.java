@@ -57,7 +57,7 @@ public class GameActor extends UntypedActor {
 
 	@Override
 	public void onReceive(Object message) throws Exception {
-		log.info("Received String message: {}", message);
+		//log.info("Received String message: {}", message);
 		if (message instanceof NewGame) {
 			fieldCreator.forward(message, getContext());
 //			getContext().become(((NewGame)message).getLastPlayer());

@@ -62,7 +62,7 @@ public class ActorController extends Observerable implements IGbLogic {
 
 	private IPlayer createOrLoadPlayer(String name) {
 		List<IPlayer> list = dao.getPlayersByName(name);
-		System.out.println(list.isEmpty() + " //////////////////////////////////////////////////////////////////////////////////");
+		System.out.println(list + " //////////////////////////////////////////////////////////////////////////////////");
 		IPlayer player;
 		if (list.isEmpty()) {
 			player = injector.getInstance(IPlayer.class);
@@ -93,8 +93,11 @@ public class ActorController extends Observerable implements IGbLogic {
 			}
 			status = 'g';
 			
-			master.tell(player1, ActorRef.noSender());
-			master.tell(player2, ActorRef.noSender());
+			//save with akka (couchDb)
+//			master.tell(player1, ActorRef.noSender());
+//			master.tell(player2, ActorRef.noSender());
+
+			//save without akka
 			dao.saveOrUpdatePlayer(player1);//
 			dao.saveOrUpdatePlayer(player2);//
 		} else {

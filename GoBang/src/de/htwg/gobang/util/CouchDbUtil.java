@@ -25,7 +25,7 @@ public class CouchDbUtil {
 //            LOGGER.error("Malformed URL", e);
         }
         CouchDbInstance dbInstance = new StdCouchDbInstance(client);
-        db = dbInstance.createConnector("goBangPlayers0", true);
+        db = dbInstance.createConnector("goBangPlayers1", true);
         db.createDatabaseIfNotExists();
     }
 

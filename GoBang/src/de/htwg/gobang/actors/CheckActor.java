@@ -25,7 +25,7 @@ public class CheckActor extends UntypedActor {
 
 	@Override
 	public void onReceive(Object message) throws Exception {
-		log.info("Received message: {}", message.getClass());
+		//log.info("Received message: {}", message.getClass());
 		if(message instanceof SetToken) {
 			SetToken msg = (SetToken) message;
 			Future<Object> future1 = Patterns.ask(checkWorker, msg.withDirection(1), timeout);

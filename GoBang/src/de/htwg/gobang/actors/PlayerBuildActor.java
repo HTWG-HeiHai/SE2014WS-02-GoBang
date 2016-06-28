@@ -10,7 +10,7 @@ public class PlayerBuildActor extends UntypedActor {
 
 	@Override
 	public void onReceive(Object message) throws Exception {
-		log.info("Received String message: {}", message);
+		//log.info("Received String message: {}", message);
 		
 	}
 

@@ -15,7 +15,7 @@ public class CheckDirectionActor extends UntypedActor {
 
 	@Override
 	public void onReceive(Object message) throws Exception {
-		log.info("Received message: {}", message);
+		//log.info("Received message: {}", message);
 		if(message instanceof SetToken) {
 			SetToken msg = (SetToken) message;
 			matrix = msg.getMatrix();

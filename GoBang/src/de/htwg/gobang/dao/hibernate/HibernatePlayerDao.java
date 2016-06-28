@@ -64,20 +64,20 @@ public class HibernatePlayerDao implements IPlayerDao {
 		} else {
 			// A new database entry
 			persistentPlayer = new HibernatePlayer();
+			persistentPlayer.setId(playerId);
+			persistentPlayer.setName(player.getName());
+			persistentPlayer.setWinsTotal(player.getWinsTotal());
+			persistentPlayer.setLossesTotal(player.getLossesTotal());
+	
+//			System.out.println(player.getResults());
+	
+			List<IPersistentResult> list = new ArrayList<>();
+			for(IResult r : player.getResults()) {
+				list.add(new HibernateResult(r.getEnemyId(), r.getWins(), r.getLosses()));
+			}
+			persistentPlayer.setResults(list);
 		}
 		System.out.println(persistentPlayer.getId() + " " + persistentPlayer.getName());
-//		persistentPlayer.setId(playerId);
-//		persistentPlayer.setName(player.getName());
-//		persistentPlayer.setWinsTotal(player.getWinsTotal());
-//		persistentPlayer.setLossesTotal(player.getLossesTotal());
-//
-////		System.out.println(player.getResults());
-//
-//		List<IPersistentResult> list = new ArrayList<>();
-//		for(IResult r : player.getResults()) {
-//			list.add(new HibernateResult(r.getEnemyId(), r.getWins(), r.getLosses()));
-//		}
-//		persistentPlayer.setResults(list);
 
 		return persistentPlayer;
 	}
